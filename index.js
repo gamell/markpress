@@ -1,5 +1,6 @@
 var marked = require('marked');
 var fs = require('fs');
+var pathResolve = require('path').resolve;
 
 var commentReg = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
 var getMetaData = function (content) {
@@ -34,12 +35,17 @@ var createSlideDiv = function (content) {
     return html;
 };
 
+var readFile = function (path) {
+    path = pathResolve(__dirname, path);
+    return String(fs.readFileSync(path));
+};
+
 var createImpressHTML = function (html) {
-    var tpl = String(fs.readFileSync('./res/impress.tpl'));
+    var tpl = readFile('./res/impress.tpl');
     var data = {
         html: html,
-        css: String(fs.readFileSync('./res/impress.css')),
-        js: String(fs.readFileSync('./res/impress.min.js'))
+        css: readFile('./res/impress.css'),
+        js: readFile('./res/impress.min.js')
     };
     return tpl.replace(/\{\{\$(\w+)\}\}/g, function ($, $1) {
         return data[$1];
