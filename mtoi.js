@@ -23,8 +23,9 @@ if (!program.input || !program.output) {
     process.exit();
 }
 
-var input = path.resolve(__dirname, program.input);
-var output = path.resolve(__dirname, program.output);
+var basePath = process.cwd();
+var input = path.resolve(basePath, program.input);
+var output = path.resolve(basePath, program.output);
 
 var html = mtoi(input);
 fs.writeFileSync(output, html);
