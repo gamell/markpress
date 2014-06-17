@@ -57,3 +57,5 @@ h1{font-size:250%;text-align:center}
 h2{font-size:180%}
 ul li{list-style:decimal;list-style-position:inside}
 ul>li>ul>li{list-style:lower-alpha;margin-left:2em}
+pre {background-color:#f8f8f8;padding:6px 10px;border-radius:3px;}
+code {background:#f8f8f8;}

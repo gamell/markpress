@@ -5,9 +5,9 @@ var program = require('commander');
 var path = require('path');
 var fs = require('fs');
 
-program.version('0.1.0')
-    .option('-i, --input <value>', 'Input markdown file path')
-    .option('-o, --output <value>', 'Impress htmll file output path')
+program.version('0.1.4')
+    .option('-i, --input <path>', 'Input markdown file path')
+    .option('-o, --output <path>', 'Impress htmll file output path')
     .on('--help', function () {
         console.log('  Examples:');
         console.log('');

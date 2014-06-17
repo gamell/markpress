@@ -30,7 +30,7 @@ var createSlideDiv = function (content) {
         html += ' ' + metaData;
     }
     html += '>';
-    html += marked(content.replace(commentReg, ''));
+    html += marked(content);
     html += '</div>';
     return html;
 };
