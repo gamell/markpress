@@ -17,6 +17,7 @@
 ## Markdown format
 + use `-----` to separate each slide
 + use comment to set impress attr, such as `<!-- x=0 y=0 rotate=0 -->`
++ this page is made by *markdown-impress* use [this markdown](http://steel1990.github.io/markdown-impress/README.md).
 
 -----------------------------
 <!-- x=1500 y=1000 rotate=90 -->
