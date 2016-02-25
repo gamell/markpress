@@ -4,8 +4,9 @@ var mtoi = require('./index.js');
 var program = require('commander');
 var path = require('path');
 var fs = require('fs');
+var pkg = require('./package');
 
-program.version('0.1.5')
+program.version(pkg.version)
     .option('-i, --input <path>', 'Input markdown file path')
     .option('-o, --output <path>', 'Impress htmll file output path')
     .on('--help', function () {
