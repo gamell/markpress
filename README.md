@@ -32,3 +32,16 @@
     var mtoi = require('markdown-impress');
     var content = mtoi('file.md');
     fs.writeFileSync('file.html', content);
+
+## Todo
+
+- Layout and Style options
+- ES2015
+- eslint
+- unit tests
+
+
+## Other packages
+
+https://www.npmjs.com/package/impress.md
+https://github.com/steel1990/markdown-impress
