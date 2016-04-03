@@ -1,9 +1,9 @@
-var marked = require('marked');
-var fs = require('fs');
-var pathResolve = require('path').resolve;
+const marked = require('marked');
+const fs = require('fs');
+const pathResolve = require('path').resolve;
 
-var commentReg = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
-var getMetaData = function (content) {
+const commentReg = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
+var getMetaData = (content) => {
     commentReg.lastIndex = 0;
     var match = commentReg.exec(content);
     if (!match) {
@@ -23,24 +23,15 @@ var getMetaData = function (content) {
     }).join(' ');
 };
 
-var createSlideDiv = function (content) {
-    var metaData = getMetaData(content);
-    var html = '<div class="step"';
-    if (metaData) {
-        html += ' ' + metaData;
-    }
-    html += '>';
-    html += marked(content);
-    html += '</div>';
-    return html;
-};
+var createSlideDiv = (content) =>
+     `<div class="step" ${getMetaData(content)}>${marked(content)}</div>`;
 
-var readFile = function (path) {
+var readFile = (path) => {
     path = pathResolve(__dirname, path);
     return String(fs.readFileSync(path));
 };
 
-var createImpressHTML = function (html) {
+var createImpressHTML = (html) => {
     var tpl = readFile('./res/impress.tpl');
     var data = {
         html: html,
@@ -52,7 +43,7 @@ var createImpressHTML = function (html) {
     });
 };
 
-var processMarkdownFile = function (path) {
+var processMarkdownFile = (path) => {
     var contentArr = String(fs.readFileSync(path)).split(/^-{6,}$/m);
     var html = '';
     contentArr.forEach(function (content) {
