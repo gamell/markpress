@@ -1,14 +1,14 @@
-#! /usr/bin/env node
+#! /usr/bin/env node -harmony_rest_parameters
 
 'use strict';
 
-const markpress = require('./index.js');
+const markpress = require('../index.js');
 const program = require('commander');
 const path = require('path');
 const fs = require('fs');
-const pkg = require('./package');
+const pkg = require('../package');
 
-const layoutRegex = /^(horizontal|vertical|3d|random)$/i;
+const layoutRegex = /^(horizontal|vertical|3d|random-grid|random)$/i;
 const themeRegex = /^(light|dark)$/i;
 
 program.version(pkg.version)
@@ -16,7 +16,7 @@ program.version(pkg.version)
     .option('-o, --output <path>', 'Impress htmll file output path')
     .option(
       '-l, --layout <layout>',
-      'Chose the impress.js layout [horizontal (default)|vertical|3d|random]',
+      'Chose the impress.js layout [horizontal (default)|vertical|3d|random-grid|random]',
       layoutRegex,
       'horizontal'
     )
@@ -26,7 +26,14 @@ program.version(pkg.version)
       themeRegex,
       'light'
     )
-    //.option('-b, --build [compact (default)|expanded], 'Chose if the output will be a single html file or an HTML file and CSS files for easy editing.')
+    .option(
+      '-a, --auto-break',
+      'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
+    )
+    // .option(
+    //   '-b, --build [compact (default)|expanded]',
+    //   'Compact or expanded output.'
+    // )
     .on('--help', () => {
       console.log('  Examples:\n');
       console.log('    $ markpress -i file.md -o file.html -l random -t dark\n');
@@ -45,6 +52,7 @@ const output = path.resolve(basePath, program.output);
 const options = {
   layout: program.layout,
   style: program.style,
+  autoBreak: program.autoBreak,
 };
 
 const impressHtml = markpress(input, options);

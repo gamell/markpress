@@ -7,6 +7,7 @@ const defaults = require('defaults');
 
 const commentRegex = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
 const slideSeparatorRegex = /^-{6,}$/m;
+const h1Regex = /^(?=#[^#]+)$/m;
 
 function getLayoutData(content) {
   commentRegex.lastIndex = 0;
@@ -15,32 +16,35 @@ function getLayoutData(content) {
     return '';
   }
   const metaData = [];
-  const metaArr = match[1].split(/\s+/);
+  console.log('metadata: ' + match[1]);
+  const metaArr = match[1].split(/\s*,\s*/);
   metaArr.forEach((meta) => {
     const kv = meta.split('=');
     metaData.push({
-      name: kv[0].replace(/^data-/, ''),
+      key: kv[0].replace(/^data-/, ''),
       value: kv[1].replace(/^('|")?(.*?)\1$/, '$2'),
     });
   });
-  return metaData.map((meta) => `data-${meta.name}="${meta.value}"`).join(' ');
+  return metaData.map((meta) => `data-${meta.key}="${meta.value}"`).join(' ');
 }
 
 function createSlideHtml(content) {
   return `<div class="step" ${getLayoutData(content)}>${marked(content)}</div>`;
 }
 
-function readFile(pathArg) {
-  const path = pathResolve(__dirname, pathArg);
+// using rest params
+function readFile(path1, ...pathN) {
+  const path = pathResolve(__dirname, path1, ...pathN);
   return String(fs.readFileSync(path));
 }
 
-function createImpressHTML(html) {
-  const tpl = readFile('./res/impress.tpl');
+function createImpressHtml(html, options) {
+  const path = './resources/';
+  const tpl = readFile(path, 'impress.tpl');
   const data = {
     html,
-    css: readFile('./res/impress.css'),
-    js: readFile('./res/impress.min.js'),
+    css: readFile(path, `${options.theme}.css`),
+    js: readFile(path, 'impress.min.js'),
   };
   return tpl.replace(/\{\{\$(\w+)\}\}/g, ($, $1) => data[$1]);
 }
@@ -49,10 +53,18 @@ function containsLayoutData(markdown) {
   return markdown.search(commentRegex) !== -1;
 }
 
+function splitSlides(markdown, autoBreak) {
+  if (autoBreak) {
+    return markdown.split(h1Regex);
+  }
+  return markdown.split(slideSeparatorRegex);
+}
+
 function processMarkdownFile(path, optionsArg) {
   const options = defaults(optionsArg, {
     layout: 'horizontal',
     theme: 'light',
+    autoBreak: false,
   });
   const markdown = String(fs.readFileSync(path));
   // disable auto layout if custom metadata is found
@@ -60,12 +72,13 @@ function processMarkdownFile(path, optionsArg) {
     console.log('contains metadata!');
     options.layout = 'custom';
   }
-  const slides = markdown.split(slideSeparatorRegex);
+  const slides = splitSlides(markdown, options.autoBreak);
+  console.log(`SLIDES: ${slides}`);
   let html = '';
   slides.forEach((content) => {
     html += createSlideHtml(content);
   });
-  return createImpressHTML(html);
+  return createImpressHtml(html, options);
 }
 
 module.exports = processMarkdownFile;
