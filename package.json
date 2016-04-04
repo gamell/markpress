@@ -25,7 +25,7 @@
   "license": "MIT",
   "main": "index.js",
   "bin": {
-    "markpress": "markpress.js"
+    "markpress": "bin/markpress.js"
   },
   "repository": "https://github.com/gamell/markpress.git",
   "eslintConfig": {

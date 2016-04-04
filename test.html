@@ -69,43 +69,16 @@ pre {background-color:#f8f8f8;padding:6px 10px;border-radius:3px;}
 code {background:#f8f8f8;}</style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="1500" data-y="500" data-z="1500"><!-- x=1500, y=500, z=1500 -->
-<h1 id="markdown-impress">Markdown-Impress</h1>
-</div><div class="step" data-x="500" data-y="0" data-scale="0.5"><!-- x=500,    y=0,   scale=0.5 -->
-<h2 id="what-is-it">What is it</h2>
-<p><em>markpress</em> is a tool to convert markdown to an <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> html presentation. It is based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a></p>
-</div><div class="step" data-x="2500" data-y="0"><!-- x=2500, y=0 -->
-<h2 id="how-to-install">How to install</h2>
-<h3 id="globally">Globally</h3>
-<p><code>$ npm install -g markpress</code></p>
-<h3 id="for-the-current-project-only">For the current project only</h3>
-<p><code>$ npm install markpress</code></p>
-</div><div class="step" data-x="3000" data-y="1000"><!-- x=3000, y=1000 -->
-<h2 id="markdown-format">Markdown format</h2>
-<ul>
-<li>use <code>------</code> to separate each slide</li>
-<li>use HTML comments to set impress <code>attr</code>, such as <code>&lt;!-- x=0 y=0 rotate=0 scale=1 --&gt;</code> please note that this will disable any <code>layout</code> selected.<!-- + [this page](http://steel1990.github.io/markdown-impress/) is made by *markdown-impress* use [this markdown](https://raw.githubusercontent.com/steel1990/markdown-impress/master/README.md). -->
-</li>
-</ul>
-</div><div class="step" data-x="1500" data-y="1000" data-rotate="90"><!-- x=1500, y=1000, rotate=90 -->
-<h2 id="how-to-use">How To Use</h2>
-<p><img src="./mtoi-help.png" alt="How to use markpress"></p>
-</div><div class="step" data-x="0" data-y="1000"><!-- x=0, y=1000 -->
-<h2 id="use-in-your-code">Use in your code</h2>
-<pre><code>var fs = require(&#39;fs&#39;);
-var mtoi = require(&#39;markdown-impress&#39;);
-var content = mtoi(&#39;file.md&#39;);
-fs.writeFileSync(&#39;file.html&#39;, content);
-</code></pre><h2 id="todo">Todo</h2>
-<ul>
-<li>Layout and Style options</li>
-<li>ES2015</li>
-<li>eslint</li>
-<li>unit tests</li>
-</ul>
-<h2 id="other-packages">Other packages</h2>
-<p><a href="https://www.npmjs.com/package/impress.md">https://www.npmjs.com/package/impress.md</a>
-<a href="https://github.com/steel1990/markdown-impress">https://github.com/steel1990/markdown-impress</a></p>
+    <div id="impress"><div class="step" ><h1 id="example-markdown-file">Example Markdown file</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis sem sit amet ultrices finibus. Morbi non quam sit amet tortor volutpat convallis. Fusce risus odio, placerat nec lectus in, pretium volutpat nibh. Curabitur egestas sit amet ante ut ultricies. Donec consequat neque ac molestie tempor. Morbi tellus diam, accumsan venenatis massa vel, facilisis pulvinar urna. In ac rutrum leo. Cras aliquam tempus turpis quis ornare. Fusce pellentesque dolor fermentum turpis porta ornare. Integer at nunc non turpis imperdiet mollis sit amet et est. Mauris iaculis tortor ut hendrerit pharetra.</p>
+<h1 id="second-slide">Second slide</h1>
+<blockquote>
+<p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est. Mauris fermentum imperdiet purus, eu fermentum elit elementum faucibus. Donec consequat velit sodales, tempor magna nec, porttitor lacus. Maecenas volutpat urna vel elit vulputate, non scelerisque turpis consequat.</p>
+</blockquote>
+<h1 id="third-slide">Third slide</h1>
+<p>Integer gravida massa lectus, in tincidunt odio euismod a. Donec ut risus libero. Pellentesque eget posuere nulla. Duis vitae mauris dapibus, efficitur diam vitae, pellentesque urna. Proin dui massa, vehicula sed neque ut, vestibulum accumsan sem. Curabitur fermentum ac diam eu gravida. Sed egestas tristique enim, nec dignissim massa euismod sed. Morbi quis magna nunc. Mauris augue risus, efficitur ac pellentesque laoreet, euismod sit amet sapien. Pellentesque id blandit risus. Phasellus iaculis tristique lectus a malesuada.</p>
+<p>#Fourth Slide!</p>
+<p>In non justo vel ex consequat aliquam. Ut vitae erat nec tortor commodo blandit eu quis sem. Cras sed scelerisque ex, eu molestie nisl. Praesent molestie at libero in semper. Phasellus at sem ligula. Nam mi leo, faucibus et lacinia id, maximus ac leo. Mauris eget velit libero. Vestibulum ac mi nunc. Proin sollicitudin, lacus egestas molestie egestas, sem urna maximus nunc, nec euismod nulla sapien sed elit. Morbi purus turpis, dictum vel semper vitae, luctus at erat. Nam sagittis sem venenatis dolor pretium convallis. Nam ut nisl vel sapien aliquam luctus. Sed ac ligula sed metus malesuada interdum vel at ante. Vestibulum lorem neque, blandit nec sollicitudin sed, pretium nec mi. Integer eget eros ac erat convallis cursus eu sed nibh.</p>
 </div></div>
     <script>/**
  * impress.js
