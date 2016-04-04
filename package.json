@@ -1,22 +1,42 @@
 {
-    "name": "markpress",
-    "description": "A tool to generate impress.js presentations from markdown files",
-    "version": "0.0.1",
-    "author": "Joan Gamell <http://gamell.io>",
-    "bugs": "https://github.com/steel1990/markdown-impress/issues",
-    "dependencies": {
-        "marked": "*",
-        "commander": "*"
+  "name": "markpress",
+  "description": "A tool to generate impress.js presentations from markdown files",
+  "version": "0.0.1",
+  "author": "Joan Gamell <http://gamell.io>",
+  "bugs": "https://github.com/steel1990/markdown-impress/issues",
+  "dependencies": {
+    "commander": "*",
+    "defaults": "1.0.3",
+    "marked": "*"
+  },
+  "devDependencies": {
+    "eslint": "2.3.0",
+    "eslint-config-airbnb": "6.0.2",
+    "eslint-plugin-react": "4.2.0"
+  },
+  "engines": {
+    "node": ">= 5.10.0"
+  },
+  "homepage": "https://github.com/gamell/markpress",
+  "keywords": [
+    "markdown",
+    "impress"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "markpress": "markpress.js"
+  },
+  "repository": "https://github.com/gamell/markpress.git",
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "node": true,
+      "es6": true
     },
-    "engines": {
-        "node": ">= 5.10.0"
-    },
-    "homepage": "https://github.com/gamell/markpress",
-    "keywords": [
-        "markdown", "impress"
-    ],
-    "license": "MIT",
-    "main": "index.js",
-    "bin": { "markpress": "markpress.js" },
-    "repository": "https://github.com/gamell/markpress.git"
+    "rules": {
+      "no-console": 0,
+      "strict": 0
+    }
+  }
 }
