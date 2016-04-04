@@ -15,7 +15,7 @@ program.version(pkg.version)
     .on('--help', function () {
         console.log('  Examples:');
         console.log('');
-        console.log('    $ markpress -i file.md -o file.html -l random');
+        console.log('    $ markpress -i file.md -o file.html -l random -s dark');
         console.log('');
     })
     .parse(process.argv);

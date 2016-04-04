@@ -73,30 +73,40 @@ code {background:#f8f8f8;}</style>
 <h1 id="markdown-impress">Markdown-Impress</h1>
 </div><div class="step" data-x="500" data-y="0" data-scale="0.5"><!-- x=500 y=0 scale=0.5 -->
 <h2 id="what-is-it">What is it</h2>
-<p><em>markdown-impress</em> is a tool to convert markdown to impress page.</p>
+<p><em>markpress</em> is a tool to convert markdown to impress html. It is based on (<em>markdown-impress</em>)[<a href="https://github.com/steel1990/markdown-impress">https://github.com/steel1990/markdown-impress</a>] by steel1990</p>
 </div><div class="step" data-x="2500" data-y="0"><!-- x=2500 y=0 -->
 <h2 id="how-to-install">How to install</h2>
-<ul>
-<li>Firstly you should install <a href="http://nodejs.org">nodejs</a></li>
-<li>Then install it use <code>$ npm install -g markdown-impress</code></li>
-</ul>
+<h3 id="globally">Globally</h3>
+<p><code>$ npm install -g markdown-impress</code></p>
+<h3 id="for-the-current-project-only">For the current project only</h3>
+<p><code>$ npm install markdown-impress</code></p>
 </div><div class="step" data-x="3000" data-y="1000"><!-- x=3000 y=1000 -->
 <h2 id="markdown-format">Markdown format</h2>
 <ul>
 <li>use <code>------</code> to separate each slide</li>
-<li>use comment to set impress attr, such as <code>&lt;!-- x=0 y=0 rotate=0 --&gt;</code></li>
-<li><a href="http://steel1990.github.io/markdown-impress/">this page</a> is made by <em>markdown-impress</em> use <a href="https://raw.githubusercontent.com/steel1990/markdown-impress/master/README.md">this markdown</a>.</li>
+<li>use HTML comments to set impress <code>attr</code>, such as <code>&lt;!-- x=0 y=0 rotate=0 scale=1 --&gt;</code> please note that this will disable any <code>layout</code> selected.<!-- + [this page](http://steel1990.github.io/markdown-impress/) is made by *markdown-impress* use [this markdown](https://raw.githubusercontent.com/steel1990/markdown-impress/master/README.md). -->
+</li>
 </ul>
 </div><div class="step" data-x="1500" data-y="1000" data-rotate="90"><!-- x=1500 y=1000 rotate=90 -->
 <h2 id="how-to-use">How To Use</h2>
-<p><img src="./mtoi-help.png" alt="How to use mtoi"></p>
+<p><img src="./mtoi-help.png" alt="How to use markpress"></p>
 </div><div class="step" data-x="0" data-y="1000"><!-- x=0 y=1000 -->
 <h2 id="use-in-your-code">Use in your code</h2>
 <pre><code>var fs = require(&#39;fs&#39;);
 var mtoi = require(&#39;markdown-impress&#39;);
 var content = mtoi(&#39;file.md&#39;);
 fs.writeFileSync(&#39;file.html&#39;, content);
-</code></pre></div></div>
+</code></pre><h2 id="todo">Todo</h2>
+<ul>
+<li>Layout and Style options</li>
+<li>ES2015</li>
+<li>eslint</li>
+<li>unit tests</li>
+</ul>
+<h2 id="other-packages">Other packages</h2>
+<p><a href="https://www.npmjs.com/package/impress.md">https://www.npmjs.com/package/impress.md</a>
+<a href="https://github.com/steel1990/markdown-impress">https://github.com/steel1990/markdown-impress</a></p>
+</div></div>
     <script>/**
  * impress.js
  *
