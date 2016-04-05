@@ -9,12 +9,13 @@ const fs = require('fs');
 const colors = require('colors');
 const pkg = require('../package');
 
-const layoutRegex = /^(horizontal|vertical|3d|random-grid|random)$/i;
+const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|random-grid|random)$/i;
 const themeRegex = /^(light|dark)$/i;
 
 program.version(pkg.version)
     .option('-i, --input <path>', 'Input markdown file path')
     .option('-o, --output <path>', 'Impress htmll file output path')
+    .option('-s, --silent', 'Do not display progress & debug messages')
     .option(
       '-l, --layout <layout>',
       'Chose the impress.js layout [horizontal (default)|vertical|3d|random-grid|random]',
@@ -54,12 +55,8 @@ const options = {
   layout: program.layout,
   style: program.style,
   autoBreak: program.autoBreak,
+  verbose: !program.silent, // output logs
 };
 
-try {
-  const impressHtml = markpress(input, options);
-  fs.writeFileSync(output, impressHtml);
-} catch (e) {
-  console.error(colors.red(e));
-  process.exit(1);
-}
+const impressHtml = markpress(input, options);
+fs.writeFileSync(output, impressHtml);

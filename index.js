@@ -4,10 +4,12 @@ const marked = require('marked');
 const fs = require('fs');
 const pathResolve = require('path').resolve;
 const defaults = require('defaults');
+const colors = require('colors');
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
   autoBreak: false,
+  verbose: false,
 };
 const layoutState = {
   i: 0,
@@ -16,14 +18,22 @@ const layoutState = {
   z: 0,
   scale: 1,
   rotate: 0,
+  randomize() {
+      // randomize which properties are afected (chose from all possible comobos)
+      // for each, generate a random multiplier between 1-10
+  },
 };
 const increments = {
-  x: 1000,
-  y: 1000,
+  x: 2000,
+  y: 1200,
+  z: 4000,
   scale: 1,
   rotate: 45,
 };
+
+// vars used throughout
 let slides = [];
+let options = {};
 
 // Regex
 
@@ -41,6 +51,38 @@ const layoutGenerators = {
     layoutState.y += increments.y;
     return [{ key: 'y', value: layoutState.y }];
   },
+  '3d-push': () => {
+    layoutState.z += increments.z;
+    return [{ key: 'z', value: layoutState.z }];
+  },
+  '3d-pull': () => {
+    layoutState.z -= increments.z;
+    return [{ key: 'z', value: layoutState.z }];
+  },
+  random() {
+    layoutState.randomize();
+    return [
+      { key: 'x', value: layoutState.x },
+      { key: 'y', value: layoutState.y },
+      { key: 'z', value: layoutState.z },
+      { key: 'scale', value: layoutState.scale },
+      { key: 'rotation', value: layoutState.rotation },
+    ];
+  },
+};
+
+const log = {
+  info(str) {
+    return options.verbose ? console.log('info: '.bold + str) : null;
+  },
+  warn(str) {
+    return options.verbose ? console.warn('warn: '.bold.orange + str) : null;
+  },
+  error(error) {
+    if (options.verbose) {
+      console.error(error.toString().bold.red);
+    }
+  },
 };
 
 function generateLayout(layout) {
@@ -51,7 +93,7 @@ function getLayoutFromSlide(slide) {
   commentRegex.lastIndex = 0;
   const match = commentRegex.exec(slide);
   if (!match) {
-    return '';
+    throw new Error('you must provide layout metadata for all slides');
   }
   const metaData = [];
   // clean the match from possible 'data-' and split by comma
@@ -63,9 +105,6 @@ function getLayoutFromSlide(slide) {
     const data = { key, value };
     metaData.push(data);
   });
-  if (slides.length !== metaArr.length) {
-    throw new Error('You must provide layout metadata for all slides');
-  }
   return metaData;
 }
 
@@ -84,7 +123,7 @@ function readFile(path1, ...pathN) {
   return String(fs.readFileSync(path));
 }
 
-function createImpressHtml(html, options) {
+function createImpressHtml(html) {
   const path = './resources/';
   const tpl = readFile(path, 'impress.tpl');
   const data = {
@@ -101,7 +140,7 @@ function containsLayoutData(markdown) {
 
 function splitSlides(markdown, autoBreak) {
   if (autoBreak) {
-    console.log('Auto-break option enabled, splitting tiles automatically. Ignoring \'------\'');
+    log.info('auto-break option enabled, splitting tiles automatically. Ignoring \'------\'');
     // remove the separators, if any and split by H1
     return markdown.replace(slideSeparatorRegex, '').split(h1Regex);
   }
@@ -109,20 +148,31 @@ function splitSlides(markdown, autoBreak) {
 }
 
 function processMarkdownFile(path, optionsArg) {
-  const options = defaults(optionsArg, optionDefaults);
+  options = defaults(optionsArg, optionDefaults);
   const markdown = String(fs.readFileSync(path));
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
-    console.log('Layout metadata found, ignoring default layout and --layout options');
+    log.info('Layout metadata found, ignoring default layout and --layout options');
     options.layout = 'custom';
+  } else {
+    log.info(`${options.layout} layout detected`);
   }
   slides = splitSlides(markdown, options.autoBreak);
-  slides.forEach( (elem,i) => {console.log('SLIDE #'+i+': '+elem)});
   let html = '';
   slides.forEach((content) => {
     html += createSlideHtml(content, options.layout);
   });
-  return createImpressHtml(html, options);
+  return createImpressHtml(html);
 }
 
-module.exports = processMarkdownFile;
+function init(path, optionsArg) {
+  try {
+    return processMarkdownFile(path, optionsArg);
+  } catch (e) {
+    log.error(e);
+    process.exit(1);
+  }
+  return null;
+}
+
+module.exports = init;
