@@ -5,6 +5,7 @@
   "author": "Joan Gamell <http://gamell.io>",
   "bugs": "https://github.com/steel1990/markdown-impress/issues",
   "dependencies": {
+    "colors": "1.1.2",
     "commander": "*",
     "defaults": "1.0.3",
     "marked": "*"
