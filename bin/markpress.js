@@ -6,6 +6,7 @@ const markpress = require('../index.js');
 const program = require('commander');
 const path = require('path');
 const fs = require('fs');
+const colors = require('colors');
 const pkg = require('../package');
 
 const layoutRegex = /^(horizontal|vertical|3d|random-grid|random)$/i;
@@ -55,5 +56,10 @@ const options = {
   autoBreak: program.autoBreak,
 };
 
-const impressHtml = markpress(input, options);
-fs.writeFileSync(output, impressHtml);
+try {
+  const impressHtml = markpress(input, options);
+  fs.writeFileSync(output, impressHtml);
+} catch (e) {
+  console.error(colors.red(e));
+  process.exit(1);
+}

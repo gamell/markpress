@@ -4,32 +4,78 @@ const marked = require('marked');
 const fs = require('fs');
 const pathResolve = require('path').resolve;
 const defaults = require('defaults');
+const optionDefaults = {
+  layout: 'horizontal',
+  theme: 'light',
+  autoBreak: false,
+};
+const layoutState = {
+  i: 0,
+  x: 0,
+  y: 0,
+  z: 0,
+  scale: 1,
+  rotate: 0,
+};
+const increments = {
+  x: 1000,
+  y: 1000,
+  scale: 1,
+  rotate: 45,
+};
+let slides = [];
+
+// Regex
 
 const commentRegex = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
 const slideSeparatorRegex = /^-{6,}$/m;
-const h1Regex = /^(?=#[^#]+)$/m;
+const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separator - http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
+const cleanValueRegex = /^('|")?(.+)(\1)?$/;
 
-function getLayoutData(content) {
+const layoutGenerators = {
+  horizontal() {
+    layoutState.x += increments.x;
+    return [{ key: 'x', value: layoutState.x }];
+  },
+  vertical() {
+    layoutState.y += increments.y;
+    return [{ key: 'y', value: layoutState.y }];
+  },
+};
+
+function generateLayout(layout) {
+  return layoutGenerators[layout]();
+}
+
+function getLayoutFromSlide(slide) {
   commentRegex.lastIndex = 0;
-  const match = commentRegex.exec(content);
+  const match = commentRegex.exec(slide);
   if (!match) {
     return '';
   }
   const metaData = [];
-  console.log('metadata: ' + match[1]);
-  const metaArr = match[1].split(/\s*,\s*/);
+  // clean the match from possible 'data-' and split by comma
+  const metaArr = match[1].replace(/data-/g, '').split(/\s*,\s*/);
   metaArr.forEach((meta) => {
     const kv = meta.split('=');
-    metaData.push({
-      key: kv[0].replace(/^data-/, ''),
-      value: kv[1].replace(/^('|")?(.*?)\1$/, '$2'),
-    });
+    const key = kv[0];
+    const value = kv[1].replace(cleanValueRegex, '$2');
+    const data = { key, value };
+    metaData.push(data);
   });
-  return metaData.map((meta) => `data-${meta.key}="${meta.value}"`).join(' ');
+  if (slides.length !== metaArr.length) {
+    throw new Error('You must provide layout metadata for all slides');
+  }
+  return metaData;
 }
 
-function createSlideHtml(content) {
-  return `<div class="step" ${getLayoutData(content)}>${marked(content)}</div>`;
+function getLayoutData(slide, layout) {
+  const layoutData = (layout === 'custom') ? getLayoutFromSlide(slide) : generateLayout(layout);
+  return layoutData.map((d) => `data-${d.key}="${d.value}"`).join(' ');
+}
+
+function createSlideHtml(content, layout) {
+  return `<div class="step" ${getLayoutData(content, layout)}>${marked(content)}</div>`;
 }
 
 // using rest params
@@ -55,28 +101,26 @@ function containsLayoutData(markdown) {
 
 function splitSlides(markdown, autoBreak) {
   if (autoBreak) {
-    return markdown.split(h1Regex);
+    console.log('Auto-break option enabled, splitting tiles automatically. Ignoring \'------\'');
+    // remove the separators, if any and split by H1
+    return markdown.replace(slideSeparatorRegex, '').split(h1Regex);
   }
   return markdown.split(slideSeparatorRegex);
 }
 
 function processMarkdownFile(path, optionsArg) {
-  const options = defaults(optionsArg, {
-    layout: 'horizontal',
-    theme: 'light',
-    autoBreak: false,
-  });
+  const options = defaults(optionsArg, optionDefaults);
   const markdown = String(fs.readFileSync(path));
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
-    console.log('contains metadata!');
+    console.log('Layout metadata found, ignoring default layout and --layout options');
     options.layout = 'custom';
   }
-  const slides = splitSlides(markdown, options.autoBreak);
-  console.log(`SLIDES: ${slides}`);
+  slides = splitSlides(markdown, options.autoBreak);
+  slides.forEach( (elem,i) => {console.log('SLIDE #'+i+': '+elem)});
   let html = '';
   slides.forEach((content) => {
-    html += createSlideHtml(content);
+    html += createSlideHtml(content, options.layout);
   });
   return createImpressHtml(html, options);
 }
