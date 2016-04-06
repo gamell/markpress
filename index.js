@@ -4,31 +4,14 @@ const marked = require('marked');
 const fs = require('fs');
 const pathResolve = require('path').resolve;
 const defaults = require('defaults');
+const layoutGenerator = require('./lib/layout');
+const log = require('./lib/log');
 const colors = require('colors');
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
   autoBreak: false,
   verbose: false,
-};
-const layoutState = {
-  i: 0,
-  x: 0,
-  y: 0,
-  z: 0,
-  scale: 1,
-  rotate: 0,
-  randomize() {
-      // randomize which properties are afected (chose from all possible comobos)
-      // for each, generate a random multiplier between 1-10
-  },
-};
-const increments = {
-  x: 2000,
-  y: 1200,
-  z: 4000,
-  scale: 1,
-  rotate: 45,
 };
 
 // vars used throughout
@@ -42,51 +25,8 @@ const slideSeparatorRegex = /^-{6,}$/m;
 const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separator - http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
 
-const layoutGenerators = {
-  horizontal() {
-    layoutState.x += increments.x;
-    return [{ key: 'x', value: layoutState.x }];
-  },
-  vertical() {
-    layoutState.y += increments.y;
-    return [{ key: 'y', value: layoutState.y }];
-  },
-  '3d-push': () => {
-    layoutState.z += increments.z;
-    return [{ key: 'z', value: layoutState.z }];
-  },
-  '3d-pull': () => {
-    layoutState.z -= increments.z;
-    return [{ key: 'z', value: layoutState.z }];
-  },
-  random() {
-    layoutState.randomize();
-    return [
-      { key: 'x', value: layoutState.x },
-      { key: 'y', value: layoutState.y },
-      { key: 'z', value: layoutState.z },
-      { key: 'scale', value: layoutState.scale },
-      { key: 'rotation', value: layoutState.rotation },
-    ];
-  },
-};
-
-const log = {
-  info(str) {
-    return options.verbose ? console.log('info: '.bold + str) : null;
-  },
-  warn(str) {
-    return options.verbose ? console.warn('warn: '.bold.orange + str) : null;
-  },
-  error(error) {
-    if (options.verbose) {
-      console.error(error.toString().bold.red);
-    }
-  },
-};
-
 function generateLayout(layout) {
-  return layoutGenerators[layout]();
+  return layoutGenerator[layout]();
 }
 
 function getLayoutFromSlide(slide) {
@@ -149,15 +89,15 @@ function splitSlides(markdown, autoBreak) {
 
 function processMarkdownFile(path, optionsArg) {
   options = defaults(optionsArg, optionDefaults);
+  log.init(options.verbose);
   const markdown = String(fs.readFileSync(path));
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
-    log.info('Layout metadata found, ignoring default layout and --layout options');
+    log.info('layout metadata found, ignoring default layout and --layout options');
     options.layout = 'custom';
-  } else {
-    log.info(`${options.layout} layout detected`);
   }
   slides = splitSlides(markdown, options.autoBreak);
+  log.info(`creating ${options.layout} layout...`);
   let html = '';
   slides.forEach((content) => {
     html += createSlideHtml(content, options.layout);
