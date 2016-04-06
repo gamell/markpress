@@ -6,11 +6,10 @@ const pathResolve = require('path').resolve;
 const defaults = require('defaults');
 const layoutGenerator = require('./lib/layout');
 const log = require('./lib/log');
-const colors = require('colors');
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
-  autoBreak: false,
+  autoSplit: false,
   verbose: false,
 };
 
@@ -78,9 +77,9 @@ function containsLayoutData(markdown) {
   return markdown.search(commentRegex) !== -1;
 }
 
-function splitSlides(markdown, autoBreak) {
-  if (autoBreak) {
-    log.info('auto-break option enabled, splitting tiles automatically. Ignoring \'------\'');
+function splitSlides(markdown, autoSplit) {
+  if (autoSplit) {
+    log.info('auto-split option enabled, splitting tiles automatically. Ignoring \'------\'');
     // remove the separators, if any and split by H1
     return markdown.replace(slideSeparatorRegex, '').split(h1Regex);
   }
@@ -96,7 +95,7 @@ function processMarkdownFile(path, optionsArg) {
     log.info('layout metadata found, ignoring default layout and --layout options');
     options.layout = 'custom';
   }
-  slides = splitSlides(markdown, options.autoBreak);
+  slides = splitSlides(markdown, options.autoSplit);
   log.info(`creating ${options.layout} layout...`);
   let html = '';
   slides.forEach((content) => {
