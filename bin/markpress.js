@@ -6,7 +6,6 @@ const markpress = require('../index.js');
 const program = require('commander');
 const path = require('path');
 const fs = require('fs');
-const colors = require('colors');
 const pkg = require('../package');
 
 const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|random-grid|random)$/i;
@@ -29,7 +28,7 @@ program.version(pkg.version)
       'light'
     )
     .option(
-      '-a, --auto-break',
+      '-a, --auto-split',
       'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
     )
     // .option(
@@ -38,7 +37,7 @@ program.version(pkg.version)
     // )
     .on('--help', () => {
       console.log('  Examples:\n');
-      console.log('    $ markpress -i file.md -o file.html -l random -t dark\n');
+      console.log('    $ markpress -i file.md -o file.html -a  -s -l random -t dark\n');
     })
     .parse(process.argv);
 
@@ -54,7 +53,7 @@ const output = path.resolve(basePath, program.output);
 const options = {
   layout: program.layout,
   style: program.style,
-  autoBreak: program.autoBreak,
+  autoSplit: program.autoSplit,
   verbose: !program.silent, // output logs
 };
 
