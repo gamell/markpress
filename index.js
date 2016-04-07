@@ -1,11 +1,13 @@
 'use strict';
 
 const marked = require('marked');
-const fs = require('fs');
-const pathResolve = require('path').resolve;
 const defaults = require('defaults');
 const layoutGenerator = require('./lib/layout');
 const log = require('./lib/log');
+const getCss = require('./lib/css-helper');
+const util = require('./lib/util');
+const pathResolve = require('path').resolve;
+
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
@@ -23,6 +25,9 @@ const commentRegex = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
 const slideSeparatorRegex = /^-{6,}$/m;
 const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separator - http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
+
+// setting the app root folder for later use in other files
+global.appRoot = pathResolve(__dirname);
 
 function generateLayout(layout) {
   return layoutGenerator[layout]();
@@ -56,19 +61,13 @@ function createSlideHtml(content, layout) {
   return `<div class="step" ${getLayoutData(content, layout)}>${marked(content)}</div>`;
 }
 
-// using rest params
-function readFile(path1, ...pathN) {
-  const path = pathResolve(__dirname, path1, ...pathN);
-  return String(fs.readFileSync(path));
-}
-
 function createImpressHtml(html) {
   const path = './resources/';
-  const tpl = readFile(path, 'impress.tpl');
+  const tpl = util.readFile(path, 'impress.tpl');
   const data = {
     html,
-    css: readFile(path, `${options.theme}.css`),
-    js: readFile(path, 'impress.min.js'),
+    css: getCss(path, options.theme),
+    js: util.readFile(path, 'impress.min.js'),
   };
   return tpl.replace(/\{\{\$(\w+)\}\}/g, ($, $1) => data[$1]);
 }
@@ -89,7 +88,7 @@ function splitSlides(markdown, autoSplit) {
 function processMarkdownFile(path, optionsArg) {
   options = defaults(optionsArg, optionDefaults);
   log.init(options.verbose);
-  const markdown = String(fs.readFileSync(path));
+  const markdown = String(util.readFile(path));
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info('layout metadata found, ignoring default layout and --layout options');
