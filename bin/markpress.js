@@ -57,5 +57,5 @@ const options = {
   verbose: !program.silent, // output logs
 };
 
-const impressHtml = markpress(input, options);
-fs.writeFileSync(output, impressHtml);
+// markpress() returns a co promise
+markpress(input, options).then((html) => fs.writeFileSync(output, html));
