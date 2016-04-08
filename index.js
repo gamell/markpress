@@ -4,9 +4,10 @@ const marked = require('marked');
 const defaults = require('defaults');
 const layoutGenerator = require('./lib/layout');
 const log = require('./lib/log');
-const getCss = require('./lib/css-helper');
+const getCss = require('./lib/css-helper').getCss;
 const util = require('./lib/util');
 const pathResolve = require('path').resolve;
+const co = require('co');
 
 const optionDefaults = {
   layout: 'horizontal',
@@ -61,12 +62,12 @@ function createSlideHtml(content, layout) {
   return `<div class="step" ${getLayoutData(content, layout)}>${marked(content)}</div>`;
 }
 
-function createImpressHtml(html) {
+function* createImpressHtml(html) {
   const path = './resources/';
   const tpl = util.readFile(path, 'impress.tpl');
   const data = {
     html,
-    css: getCss(path, options.theme),
+    css: yield getCss(path, options.theme),
     js: util.readFile(path, 'impress.min.js'),
   };
   return tpl.replace(/\{\{\$(\w+)\}\}/g, ($, $1) => data[$1]);
@@ -85,7 +86,7 @@ function splitSlides(markdown, autoSplit) {
   return markdown.split(slideSeparatorRegex);
 }
 
-function processMarkdownFile(path, optionsArg) {
+function* processMarkdownFile(path, optionsArg) {
   options = defaults(optionsArg, optionDefaults);
   log.init(options.verbose);
   const markdown = String(util.readFile(path));
@@ -100,12 +101,14 @@ function processMarkdownFile(path, optionsArg) {
   slides.forEach((content) => {
     html += createSlideHtml(content, options.layout);
   });
-  return createImpressHtml(html);
+  const impressHtml = yield createImpressHtml(html);
+  return impressHtml;
 }
 
 function init(path, optionsArg) {
   try {
-    return processMarkdownFile(path, optionsArg);
+    // returns a co-promise
+    return co(processMarkdownFile(path, optionsArg));
   } catch (e) {
     log.error(e);
     process.exit(1);
