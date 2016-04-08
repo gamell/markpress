@@ -107,9 +107,6 @@ nav,
 section {
   display: block;
 }
-body {
-  line-height: 1;
-}
 ol,
 ul {
   list-style: none;
@@ -130,15 +127,17 @@ table {
   border-spacing: 0;
 }
 body {
+  line-height: 1;
   font-family: 'PT Sans', sans-serif;
   min-height: 740px;
+  color: #eee;
   background: #d7d7d7;
-  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f0f0f0), to(#bebebe));
-  background: -webkit-radial-gradient(#f0f0f0, #bebebe);
-  background: -moz-radial-gradient(#f0f0f0, #bebebe);
-  background: -ms-radial-gradient(#f0f0f0, #bebebe);
-  background: -o-radial-gradient(#f0f0f0, #bebebe);
-  background: radial-gradient(#f0f0f0, #bebebe);
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#333), to(#0f0f0f));
+  background: -webkit-radial-gradient(#333, #0f0f0f);
+  background: -moz-radial-gradient(#333, #0f0f0f);
+  background: -ms-radial-gradient(#333, #0f0f0f);
+  background: -o-radial-gradient(#333, #0f0f0f);
+  background: radial-gradient(#333, #0f0f0f);
 }
 b,
 strong {
@@ -217,7 +216,7 @@ a:hover {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  color: #666;
+  color: #eee;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 30px;
@@ -489,7 +488,7 @@ code {
 </style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="2000"><h1 id="example-markdown-file">Example Markdown file</h1>
+    <div id="impress"><div class="step" data-x="2000" data-y="3600" data-z="-8000" data-scale="3" data-rotate="-120"><h1 id="example-markdown-file">Example Markdown file</h1>
 <ul>
 <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis sem sit amet ultrices finibus.</li>
 <li>Morbi non quam sit amet tortor volutpat convallis. Fusce risus odio, placerat nec lectus in, pretium volutpat nibh. Curabitur egestas sit amet ante ut ultricies.<ul>
@@ -497,17 +496,17 @@ code {
 </ul>
 </li>
 </ul>
-</div><div class="step" data-x="-4000"><h1 id="second-slide">Second slide</h1>
+</div><div class="step" data-x="2000" data-y="4800"><h1 id="second-slide">Second slide</h1>
 <blockquote>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 </blockquote>
-</div><div class="step" data-x="0" data-y="-3600" data-z="8000" data-scale="2" data-rotate="0"><h1 id="third-slide">Third slide</h1>
+</div><div class="step" data-x="2000" data-y="8400" data-z="4000" data-scale="2" data-rotate="-180"><h1 id="third-slide">Third slide</h1>
 <ul>
 <li>Integer gravida massa lectus, in tincidunt odio euismod a.</li>
 <li>Donec ut risus libero. Pellentesque eget posuere nulla.</li>
 <li>Duis vitae mauris dapibus, efficitur diam vitae, pellentesque urna.</li>
 </ul>
-</div><div class="step" data-x="2000"><h1 id="fourth-slide-">Fourth Slide!</h1>
+</div><div class="step" data-x="2000" data-y="12000"><h1 id="fourth-slide-">Fourth Slide!</h1>
 <h2 id="in-non-justo-vel-ex-consequat-aliquam-">In non justo vel ex consequat aliquam.</h2>
 <blockquote>
 <p>Ut vitae erat nec tortor commodo blandit eu quis sem. Cras sed scelerisque ex, eu molestie nisl. Praesent molestie at libero in semper. Phasellus at sem ligula. Nam mi leo, faucibus et lacinia id, maximus ac leo. Mauris eget velit libero. Vestibulum ac mi nunc.</p>
