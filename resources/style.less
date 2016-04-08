@@ -1,6 +1,17 @@
-@bgColorStart: #f0f0f0;
-@bgColorEnd: #bebebe;
-@bgColor: #d7d7d7;
+.setTheme(dark) {
+  @bgColorStart: #333;
+  @bgColorEnd: #0f0f0f;
+  @bgColor: #d7d7d7;
+  @fontColor: #eee;
+}
+.setTheme(light) {
+  @bgColorStart: #f0f0f0;
+  @bgColorEnd: #bebebe;
+  @bgColor: #d7d7d7;
+  @fontColor: inherit;
+}
+
+.setTheme(@theme);
 
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video {
     margin: 0;
@@ -12,9 +23,6 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 }
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
     display: block;
-}
-body {
-    line-height: 1;
 }
 ol,
 ul {
@@ -36,8 +44,10 @@ table {
     border-spacing: 0;
 }
 body {
+    line-height: 1;
     font-family: 'PT Sans',sans-serif;
     min-height: 740px;
+    color: @fontColor;
     background: @bgColor;
     background: -webkit-gradient(radial,50% 50%,0,50% 50%,500,from(@bgColorStart),to(@bgColorEnd));
     background: -webkit-radial-gradient(@bgColorStart,@bgColorEnd);
@@ -123,7 +133,7 @@ a:hover {
     border: 1px solid rgba(0,0,0,.3);
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    color: #666;
+    color: @fontColor;
     text-shadow: 0 2px 2px rgba(0,0,0,.1);
     font-family: 'Open Sans',Arial,sans-serif;
     font-size: 30px;

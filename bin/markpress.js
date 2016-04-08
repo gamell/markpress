@@ -55,6 +55,7 @@ const options = {
   style: program.style,
   autoSplit: program.autoSplit,
   verbose: !program.silent, // output logs
+  theme: program.theme,
 };
 
 // markpress() returns a co promise
