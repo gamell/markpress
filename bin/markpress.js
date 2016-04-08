@@ -1,4 +1,4 @@
-#! /usr/bin/env node -harmony_rest_parameters
+#! /usr/bin/env node -harmony
 
 'use strict';
 
