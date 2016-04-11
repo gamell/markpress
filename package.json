@@ -7,10 +7,11 @@
   "dependencies": {
     "co": "4.6.0",
     "colors": "1.1.2",
-    "commander": "*",
+    "commander": "2.9.0",
     "defaults": "1.0.3",
+    "highlight": "0.2.4",
     "less": "2.6.1",
-    "marked": "*"
+    "marked": "0.3.5"
   },
   "devDependencies": {
     "eslint": "2.3.0",

@@ -8,6 +8,7 @@ const getCss = require('./lib/css-helper').getCss;
 const util = require('./lib/util');
 const pathResolve = require('path').resolve;
 const co = require('co');
+const highlight = require('highlight');
 
 const optionDefaults = {
   layout: 'horizontal',
@@ -16,7 +17,6 @@ const optionDefaults = {
   verbose: false,
 };
 
-// vars used throughout
 let slides = [];
 let options = {};
 
@@ -107,6 +107,12 @@ function* processMarkdownFile(path, optionsArg) {
 
 function init(path, optionsArg) {
   try {
+    // set marked code highlighter
+    // marked.setOptions({
+    //   highlight(code) {
+    //     return highlight.highlightAuto(code).value;
+    //   },
+    // });
     // returns a co-promise
     return co(processMarkdownFile(path, optionsArg));
   } catch (e) {
