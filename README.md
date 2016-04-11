@@ -26,13 +26,13 @@
 -----------------------------
 <!-- x=1500, y=1000, rotate=90 -->
 ## How To Use
-![How to use markpress](./mtoi-help.png)
+![How to use markpress](./markpress-help.png)
 
 -------------------------------
 <!-- x=0, y=1000 -->
 ## Use in your code
 
-```
+```js
 var fs = require('fs');
 var markpress = require('markpress');
 var content = markpress('file.md', options).then(() => {
@@ -42,8 +42,15 @@ var content = markpress('file.md', options).then(() => {
 
 ## Roadmap
 
+- Improve style for:
+  - Font size
+  - Quotes
+  - Ordered lists
+  - links
+  - Code block highlighting
 - Unit tests
 - Allow to define slide-specific CSS
+- `custom-styles` option to use your own CSS / Less files
 
 
 ## References
