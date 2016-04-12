@@ -38,8 +38,8 @@
 
 # Seventh Slide. Code Syntax and Highlighting
 
-```js
-function createSlideHtml(content, layout) {
-  return `<div class="step" ${getLayoutData(content, layout)}>${marked(content)}</div>`;
+```javascript
+function helloWorld() {
+  return 'Hello World';
 }
 ```

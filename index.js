@@ -1,6 +1,6 @@
 'use strict';
 
-const marked = require('marked');
+const marky = require('marky-markdown');
 const defaults = require('defaults');
 const layoutGenerator = require('./lib/layout');
 const log = require('./lib/log');
@@ -8,7 +8,6 @@ const getCss = require('./lib/css-helper').getCss;
 const util = require('./lib/util');
 const pathResolve = require('path').resolve;
 const co = require('co');
-const highlight = require('highlight');
 
 const optionDefaults = {
   layout: 'horizontal',
@@ -59,7 +58,19 @@ function getLayoutData(slide, layout) {
 }
 
 function createSlideHtml(content, layout) {
-  return `<div class="step" ${getLayoutData(content, layout)}>${marked(content)}</div>`;
+  const $ = marky(content);
+  const h1 = $('h1');
+  let id = '';
+  // if (!!h1) {
+  //   //id = h1.attr('id') || '';
+  //   const childLink = h1.children('a');
+  //   id = childLink.attr('href').replace('#', '');
+  //   h1.attr('id', ''); // we delete the inner h1 id
+  //   h1.attr('href', ''); // and the href
+  //   h1.text(childLink.text());
+  //   childLink.remove();
+  // }
+  return `<div class="step" id="${id}" ${getLayoutData(content, layout)}>${$.html()}</div>`;
 }
 
 function* createImpressHtml(html) {
@@ -107,13 +118,6 @@ function* processMarkdownFile(path, optionsArg) {
 
 function init(path, optionsArg) {
   try {
-    // set marked code highlighter
-    // marked.setOptions({
-    //   highlight(code) {
-    //     return highlight.highlightAuto(code).value;
-    //   },
-    // });
-    // returns a co-promise
     return co(processMarkdownFile(path, optionsArg));
   } catch (e) {
     log.error(e);
