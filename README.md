@@ -27,11 +27,40 @@
 
 ## Options
 
-- `-i <path>` or `--input <path>`
-- `-o <path>` or `--output <path>`
-- `-a` or `--auto-split`
-- `-h` or `--allow-html`
-- `-t <theme>` or `--theme <theme>`
+### `-i <path>` or `--input <path>` 
+
+Path to the input file. A [Mardown file](https://daringfireball.net/projects/markdown/) is expected.
+
+### `-o <path>` or `--output <path>`
+
+Path to the output HTMl file.
+
+### `-a` or `--auto-split` or `{ autoSplit: Boolean }` in code
+
+**Default**: `false`
+
+Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
+
+### `-h` or `--allow-html` or `{ allowHtml: boolean }` in code
+
+**Default**: `false`
+
+Allow HTML code embedded in the Markdown file. Useful if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+
+### `-t <theme>` or `--theme <theme>` or `{ theme: String }` in code
+
+Chose from the different available themes:
+
+- `light` (default)
+- `dark`
+- `dark-serif`
+- `light-serif`
+
+### `-s` or `--silent` or `{ silent: Boolean }` in code
+
+**Default**: `false`
+
+Supress all console outputs.
 
 -------------------------------
 ## Use in your code
