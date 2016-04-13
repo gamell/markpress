@@ -7,18 +7,34 @@
 -----------------------------
 ## How to install
 
-### Globally
-`$ npm install -g markpress`
+`node` version >= `5.0.0` is required, as ES2015 features are used.
 
-### For the current project only
-`$ npm install markpress`
+### Globally
+`$ npm install -g markpress`  (globally)
+
+or
+
+`$ npm install markpress` (for the current project only)
+
+-----------------------------
+## Features
+- Automatic layout generation (if wanteed)
+- Automatic slide split (if wanted)
+- Built-in themes
+- Allows individual slide-level CSS customizations
+- Generates self-contained HTML file (no network connection required to present)
+- Github-inspired CSS styles
+- Code highlighting for most common languages
+- Supports Emojis :smile:
+- Responsive design adapts to different screen sizes
+- Adaptative text size (using `vmin` and `vmax`)
+- Will run fine in the last browsers: Edge, Firefox ?+, Chrome ?+, Safari ?+
 
 -----------------------------
 ## Markdown format
 + Use `------` to separate each slide
 + Use HTML comments to set [impress attrs](https://github.com/impress/impress.js/), such as `<!-- x=0 y=0 rotate=0 scale=1 -->` please note that comments will be ignored if the `layout` option is passed.
-+ You can write embedded HTML if you pass the `-h` or `--allow-html` flag.
-<!-- + [this page](http://steel1990.github.io/markdown-impress/) is made by *markdown-impress* use [this markdown](https://raw.githubusercontent.com/steel1990/markdown-impress/master/README.md). -->
++ You can write embedded HTML if you pass the `-h` or `--allow-html` flag (see below for more information)
 
 -----------------------------
 ## How To Use
