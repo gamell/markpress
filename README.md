@@ -1,13 +1,10 @@
-<!-- x=1500, y=500, z=1500 -->
-# Markdown-Impress
+# Markpress
 
 -----------------------------
-<!-- x=500,    y=0,   scale=0.5 -->
 ## What is it
 *markpress* is a tool to convert markdown to an [*impressjs*](https://github.com/impress/impress.js/) html presentation. It is based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990)
 
 -----------------------------
-<!-- x=2500, y=0 -->
 ## How to install
 
 ### Globally
@@ -17,32 +14,45 @@
 `$ npm install markpress`
 
 -----------------------------
-<!-- x=3000, y=1000 -->
 ## Markdown format
-+ use `------` to separate each slide
-+ use HTML comments to set [impress attrs](https://github.com/impress/impress.js/), such as `<!-- x=0 y=0 rotate=0 scale=1 -->` please note that comments will be ignored if the `layout` option is passed.
++ Use `------` to separate each slide
++ Use HTML comments to set [impress attrs](https://github.com/impress/impress.js/), such as `<!-- x=0 y=0 rotate=0 scale=1 -->` please note that comments will be ignored if the `layout` option is passed.
++ You can write embedded HTML if you pass the `-h` or `--allow-html` flag.
 <!-- + [this page](http://steel1990.github.io/markdown-impress/) is made by *markdown-impress* use [this markdown](https://raw.githubusercontent.com/steel1990/markdown-impress/master/README.md). -->
 
 -----------------------------
-<!-- x=1500, y=1000, rotate=90 -->
 ## How To Use
+
 ![How to use markpress](./markpress-help.png)
 
+## Options
+
+- `-i <path>` or `--input <path>`
+- `-o <path>` or `--output <path>`
+- `-a` or `--auto-split`
+- `-h` or `--allow-html`
+- `-t <theme>` or `--theme <theme>`
+
 -------------------------------
-<!-- x=0, y=1000 -->
 ## Use in your code
 
 ```js
 var fs = require('fs');
 var markpress = require('markpress');
+// defaults:
+var options = {
+  layout: 'horizontal',
+  theme: 'light',
+  autoSplit: false,
+  allowHtml: false,
+  verbose: false
+}
 var content = markpress('file.md', options).then(() => {
       fs.writeFileSync('file.html', content);
 });
 ```
 
 -------------------------------
-<!-- x=4000, y=2000 z=3000 -->
-
 ## Develop
 
 ### Running:
@@ -58,8 +68,6 @@ var content = markpress('file.md', options).then(() => {
 `npm link`
 
 -------------------------------
-<!-- x=0, y=-1000 -->
-
 ## Roadmap
 
 - Improve style for:
