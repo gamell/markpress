@@ -40,6 +40,26 @@ var content = markpress('file.md', options).then(() => {
 });
 ```
 
+-------------------------------
+<!-- x=4000, y=2000 z=3000 -->
+
+## Develop
+
+### Running:
+
+`$ node --harmony ./bin/markpress.js -i input.html -o output.html`
+
+### Debugging
+
+`$ node debug --harmony ./bin/markpress.js -i input.html -o output.html`
+
+### Linking
+
+`npm link`
+
+-------------------------------
+<!-- x=0, y=-1000 -->
+
 ## Roadmap
 
 - Improve style for:

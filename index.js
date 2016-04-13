@@ -57,20 +57,19 @@ function getLayoutData(slide, layout) {
   return layoutData.map((d) => `data-${d.key}="${d.value}"`).join(' ');
 }
 
+function removeLinkHeaders($) {
+  $(':header').map((i, header) => {
+    const children = $(header).children('a');
+    $(header).text($(children).text());
+    $(children).remove();
+    return header;
+  }); // select all headers
+  return $;
+}
+
 function createSlideHtml(content, layout) {
   const $ = marky(content);
-  const h1 = $('h1');
-  let id = '';
-  // if (!!h1) {
-  //   //id = h1.attr('id') || '';
-  //   const childLink = h1.children('a');
-  //   id = childLink.attr('href').replace('#', '');
-  //   h1.attr('id', ''); // we delete the inner h1 id
-  //   h1.attr('href', ''); // and the href
-  //   h1.text(childLink.text());
-  //   childLink.remove();
-  // }
-  return `<div class="step" id="${id}" ${getLayoutData(content, layout)}>${$.html()}</div>`;
+  return `<div class="step" ${getLayoutData(content, layout)}>${removeLinkHeaders($).html()}</div>`;
 }
 
 function* createImpressHtml(html) {
@@ -78,7 +77,7 @@ function* createImpressHtml(html) {
   const tpl = util.readFile(path, 'impress.tpl');
   const data = {
     html,
-    css: yield getCss(path, options.theme),
+    css: yield getCss(`${path}/styles`, options.theme),
     js: util.readFile(path, 'impress.min.js'),
   };
   return tpl.replace(/\{\{\$(\w+)\}\}/g, ($, $1) => data[$1]);
