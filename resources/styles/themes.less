@@ -1,16 +1,53 @@
-// Themes
+@import "fonts";
 
-.setTheme(dark) {
+// Theme definition
+
+.dark(){
   @bgColorStart: #333;
   @bgColorEnd: #0f0f0f;
   @bgColor: #d7d7d7;
   @fontColor: #eee;
+  @quoteColor: darken(@fontColor,30);
+  @codeBackground: #000;
 }
-.setTheme(light) {
+
+.light(){
   @bgColorStart: #f0f0f0;
   @bgColorEnd: #bebebe;
   @bgColor: #d7d7d7;
-  @fontColor: inherit;
+  @fontColor: #0f0f0f;
+  @quoteColor: lighten(@fontColor,30);
+  @codeBackground: #f0f0f0;
+}
+
+.serif(){
+
+  // font face
+  .droidSerif();
+
+  body{
+    font-family: 'Droid Serif',Georgia,serif !important;
+  }
+
+}
+
+// Theme setting
+
+.setTheme(dark) {
+  .dark();
+}
+.setTheme(light) {
+  .light();
+}
+
+.setTheme(dark-serif){
+  .setTheme(dark);
+  .serif();
+}
+
+.setTheme(light-serif){
+  .setTheme(light);
+  .serif();
 }
 
 .setTheme(@theme);

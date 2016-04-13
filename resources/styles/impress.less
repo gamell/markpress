@@ -9,6 +9,48 @@ h1,h2,h3,h4,h5,h6 {
   border-bottom: 0;
 }
 
+h1 {
+    font-size: 6em; //fallback
+    font-size: @fontH1;
+    text-align: center;
+    margin-top: 0;
+}
+h2 {
+    font-size: 4em; //fallback
+    font-size: @fontH2;
+    margin-top: @fontBase;
+}
+h3 {
+    font-size: 3em; //fallback
+    font-size: @fontH3;
+    margin-top: @fontBase;
+}
+
+h4, h5, h6 {
+  font-size: @fontBase
+}
+
+body {
+    line-height: 1;
+    min-height: 740px;
+    color: @fontColor;
+    background: @bgColor;
+    background: -webkit-gradient(radial,50% 50%,0,50% 50%,500,from(@bgColorStart),to(@bgColorEnd));
+    background: -webkit-radial-gradient(@bgColorStart,@bgColorEnd);
+    background: -moz-radial-gradient(@bgColorStart,@bgColorEnd);
+    background: -ms-radial-gradient(@bgColorStart,@bgColorEnd);
+    background: -o-radial-gradient(@bgColorStart,@bgColorEnd);
+    background: radial-gradient(@bgColorStart,@bgColorEnd);
+}
+
+blockquote {
+  color: @quoteColor;
+}
+
+.highlight pre, pre{
+  background-color: @codeBackground;
+}
+
 kbd{
   font-size: @fontBase;
   display: inline-block;
@@ -24,31 +66,6 @@ kbd{
   box-shadow: inset 0 -0.1vmax 0 #bbb;
 }
 
-h1 {
-    font-size: 6em; //fallback
-    font-size: @fontH1;
-    text-align: center;
-    margin-top: 0;
-}
-h2 {
-    font-size: 4em; //fallback
-    font-size: @fontH2;
-    margin-top: @fontBase;
-}
-
-body {
-    line-height: 1;
-    //font-family: 'PT Sans',sans-serif;
-    min-height: 740px;
-    color: @fontColor;
-    background: @bgColor;
-    background: -webkit-gradient(radial,50% 50%,0,50% 50%,500,from(@bgColorStart),to(@bgColorEnd));
-    background: -webkit-radial-gradient(@bgColorStart,@bgColorEnd);
-    background: -moz-radial-gradient(@bgColorStart,@bgColorEnd);
-    background: -ms-radial-gradient(@bgColorStart,@bgColorEnd);
-    background: -o-radial-gradient(@bgColorStart,@bgColorEnd);
-    background: radial-gradient(@bgColorStart,@bgColorEnd);
-}
 // a {
 //     color: inherit;
 //     text-decoration: none;
