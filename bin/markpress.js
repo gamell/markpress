@@ -31,6 +31,10 @@ program.version(pkg.version)
       '-a, --auto-split',
       'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
     )
+    .option(
+      '-h, --allow-html',
+      'Allow embedded HTML in the Markdown file (e.g. to use <kbd></kbd>)'
+    )
     // .option(
     //   '-b, --build [compact (default)|expanded]',
     //   'Compact or expanded output.'
@@ -54,6 +58,7 @@ const options = {
   layout: program.layout,
   style: program.style,
   autoSplit: program.autoSplit,
+  allowHtml: program.allowHtml,
   verbose: !program.silent, // output logs
   theme: program.theme,
 };
