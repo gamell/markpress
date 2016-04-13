@@ -73,6 +73,6 @@ var content = markpress('file.md', options).then(() => {
 
 ## References
 
-https://www.npmjs.com/package/impress.md
-https://github.com/steel1990/markdown-impress
-Github markdown CSS: https://github.com/sindresorhus/github-markdown-css
+- https://www.npmjs.com/package/impress.md
+- https://github.com/steel1990/markdown-impress
+- Github markdown CSS: https://github.com/sindresorhus/github-markdown-css
