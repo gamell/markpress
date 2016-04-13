@@ -13,6 +13,7 @@ const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
   autoSplit: false,
+  allowHtml: false,
   verbose: false,
 };
 
@@ -68,7 +69,7 @@ function removeLinkHeaders($) {
 }
 
 function createSlideHtml(content, layout) {
-  const $ = marky(content);
+  const $ = marky(content, {sanitize: !options.allowHtml});
   return `<div class="step" ${getLayoutData(content, layout)}>${removeLinkHeaders($).html()}</div>`;
 }
 

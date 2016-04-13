@@ -63,8 +63,6 @@ var content = markpress('file.md', options).then(() => {
 ## Roadmap
 
 - Improve style for:
-  - Font size
-  - Quotes
   - Ordered lists
   - links
   - Code block highlighting
@@ -77,3 +75,4 @@ var content = markpress('file.md', options).then(() => {
 
 https://www.npmjs.com/package/impress.md
 https://github.com/steel1990/markdown-impress
+Github markdown CSS: https://github.com/sindresorhus/github-markdown-css
