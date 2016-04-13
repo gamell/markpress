@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>impress.js</title>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
     <style type="text/css">body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -546,7 +545,24 @@ kbd {
 }
 body {
   font-size: 100%;
-  font-size: 1.5vmax;
+  font-size: 2.4vmin;
+}
+blockquote {
+  color: #5c5c5c;
+}
+kbd {
+  font-size: 2.4vmin;
+  display: inline-block;
+  padding: 0.36vmin 0.84vmin;
+  font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 2.4vmin;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 0.4vmax;
+  box-shadow: inset 0 -0.1vmax 0 #bbb;
 }
 h1,
 h2,
@@ -556,35 +572,31 @@ h5,
 h6 {
   border-bottom: 0;
 }
-kbd {
-  font-size: 1.5vmax;
-  display: inline-block;
-  padding: 0.225vmax 0.525vmax;
-  font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  line-height: 1.5vmax;
-  color: #555;
-  vertical-align: middle;
-  background-color: #fcfcfc;
-  border: solid 1px #ccc;
-  border-bottom-color: #bbb;
-  border-radius: 0.4vmax;
-  box-shadow: inset 0 -0.1vmax 0 #bbb;
-}
 h1 {
   font-size: 6em;
-  font-size: 3.9vmax;
+  font-size: 6.24vmin;
   text-align: center;
   margin-top: 0;
 }
 h2 {
   font-size: 4em;
-  font-size: 2.85vmax;
-  margin-top: 1.5vmax;
+  font-size: 4.32vmin;
+  margin-top: 2.4vmin;
+}
+h3 {
+  font-size: 3em;
+  font-size: 2.88vmin;
+  margin-top: 2.4vmin;
+}
+h4,
+h5,
+h6 {
+  font-size: 2.4vmin;
 }
 body {
   line-height: 1;
   min-height: 740px;
-  color: inherit;
+  color: #0f0f0f;
   background: #d7d7d7;
   background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f0f0f0), to(#bebebe));
   background: -webkit-radial-gradient(#f0f0f0, #bebebe);
@@ -592,6 +604,10 @@ body {
   background: -ms-radial-gradient(#f0f0f0, #bebebe);
   background: -o-radial-gradient(#f0f0f0, #bebebe);
   background: radial-gradient(#f0f0f0, #bebebe);
+}
+.highlight pre,
+pre {
+  background-color: #f0f0f0;
 }
 .fallback-message {
   line-height: 1.3;
@@ -611,7 +627,7 @@ body {
 .step {
   position: relative;
   width: 85vw;
-  height: 85vh;
+  max-height: 85vh;
   padding: 40px;
   margin: 20px auto;
   -webkit-box-sizing: border-box;
@@ -642,7 +658,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  color: inherit;
+  color: #0f0f0f;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   font-family: 'Open Sans', Arial, sans-serif;
   line-height: 36px;
@@ -657,15 +673,20 @@ body {
 </style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="-4000" data-y="-3600" data-z="4000"><h1 id="user-content-test-markdown-presentation" class="deep-link">Test Markdown presentation</h1>
-<p>Welcome to the test Markdown presentation! Use your arrow keys to step through the different slides.<kbd>&#x2190;</kbd><kbd>&#x2192;</kbd></p>
+    <div id="impress"><div class="step" data-x="4000"><h1 id="user-content-example-markdown-presentation" class="deep-link">Example Markdown presentation</h1>
+<p>Welcome to the test Markdown presentation! Use your arrow keys to step through the different slides <kbd>&#x2190;</kbd><kbd>&#x2192;</kbd></p>
+</div><div class="step" data-x="2000" data-y="3600"><h1 id="user-content-headings" class="deep-link">Headings</h1>
 <h2 id="user-content-header-2" class="deep-link">Header 2</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a aliquam mi. Integer eget vestibulum eros. Sed hendrerit pretium volutpat. Praesent in scelerisque quam, malesuada sodales nisl. Morbi eu ligula turpis. Integer venenatis condimentum metus at accumsan.</p>
 <h3 id="user-content-header-3" class="deep-link">Header 3</h3>
-</div><div class="step" data-x="-6000" data-y="-2400" data-z="12000" data-scale="1"><h1 id="user-content-it-supports-emojis" class="deep-link">It supports emojis!</h1>
+<p>Vivamus consectetur ante dolor, vel pellentesque felis porta in. Donec feugiat condimentum metus, eget dictum dolor venenatis quis. Mauris nec tempus ligula. Vivamus euismod est ut pretium aliquet. Donec ornare quam vitae nulla convallis, in tincidunt mi auctor. Vivamus tristique ante quis semper aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+<h4 id="user-content-header-4" class="deep-link">Header 4</h4>
+<p>Donec et scelerisque velit. Aenean pellentesque laoreet lacus at ullamcorper. Maecenas interdum orci id molestie rhoncus. Vivamus bibendum lectus a enim tincidunt tempus. Vestibulum a condimentum lorem. Cras vel ex posuere, dictum magna commodo, ullamcorper ex. Pellentesque venenatis erat et purus convallis, faucibus dignissim mi tincidunt. Sed malesuada lacus at ligula consectetur, a mollis ipsum bibendum. Proin ante leo, elementum in nisi sit amet, egestas finibus elit.</p>
+</div><div class="step" data-x="6000" data-y="7200"><h1 id="user-content-it-supports-emojis" class="deep-link">It supports emojis!</h1>
 <p>&#x1F44D; &#x1F603;</p>
 <h2 id="user-content-and-all-the-common-markup" class="deep-link">And all the common markup...</h2>
 <p><strong>Lorem ipsum</strong> dolor sit amet, <em>consectetur</em> adipiscing elit. <strong><em>Etiam</em> iaculis sem</strong> sit amet ultrices finibus. <s>Morbi non quam sit amet tortor volutpat convallis</s>. <code>Curabitur egestas sit amet ante ut ultricies</code>.</p>
-</div><div class="step" data-x="-6000"><h1 id="user-content-lists" class="deep-link">Lists</h1>
+</div><div class="step" data-x="8000" data-y="10800" data-z="-8000"><h1 id="user-content-lists" class="deep-link">Lists</h1>
 <h2 id="user-content-unordered" class="deep-link">Unordered</h2>
 <ul>
 <li>This is an:
@@ -698,7 +719,7 @@ body {
 <ol start="2">
 <li>The end</li>
 </ol>
-</div><div class="step" data-x="-10000" data-y="0" data-z="16000"><h1 id="user-content-quotes" class="deep-link">Quotes</h1>
+</div><div class="step" data-x="4000" data-y="9600" data-z="-20000" data-scale="1"><h1 id="user-content-quotes" class="deep-link">Quotes</h1>
 <h2 id="user-content-multi-line" class="deep-link">Multi-line</h2>
 <blockquote>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet.
@@ -710,22 +731,22 @@ Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <blockquote>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 </blockquote>
-</div><div class="step" data-x="-12000" data-y="-1200"><h1 id="user-content-third-slide-you-can-fit-a-lot-of-text" class="deep-link">Third Slide, you can fit a lot of text...</h1>
+</div><div class="step" data-x="0" data-y="10800" data-z="-16000" data-scale="1" data-rotate="-120"><h1 id="user-content-third-slide-you-can-fit-a-lot-of-text" class="deep-link">Third Slide, you can fit a lot of text...</h1>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
-</div><div class="step" data-x="-8000" data-y="-4800" data-z="20000"><h1 id="user-content-fourth-slide-ordered-lists" class="deep-link">Fourth slide. Ordered lists</h1>
+</div><div class="step" data-x="0" data-y="8400" data-z="-4000"><h1 id="user-content-fourth-slide-ordered-lists" class="deep-link">Fourth slide. Ordered lists</h1>
 <ol>
 <li>Integer gravida massa lectus, in tincidunt odio euismod a.</li>
 <li>Donec ut risus libero. Pellentesque eget posuere nulla.</li>
 <li>Duis vitae mauris dapibus, efficitur diam vitae, pellentesque urna.</li>
 </ol>
-</div><div class="step" data-x="-6000" data-y="-4800" data-z="12000" data-scale="4" data-rotate="0"><h1 id="user-content-fifth-slide-some-links" class="deep-link">Fifth Slide, some links</h1>
+</div><div class="step" data-x="6000" data-y="7200" data-z="-4000" data-scale="1" data-rotate="-120"><h1 id="user-content-fifth-slide-some-links" class="deep-link">Fifth Slide, some links</h1>
 <p><a href="http://gamell.io">Ut vitae</a> erat nec tortor commodo blandit eu quis sem. Cras sed scelerisque ex, eu molestie nisl. Praesent molestie at libero in semper. Phasellus at sem ligula. Nam mi leo, faucibus et lacinia id, maximus ac leo. Mauris eget velit libero. Vestibulum ac mi nunc.</p>
-</div><div class="step" data-x="-2000"><h1 id="user-content-sixth-slide-image-example" class="deep-link">Sixth Slide. Image example</h1>
+</div><div class="step" data-x="12000" data-y="3600" data-z="-16000"><h1 id="user-content-sixth-slide-image-example" class="deep-link">Sixth Slide. Image example</h1>
 <p><img src="../markpress-help.png" alt="How to use markpress"></p>
-</div><div class="step" data-x="-6000" data-y="-8400" data-z="4000" data-scale="5" data-rotate="180"><h1 id="user-content-seventh-slide-code-syntax-and-highlighting" class="deep-link">Seventh Slide. Code Syntax and Highlighting</h1>
+</div><div class="step" data-x="12000" data-y="2400" data-z="-16000" data-scale="1" data-rotate="60"><h1 id="user-content-seventh-slide-code-syntax-and-highlighting" class="deep-link">Seventh Slide. Code Syntax and Highlighting</h1>
 <div class="highlight javascript"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="meta function js"><span class="storage type function js"><span>function</span></span><span>&#xA0;</span><span class="entity name function js"><span>helloWorld</span></span><span class="punctuation definition parameters begin js"><span>(</span></span><span class="punctuation definition parameters end js"><span>)</span></span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="keyword control js"><span>return</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>Hello&#xA0;World</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div></pre></div>
 </div></div>
     <script>/**

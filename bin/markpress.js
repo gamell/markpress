@@ -9,7 +9,7 @@ const fs = require('fs');
 const pkg = require('../package');
 
 const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|random-grid|random)$/i;
-const themeRegex = /^(light|dark)$/i;
+const themeRegex = /^(light|dark|light-serif|dark-serif)$/i;
 
 program.version(pkg.version)
     .option('-i, --input <path>', 'Input markdown file path')
