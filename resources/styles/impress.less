@@ -14,7 +14,7 @@ kbd{
   display: inline-block;
   padding: @fontBase*0.15 @fontBase*0.35;
   font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  line-height: 2vmax;
+  line-height: @fontBase;
   color: #555;
   vertical-align: middle;
   background-color: #fcfcfc;
@@ -85,7 +85,7 @@ body {
 .step {
     position: relative;
     width: @slideWidth;
-    height: @slideHeight;
+    max-height: @slideHeight; // so it's v-aligned
     padding: 40px;
     margin: 20px auto;
     -webkit-box-sizing: border-box;
