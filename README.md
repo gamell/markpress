@@ -35,6 +35,21 @@ Path to the input file. A [Mardown file](https://daringfireball.net/projects/mar
 
 Path to the output HTMl file.
 
+### `-l` or `--layout` or `{ layout: String }` in code
+
+**Default**: `horizontal`
+
+Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positions is found**, so please remove all HTML comments (`<!-- ... -->`) from the markdown file if you want to use this feature.
+
+Available Layouts:
+
+- `horizontal` (default): Slides positioned along the `x` axis. Example
+- `vertical`: Slides positioned along the `y` axis. Example
+- `3d-push`: Slides positioned along the `z` axis. Slide `n` will be positioned *lower* than `n+1`. Example
+- `3d-pull`: Slides positioned along the `z` axis. Slide `n` will be positioned *higher* than `n+1`. Example
+- `random-grid`: Slides positioned along the `x` and `y` axis in a grid fashion. Example
+- `random`: Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
+
 ### `-a` or `--auto-split` or `{ autoSplit: Boolean }` in code
 
 **Default**: `false`
@@ -49,12 +64,14 @@ Allow HTML code embedded in the Markdown file. Useful if you want to use things 
 
 ### `-t <theme>` or `--theme <theme>` or `{ theme: String }` in code
 
+**Default**: `light`
+
 Chose from the different available themes:
 
-- `light` (default)
-- `dark`
-- `dark-serif`
-- `light-serif`
+- `light` (default): Light theme with Sans-serif font
+- `dark`: Dark theme with Sans-serif font
+- `light-serif`: Light theme with Sans-Serif font
+- `dark-serif`: Light theme with Serif font
 
 ### `-s` or `--silent` or `{ silent: Boolean }` in code
 
