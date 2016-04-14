@@ -25,7 +25,7 @@ or
 - Generates self-contained HTML file (no network connection required to present)
 - Github-inspired CSS styles
 - Code highlighting for most common languages
-- Supports Emojis :smile:
+- Supports [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
 - Responsive design adapts to different screen sizes
 - Adaptative text size (using `vmin` and `vmax`)
 - Will run fine in the last browsers: Edge, Firefox ?+, Chrome ?+, Safari ?+
@@ -43,7 +43,7 @@ or
 
 ## Options
 
-### `-i <path>` or `--input <path>` 
+### `-i <path>` or `--input <path>`
 
 Path to the input file. A [Mardown file](https://daringfireball.net/projects/markdown/) is expected.
 
@@ -93,7 +93,8 @@ Chose from the different available themes:
 
 **Default**: `false`
 
-Supress all console outputs.
+
+Silence all console outputs.
 
 -------------------------------
 ## Use in your code
@@ -130,19 +131,23 @@ var content = markpress('file.md', options).then(() => {
 `npm link`
 
 -------------------------------
-## Roadmap
+## Todo
 
 - Improve style for:
   - Ordered lists
   - links
-  - Code block highlighting
 - Unit tests
 - Allow to define slide-specific CSS
 - `custom-styles` option to use your own CSS / Less files
 
 
-## References
+## References and tools used
 
-- https://www.npmjs.com/package/impress.md
-- https://github.com/steel1990/markdown-impress
-- Github markdown CSS: https://github.com/sindresorhus/github-markdown-css
+- Inspired by and based on:
+  - https://github.com/steel1990/markdown-impress
+  - https://www.npmjs.com/package/impress.md
+- Styles based on:
+  - Github markdown CSS: https://github.com/sindresorhus/github-markdown-css
+  - Atom Code highlighting CSS:
+    - Dark: https://github.com/atom/atom-dark-syntax
+    - Light: https://github.com/atom/atom-light-syntax

@@ -5,7 +5,286 @@
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>impress.js</title>
-    <style type="text/css">body {
+    <style type="text/css">atom-text-editor,
+:host {
+  background-color: #1d1f21;
+  color: #c5c8c6;
+}
+atom-text-editor .invisible-character,
+:host .invisible-character {
+  color: rgba(197, 200, 198, 0.2);
+}
+atom-text-editor .indent-guide,
+:host .indent-guide {
+  color: rgba(197, 200, 198, 0.2);
+}
+atom-text-editor .wrap-guide,
+:host .wrap-guide {
+  background-color: rgba(197, 200, 198, 0.1);
+}
+atom-text-editor .gutter,
+:host .gutter {
+  background-color: #292c2f;
+}
+atom-text-editor .gutter .cursor-line,
+:host .gutter .cursor-line {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+atom-text-editor .line-number.cursor-line-no-selection,
+:host .line-number.cursor-line-no-selection {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+atom-text-editor .gutter .line-number.folded,
+:host .gutter .line-number.folded,
+atom-text-editor .gutter .line-number:after,
+:host .gutter .line-number:after,
+atom-text-editor .fold-marker:after,
+:host .fold-marker:after {
+  color: #fba0e3;
+}
+atom-text-editor .invisible,
+:host .invisible {
+  color: #c5c8c6;
+}
+atom-text-editor .cursor,
+:host .cursor {
+  border-color: white;
+}
+atom-text-editor .selection .region,
+:host .selection .region {
+  background-color: #444;
+}
+atom-text-editor .source.gfm,
+:host .source.gfm {
+  color: #999;
+}
+atom-text-editor .gfm .markup.heading,
+:host .gfm .markup.heading {
+  color: #eee;
+}
+atom-text-editor .gfm .link,
+:host .gfm .link {
+  color: #555;
+}
+atom-text-editor .gfm .variable.list,
+:host .gfm .variable.list,
+atom-text-editor .gfm .support.quote,
+:host .gfm .support.quote {
+  color: #555;
+}
+atom-text-editor .gfm .link .entity,
+:host .gfm .link .entity {
+  color: #ddd;
+}
+atom-text-editor .gfm .raw,
+:host .gfm .raw {
+  color: #aaa;
+}
+atom-text-editor .markdown .paragraph,
+:host .markdown .paragraph {
+  color: #999;
+}
+atom-text-editor .markdown .heading,
+:host .markdown .heading {
+  color: #eee;
+}
+atom-text-editor .markdown .raw,
+:host .markdown .raw {
+  color: #aaa;
+}
+atom-text-editor .markdown .link,
+:host .markdown .link {
+  color: #555;
+}
+atom-text-editor .markdown .link .string,
+:host .markdown .link .string {
+  color: #555;
+}
+atom-text-editor .markdown .link .string.title,
+:host .markdown .link .string.title {
+  color: #ddd;
+}
+.bracket-matcher .region {
+  border-bottom: 1px solid #f8de7e;
+  margin-top: -1px;
+  opacity: .7;
+}
+.comment {
+  color: #7C7C7C;
+}
+.entity {
+  color: #FFD2A7;
+}
+.entity.name.type {
+  text-decoration: underline;
+  color: #FFFFB6;
+}
+.entity.other.inherited-class {
+  color: #9B5C2E;
+}
+.keyword {
+  color: #96CBFE;
+}
+.keyword.control {
+  color: #96CBFE;
+}
+.keyword.operator {
+  color: #EDEDED;
+}
+.storage {
+  color: #CFCB90;
+}
+.storage.modifier {
+  color: #96CBFE;
+}
+.constant {
+  color: #99CC99;
+}
+.constant.numeric {
+  color: #FF73FD;
+}
+.variable {
+  color: #C6C5FE;
+}
+.invalid.deprecated {
+  text-decoration: underline;
+  color: #FD5FF1;
+}
+.invalid.illegal {
+  color: #FD5FF1;
+  background-color: rgba(86, 45, 86, 0.75);
+}
+.string .source,
+.string .meta.embedded.line {
+  color: #EDEDED;
+}
+.string .punctuation.section.embedded {
+  color: #00A0A0;
+}
+.string .punctuation.section.embedded .source {
+  color: #00A0A0;
+}
+.string {
+  color: #A8FF60;
+}
+.string .constant {
+  color: #00A0A0;
+}
+.string.regexp {
+  color: #E9C062;
+}
+.string.regexp .constant.character.escape,
+.string.regexp .source.ruby.embedded,
+.string.regexp .string.regexp.arbitrary-repetition {
+  color: #FF8000;
+}
+.string.regexp.group {
+  color: #C6A24F;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.string.regexp.character-class {
+  color: #B18A3D;
+}
+.string .variable {
+  color: #8A9A95;
+}
+.support {
+  color: #FFFFB6;
+}
+.support.function {
+  color: #DAD085;
+}
+.support.constant {
+  color: #FFD2A7;
+}
+.support.type.property-name.css {
+  color: #EDEDED;
+}
+.source .entity.name.tag,
+.source .punctuation.tag {
+  color: #96CBFE;
+}
+.source .entity.other.attribute-name {
+  color: #C6C5FE;
+}
+.entity.other.attribute-name {
+  color: #C6C5FE;
+}
+.entity.name.tag.namespace,
+.entity.other.attribute-name.namespace {
+  color: #E18964;
+}
+.meta.preprocessor.c {
+  color: #8996A8;
+}
+.meta.preprocessor.c .keyword {
+  color: #AFC4DB;
+}
+.meta.cast {
+  color: #676767;
+}
+.meta.sgml.html .meta.doctype,
+.meta.sgml.html .meta.doctype .entity,
+.meta.sgml.html .meta.doctype .string,
+.meta.xml-processing,
+.meta.xml-processing .entity,
+.meta.xml-processing .string {
+  color: #494949;
+}
+.meta.tag .entity,
+.meta.tag > .punctuation,
+.meta.tag.inline .entity {
+  color: #C6C5FE;
+}
+.meta.tag .name,
+.meta.tag.inline .name,
+.meta.tag > .punctuation {
+  color: #96CBFE;
+}
+.meta.selector.css .entity.name.tag {
+  text-decoration: underline;
+  color: #96CBFE;
+}
+.meta.selector.css .entity.other.attribute-name.tag.pseudo-class {
+  color: #8F9D6A;
+}
+.meta.selector.css .entity.other.attribute-name.id {
+  color: #8B98AB;
+}
+.meta.selector.css .entity.other.attribute-name.class {
+  color: #62B1FE;
+}
+.meta.property-group .support.constant.property-value.css,
+.meta.property-value .support.constant.property-value.css {
+  color: #F9EE98;
+}
+.meta.preprocessor.at-rule .keyword.control.at-rule {
+  color: #8693A5;
+}
+.meta.property-value .support.constant.named-color.css,
+.meta.property-value .constant {
+  color: #87C38A;
+}
+.meta.constructor.argument.css {
+  color: #8F9D6A;
+}
+.meta.diff,
+.meta.diff.header {
+  color: #F8F8F8;
+  background-color: #0E2231;
+}
+.meta.separator {
+  color: #60A633;
+  background-color: #242424;
+}
+.meta.line.entry.logfile,
+.meta.line.exit.logfile {
+  background-color: rgba(238, 238, 238, 0.16);
+}
+.meta.line.error.logfile {
+  background-color: #751012;
+}
+body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   color: #333;
@@ -547,23 +826,6 @@ body {
   font-size: 100%;
   font-size: 2.4vmin;
 }
-blockquote {
-  color: #5c5c5c;
-}
-kbd {
-  font-size: 2.4vmin;
-  display: inline-block;
-  padding: 0.36vmin 0.84vmin;
-  font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  line-height: 2.4vmin;
-  color: #555;
-  vertical-align: middle;
-  background-color: #fcfcfc;
-  border: solid 1px #ccc;
-  border-bottom-color: #bbb;
-  border-radius: 0.4vmax;
-  box-shadow: inset 0 -0.1vmax 0 #bbb;
-}
 h1,
 h2,
 h3,
@@ -596,18 +858,35 @@ h6 {
 body {
   line-height: 1;
   min-height: 740px;
-  color: #0f0f0f;
+  color: #eee;
   background: #d7d7d7;
-  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f0f0f0), to(#bebebe));
-  background: -webkit-radial-gradient(#f0f0f0, #bebebe);
-  background: -moz-radial-gradient(#f0f0f0, #bebebe);
-  background: -ms-radial-gradient(#f0f0f0, #bebebe);
-  background: -o-radial-gradient(#f0f0f0, #bebebe);
-  background: radial-gradient(#f0f0f0, #bebebe);
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#333), to(#0f0f0f));
+  background: -webkit-radial-gradient(#333, #0f0f0f);
+  background: -moz-radial-gradient(#333, #0f0f0f);
+  background: -ms-radial-gradient(#333, #0f0f0f);
+  background: -o-radial-gradient(#333, #0f0f0f);
+  background: radial-gradient(#333, #0f0f0f);
+}
+blockquote {
+  color: #a2a2a2;
 }
 .highlight pre,
 pre {
-  background-color: #f0f0f0;
+  background-color: #000;
+}
+kbd {
+  font-size: 2.4vmin;
+  display: inline-block;
+  padding: 0.36vmin 0.84vmin;
+  font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 2.4vmin;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 0.4vmax;
+  box-shadow: inset 0 -0.1vmax 0 #bbb;
 }
 .fallback-message {
   line-height: 1.3;
@@ -658,7 +937,7 @@ pre {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  color: #0f0f0f;
+  color: #eee;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   font-family: 'Open Sans', Arial, sans-serif;
   line-height: 36px;
@@ -673,20 +952,20 @@ pre {
 </style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="4000"><h1 id="user-content-example-markdown-presentation" class="deep-link">Example Markdown presentation</h1>
-<p>Welcome to the test Markdown presentation! Use your arrow keys to step through the different slides <kbd>&#x2190;</kbd><kbd>&#x2192;</kbd></p>
-</div><div class="step" data-x="2000" data-y="3600"><h1 id="user-content-headings" class="deep-link">Headings</h1>
+    <div id="impress"><div class="step" data-x="2000" data-y="0"><h1 id="user-content-example-markdown-presentation" class="deep-link">Example Markdown presentation</h1>
+<p>Welcome to the test Markdown presentation! Use your arrow keys to step through the different slides <kbd>&#x2190;</kbd> <kbd>&#x2192;</kbd></p>
+</div><div class="step" data-x="2000" data-y="1200"><h1 id="user-content-headings" class="deep-link">Headings</h1>
 <h2 id="user-content-header-2" class="deep-link">Header 2</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a aliquam mi. Integer eget vestibulum eros. Sed hendrerit pretium volutpat. Praesent in scelerisque quam, malesuada sodales nisl. Morbi eu ligula turpis. Integer venenatis condimentum metus at accumsan.</p>
 <h3 id="user-content-header-3" class="deep-link">Header 3</h3>
 <p>Vivamus consectetur ante dolor, vel pellentesque felis porta in. Donec feugiat condimentum metus, eget dictum dolor venenatis quis. Mauris nec tempus ligula. Vivamus euismod est ut pretium aliquet. Donec ornare quam vitae nulla convallis, in tincidunt mi auctor. Vivamus tristique ante quis semper aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 <h4 id="user-content-header-4" class="deep-link">Header 4</h4>
 <p>Donec et scelerisque velit. Aenean pellentesque laoreet lacus at ullamcorper. Maecenas interdum orci id molestie rhoncus. Vivamus bibendum lectus a enim tincidunt tempus. Vestibulum a condimentum lorem. Cras vel ex posuere, dictum magna commodo, ullamcorper ex. Pellentesque venenatis erat et purus convallis, faucibus dignissim mi tincidunt. Sed malesuada lacus at ligula consectetur, a mollis ipsum bibendum. Proin ante leo, elementum in nisi sit amet, egestas finibus elit.</p>
-</div><div class="step" data-x="6000" data-y="7200"><h1 id="user-content-it-supports-emojis" class="deep-link">It supports emojis!</h1>
-<p>&#x1F44D; &#x1F603;</p>
+</div><div class="step" data-x="4000" data-y="1200"><h1 id="user-content-it-supports-emojis" class="deep-link">It supports emojis!</h1>
+<p>&#x1F604;&#x1F44D; &#x1F42B;&#x1F4A8;</p>
 <h2 id="user-content-and-all-the-common-markup" class="deep-link">And all the common markup...</h2>
 <p><strong>Lorem ipsum</strong> dolor sit amet, <em>consectetur</em> adipiscing elit. <strong><em>Etiam</em> iaculis sem</strong> sit amet ultrices finibus. <s>Morbi non quam sit amet tortor volutpat convallis</s>. <code>Curabitur egestas sit amet ante ut ultricies</code>.</p>
-</div><div class="step" data-x="8000" data-y="10800" data-z="-8000"><h1 id="user-content-lists" class="deep-link">Lists</h1>
+</div><div class="step" data-x="4000" data-y="2400"><h1 id="user-content-lists" class="deep-link">Lists</h1>
 <h2 id="user-content-unordered" class="deep-link">Unordered</h2>
 <ul>
 <li>This is an:
@@ -719,7 +998,7 @@ pre {
 <ol start="2">
 <li>The end</li>
 </ol>
-</div><div class="step" data-x="4000" data-y="9600" data-z="-20000" data-scale="1"><h1 id="user-content-quotes" class="deep-link">Quotes</h1>
+</div><div class="step" data-x="6000" data-y="2400"><h1 id="user-content-quotes" class="deep-link">Quotes</h1>
 <h2 id="user-content-multi-line" class="deep-link">Multi-line</h2>
 <blockquote>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet.
@@ -731,23 +1010,28 @@ Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <blockquote>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 </blockquote>
-</div><div class="step" data-x="0" data-y="10800" data-z="-16000" data-scale="1" data-rotate="-120"><h1 id="user-content-third-slide-you-can-fit-a-lot-of-text" class="deep-link">Third Slide, you can fit a lot of text...</h1>
+</div><div class="step" data-x="6000" data-y="1200"><h1 id="user-content-third-slide-you-can-fit-a-lot-of-text" class="deep-link">Third Slide, you can fit a lot of text...</h1>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
 <p>Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
-</div><div class="step" data-x="0" data-y="8400" data-z="-4000"><h1 id="user-content-fourth-slide-ordered-lists" class="deep-link">Fourth slide. Ordered lists</h1>
+</div><div class="step" data-x="8000" data-y="1200"><h1 id="user-content-fourth-slide-ordered-lists" class="deep-link">Fourth slide. Ordered lists</h1>
 <ol>
 <li>Integer gravida massa lectus, in tincidunt odio euismod a.</li>
 <li>Donec ut risus libero. Pellentesque eget posuere nulla.</li>
 <li>Duis vitae mauris dapibus, efficitur diam vitae, pellentesque urna.</li>
 </ol>
-</div><div class="step" data-x="6000" data-y="7200" data-z="-4000" data-scale="1" data-rotate="-120"><h1 id="user-content-fifth-slide-some-links" class="deep-link">Fifth Slide, some links</h1>
+</div><div class="step" data-x="8000" data-y="0"><h1 id="user-content-fifth-slide-some-links" class="deep-link">Fifth Slide, some links</h1>
 <p><a href="http://gamell.io">Ut vitae</a> erat nec tortor commodo blandit eu quis sem. Cras sed scelerisque ex, eu molestie nisl. Praesent molestie at libero in semper. Phasellus at sem ligula. Nam mi leo, faucibus et lacinia id, maximus ac leo. Mauris eget velit libero. Vestibulum ac mi nunc.</p>
-</div><div class="step" data-x="12000" data-y="3600" data-z="-16000"><h1 id="user-content-sixth-slide-image-example" class="deep-link">Sixth Slide. Image example</h1>
+</div><div class="step" data-x="10000" data-y="0"><h1 id="user-content-sixth-slide-image-example" class="deep-link">Sixth Slide. Image example</h1>
 <p><img src="../markpress-help.png" alt="How to use markpress"></p>
-</div><div class="step" data-x="12000" data-y="2400" data-z="-16000" data-scale="1" data-rotate="60"><h1 id="user-content-seventh-slide-code-syntax-and-highlighting" class="deep-link">Seventh Slide. Code Syntax and Highlighting</h1>
-<div class="highlight javascript"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="meta function js"><span class="storage type function js"><span>function</span></span><span>&#xA0;</span><span class="entity name function js"><span>helloWorld</span></span><span class="punctuation definition parameters begin js"><span>(</span></span><span class="punctuation definition parameters end js"><span>)</span></span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="keyword control js"><span>return</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>Hello&#xA0;World</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div></pre></div>
+</div><div class="step" data-x="10000" data-y="1200"><h1 id="user-content-code-syntax-and-highlighting" class="deep-link">Code Syntax and Highlighting</h1>
+<h2 id="user-content-javascript" class="deep-link">JavaScript</h2>
+<div class="highlight javascript"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="meta function js"><span class="storage type function js"><span>function</span></span><span>&#xA0;</span><span class="entity name function js"><span>helloWorld</span></span><span class="punctuation definition parameters begin js"><span>(</span></span><span class="punctuation definition parameters end js"><span>)</span></span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="entity name type object js firebug"><span>console</span></span><span class="support function js firebug"><span>.log</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>Hello&#xA0;World</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div></pre></div>
+<h2 id="user-content-java" class="deep-link">Java</h2>
+<div class="highlight java"><pre class="editor editor-colors"><div class="line"><span class="source java"><span class="storage modifier java"><span>public</span></span><span>&#xA0;</span><span class="storage modifier java"><span>static</span></span><span>&#xA0;</span><span class="storage type primitive array java"><span>void</span></span><span>&#xA0;</span><span class="meta method-call java"><span class="meta method java"><span>main</span></span><span class="punctuation definition method-parameters begin java"><span>(</span></span><span class="storage type object array java"><span>String</span></span><span>[]&#xA0;args</span><span class="punctuation definition method-parameters end java"><span>)</span></span></span><span>&#xA0;</span><span class="punctuation section block begin java"><span>{</span></span></span></div><div class="line"><span class="source java"><span>&#xA0;&#xA0;</span><span class="storage type java"><span>System</span></span><span class="keyword operator dereference java"><span>.</span></span><span>out</span><span class="keyword operator dereference java"><span>.</span></span><span class="meta method-call java"><span class="meta method java"><span>println</span></span><span class="punctuation definition method-parameters begin java"><span>(</span></span><span class="string quoted double java"><span class="punctuation definition string begin java"><span>&quot;</span></span><span>Hello,&#xA0;World</span><span class="punctuation definition string end java"><span>&quot;</span></span></span><span class="punctuation definition method-parameters end java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span class="punctuation section block end java"><span>}</span></span></span></div></pre></div>
+<h2 id="user-content-c" class="deep-link">C</h2>
+<div class="highlight c"><pre class="editor editor-colors"><div class="line"><span class="source c"><span class="meta function c"><span class="entity name function c"><span>main</span></span><span class="meta parens c"><span class="punctuation section parens begin c"><span>(</span></span><span class="punctuation section parens end c"><span>)</span></span></span></span></span></div><div class="line"><span class="source c"><span class="meta function c"><span class="meta block c"><span class="punctuation section block begin c"><span>{</span></span></span></span></span></div><div class="line"><span class="source c"><span class="meta function c"><span class="meta block c"><span class="punctuation whitespace support function leading c"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span></span><span class="support function C99 c"><span>printf</span></span><span>(</span><span class="string quoted double c"><span class="punctuation definition string begin c"><span>&quot;</span></span><span>Hello&#xA0;World</span><span class="punctuation definition string end c"><span>&quot;</span></span></span><span>);</span></span></span></span></div><div class="line"><span class="source c"><span class="meta function c"><span class="meta block c"><span class="punctuation section block end c"><span>}</span></span></span></span></span></div></pre></div>
 </div></div>
     <script>/**
  * impress.js

@@ -7,8 +7,9 @@ const program = require('commander');
 const path = require('path');
 const fs = require('fs');
 const pkg = require('../package');
+const log = require('../lib/log');
 
-const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|random-grid|random)$/i;
+const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|grid|random-7d|random)$/i;
 const themeRegex = /^(light|dark|light-serif|dark-serif)$/i;
 
 program.version(pkg.version)
@@ -17,13 +18,13 @@ program.version(pkg.version)
     .option('-s, --silent', 'Do not display progress & debug messages')
     .option(
       '-l, --layout <layout>',
-      'Chose the impress.js layout [horizontal (default)|vertical|3d|random-grid|random]',
+      'The impress.js generated layout [horizontal (default)|vertical|3d-push|3d-pull|grid|random-7d|random]',
       layoutRegex,
       'horizontal'
     )
     .option(
       '-t, --theme <theme>',
-      'Chose the theme of colors [light (default)|dark]',
+      'The theme of colors [light (default)|dark|light-serif|dark-serif]',
       themeRegex,
       'light'
     )
@@ -35,10 +36,6 @@ program.version(pkg.version)
       '-h, --allow-html',
       'Allow embedded HTML in the Markdown file (e.g. to use <kbd></kbd>)'
     )
-    // .option(
-    //   '-b, --build [compact (default)|expanded]',
-    //   'Compact or expanded output.'
-    // )
     .on('--help', () => {
       console.log('  Examples:\n');
       console.log('    $ markpress -i file.md -o file.html -a  -s -l random -t dark\n');
@@ -63,5 +60,11 @@ const options = {
   theme: program.theme,
 };
 
+log.init(options.verbose);
+const t0 = new Date();
+
 // markpress() returns a co promise
-markpress(input, options).then((html) => fs.writeFileSync(output, html));
+markpress(input, options).then((html) => {
+  fs.writeFileSync(output, html);
+  log.info(`html presentation generated in ${(new Date())-t0}ms`);
+});
