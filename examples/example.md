@@ -1,6 +1,6 @@
 # Example Markdown presentation
 
-Welcome to the test Markdown presentation! Use your arrow keys to step through the different slides <kbd>←</kbd><kbd>→</kbd>
+Welcome to the test Markdown presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd>
 
 # Headings
 
@@ -19,7 +19,7 @@ Donec et scelerisque velit. Aenean pellentesque laoreet lacus at ullamcorper. Ma
 
 # It supports emojis!
 
- :thumbsup: :smiley:
+:smile::thumbsup: :camel::dash:
 
 ## And all the common markup...
 
@@ -92,10 +92,29 @@ Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellu
 
 ![How to use markpress](../markpress-help.png)
 
-# Seventh Slide. Code Syntax and Highlighting
+# Code Syntax and Highlighting
+
+## JavaScript
 
 ```javascript
 function helloWorld() {
-  return 'Hello World';
+  console.log('Hello World');
+}
+```
+
+## Java
+
+```java
+public static void main(String[] args) {
+  System.out.println("Hello, World");
+}
+```
+
+## C
+
+```c
+main()
+{
+    printf("Hello World");
 }
 ```
