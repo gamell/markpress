@@ -24,7 +24,7 @@ or
 - Allows individual slide-level CSS customizations
 - Generates self-contained HTML file (no network connection required to present)
 - Github-inspired CSS styles
-- Code highlighting for most common languages
+- Code highlighting for most common programming languages
 - Supports [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
 - Responsive design adapts to different screen sizes
 - Adaptative text size (using `vmin` and `vmax`)
@@ -63,8 +63,9 @@ Available Layouts:
 - `vertical`: Slides positioned along the `y` axis. Example
 - `3d-push`: Slides positioned along the `z` axis. Slide `n` will be positioned *lower* than `n+1`. Example
 - `3d-pull`: Slides positioned along the `z` axis. Slide `n` will be positioned *higher* than `n+1`. Example
-- `random-grid`: Slides positioned along the `x` and `y` axis in a grid fashion. Example
-- `random`: Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
+- `grid`: Slides positioned along the `x` and `y` axis in a grid fashion. Example
+- `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
+- `random-7d`: [warning: **messy**] Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
 
 ### `-a` or `--auto-split` or `{ autoSplit: Boolean }` in code
 
@@ -92,7 +93,6 @@ Chose from the different available themes:
 ### `-s` or `--silent` or `{ silent: Boolean }` in code
 
 **Default**: `false`
-
 
 Silence all console outputs.
 
