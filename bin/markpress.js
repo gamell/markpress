@@ -36,6 +36,10 @@ program.version(pkg.version)
       '-h, --allow-html',
       'Allow embedded HTML in the Markdown file (e.g. to use <kbd></kbd>)'
     )
+    .option(
+      '-ne --no-embed',
+      'Do not embed the referenced images into the HTML. You will need to make sure the images are available in the right path manually.'
+    )
     .on('--help', () => {
       console.log('  Examples:\n');
       console.log('    $ markpress -i file.md -o file.html -a  -s -l random -t dark\n');
@@ -58,6 +62,7 @@ const options = {
   allowHtml: program.allowHtml,
   verbose: !program.silent, // output logs
   theme: program.theme,
+  noEmbed: program.noEmbed,
 };
 
 log.init(options.verbose);

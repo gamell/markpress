@@ -1,5 +1,4 @@
 @import "fonts";
-@import "code-highlight/atom-@{theme}.less";
 
 // Theme definition
 
@@ -10,6 +9,7 @@
   @fontColor: #eee;
   @quoteColor: darken(@fontColor,30);
   @codeBackground: #000;
+  @codeTheme: "dark";
 }
 
 .light(){
@@ -19,6 +19,7 @@
   @fontColor: #0f0f0f;
   @quoteColor: lighten(@fontColor,30);
   @codeBackground: #f0f0f0;
+  @codeTheme: "light";
 }
 
 .serif(){
@@ -35,9 +36,11 @@
 // Theme setting
 
 .setTheme(dark) {
+  @import "@{codeStylesPath}/atom-dark.less";
   .dark();
 }
 .setTheme(light) {
+  @import "@{codeStylesPath}/atom-light.less";
   .light();
 }
 

@@ -133,9 +133,8 @@ var content = markpress('file.md', options).then(() => {
 -------------------------------
 ## Todo
 
-- Improve style for:
-  - Ordered lists
-  - links
+- Improve style for links
+- Embed remote resources using Base64 encoding
 - Unit tests
 - Allow to define slide-specific CSS
 - `custom-styles` option to use your own CSS / Less files
