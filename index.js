@@ -6,12 +6,14 @@ const layoutGenerator = require('./lib/layout');
 const log = require('./lib/log');
 const getCss = require('./lib/css-helper').getCss;
 const util = require('./lib/util');
+const transform = require('./lib/dom-transformer');
 const pathResolve = require('path').resolve;
 const co = require('co');
 
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
+  noEmbed: false,
   autoSplit: false,
   allowHtml: false,
   verbose: false,
@@ -58,19 +60,9 @@ function getLayoutData(slide, layout) {
   return layoutData.map((d) => `data-${d.key}="${d.value}"`).join(' ');
 }
 
-function removeLinkHeaders($) {
-  $(':header').map((i, header) => {
-    const children = $(header).children('a');
-    $(header).text($(children).text());
-    $(children).remove();
-    return header;
-  }); // select all headers
-  return $;
-}
-
 function createSlideHtml(content, layout) {
-  const $ = marky(content, {sanitize: !options.allowHtml});
-  return `<div class="step" ${getLayoutData(content, layout)}>${removeLinkHeaders($).html()}</div>`;
+  const $ = transform(marky(content, { sanitize: !options.allowHtml }), !options.noEmbed);
+  return `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`;
 }
 
 function* createImpressHtml(html) {
