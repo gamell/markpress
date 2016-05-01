@@ -3,14 +3,15 @@
   "description": "A tool to generate impress.js presentations from markdown files",
   "version": "0.0.1",
   "author": "Joan Gamell <http://gamell.io>",
-  "bugs": "https://github.com/steel1990/markdown-impress/issues",
+  "bugs": "https://github.com/gamell/markpress/issues",
+  "preferGlobal": true,
   "dependencies": {
     "co": "4.6.0",
     "colors": "1.1.2",
     "commander": "2.9.0",
     "defaults": "1.0.3",
     "less": "2.6.1",
-    "marky-markdown": "7.0.0"
+    "marky-markdown": "^7.0.0"
   },
   "devDependencies": {
     "eslint": "2.3.0",
