@@ -66,14 +66,15 @@ function createSlideHtml(content, layout) {
 }
 
 function* createImpressHtml(html) {
-  const path = './resources/';
+  const path = util.getPath('resources/');
   const tpl = util.readFile(path, 'impress.tpl');
   const data = {
-    html,
+    title: 'hola',
     css: yield getCss(`${path}/styles`, options.theme),
     js: util.readFile(path, 'impress.min.js'),
+    html,
   };
-  return tpl.replace(/\{\{\$(\w+)\}\}/g, ($, $1) => data[$1]);
+  return tpl.replace(/\$\{(\w+)\}/g, ($, $1) => data[$1]);
 }
 
 function containsLayoutData(markdown) {

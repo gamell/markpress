@@ -10,11 +10,12 @@
 `node` version >= `5.0.0` is required, as ES2015 features are used.
 
 ### Globally
+
 `$ npm install -g markpress`  (globally)
 
 or
 
-`$ npm install markpress` (for the current project only)
+`$ npm install markpress` (for the current folder only)
 
 -----------------------------
 ## Features
@@ -51,7 +52,7 @@ Path to the input file. A [Mardown file](https://daringfireball.net/projects/mar
 
 Path to the output HTMl file.
 
-### `-l` or `--layout` or `{ layout: String }` in code
+### `-l`, `--layout` or `{ layout: String }` in code
 
 **Default**: `horizontal`
 
@@ -67,19 +68,19 @@ Available Layouts:
 - `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
 - `random-7d`: [warning: **messy**] Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
 
-### `-a` or `--auto-split` or `{ autoSplit: Boolean }` in code
+### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
 
 **Default**: `false`
 
 Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
 
-### `-h` or `--allow-html` or `{ allowHtml: boolean }` in code
+### `-h`, `--allow-html` or `{ allowHtml: boolean }` in code
 
 **Default**: `false`
 
 Allow HTML code embedded in the Markdown file. Useful if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
 
-### `-t <theme>` or `--theme <theme>` or `{ theme: String }` in code
+### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
 
 **Default**: `light`
 
@@ -90,7 +91,13 @@ Chose from the different available themes:
 - `light-serif`: Light theme with Sans-Serif font
 - `dark-serif`: Light theme with Serif font
 
-### `-s` or `--silent` or `{ silent: Boolean }` in code
+### `-ne`, `--no-embed` or `{ noEmbed: true }` in code
+
+**Default**: `false`
+
+By default, markpress will try to download / copy and embed the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
+
+### `-s`, `--silent` or `{ silent: Boolean }` in code
 
 **Default**: `false`
 
@@ -116,13 +123,13 @@ var content = markpress('file.md', options).then(() => {
 ```
 
 -------------------------------
-## Develop
+## Developing
 
-### Running:
+### Run
 
 `$ node --harmony ./bin/markpress.js -i input.html -o output.html`
 
-### Debugging
+### Debug
 
 `$ node debug --harmony ./bin/markpress.js -i input.html -o output.html`
 
@@ -133,7 +140,7 @@ var content = markpress('file.md', options).then(() => {
 -------------------------------
 ## Todo
 
-- Improve style for links
+- Improve styles for links
 - Embed remote resources using Base64 encoding
 - Unit tests
 - Allow to define slide-specific CSS

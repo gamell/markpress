@@ -38,10 +38,10 @@ program.version(pkg.version)
     )
     .option(
       '-ne --no-embed',
-      'Do not embed the referenced images into the HTML. You will need to make sure the images are available in the right path manually.'
+      'Do not embed the referenced images into the HTML. This can cause images not to be displayed'
     )
     .on('--help', () => {
-      console.log('  Examples:\n');
+      console.log('  Example:\n');
       console.log('    $ markpress -i file.md -o file.html -a  -s -l random -t dark\n');
     })
     .parse(process.argv);
@@ -71,5 +71,5 @@ const t0 = new Date();
 // markpress() returns a co promise
 markpress(input, options).then((html) => {
   fs.writeFileSync(output, html);
-  log.info(`html presentation generated in ${(new Date())-t0}ms`);
+  log.info(`html presentation generated in ${new Date() - t0}ms`);
 });
