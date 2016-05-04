@@ -15,7 +15,7 @@ const optionDefaults = {
   theme: 'light',
   noEmbed: false,
   autoSplit: false,
-  allowHtml: false,
+  noHtml: false,
   verbose: false,
 };
 
@@ -61,7 +61,7 @@ function getLayoutData(slide, layout) {
 }
 
 function createSlideHtml(content, layout) {
-  const $ = transform(marky(content, { sanitize: !options.allowHtml }), !options.noEmbed);
+  const $ = transform(marky(content, { sanitize: options.noHtml }), !options.noEmbed);
   return `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`;
 }
 
