@@ -33,8 +33,8 @@ program.version(pkg.version)
       'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
     )
     .option(
-      '-h, --allow-html',
-      'Allow embedded HTML in the Markdown file (e.g. to use <kbd></kbd>)'
+      '-nh, --no-html',
+      'Disallow embedded HTML in the Markdown file (e.g. to use <kbd></kbd>)'
     )
     .option(
       '-ne --no-embed',
@@ -59,7 +59,7 @@ const options = {
   layout: program.layout,
   style: program.style,
   autoSplit: program.autoSplit,
-  allowHtml: program.allowHtml,
+  noHtml: program.noHtml,
   verbose: !program.silent, // output logs
   theme: program.theme,
   noEmbed: program.noEmbed,

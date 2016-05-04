@@ -74,11 +74,11 @@ Available Layouts:
 
 Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
 
-### `-h`, `--allow-html` or `{ allowHtml: boolean }` in code
+### `-nh`, `--no-html` or `{ allowHtml: boolean }` in code
 
-**Default**: `false`
+**Default**: `false` (HTML allowed)
 
-Allow HTML code embedded in the Markdown file. Useful if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+Disallow HTML code embedded in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
 
 ### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
 
