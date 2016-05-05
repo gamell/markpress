@@ -6,17 +6,21 @@
   "bugs": "https://github.com/gamell/markpress/issues",
   "preferGlobal": true,
   "dependencies": {
-    "co": "4.6.0",
-    "colors": "1.1.2",
-    "commander": "2.9.0",
-    "defaults": "1.0.3",
-    "less": "2.6.1",
-    "marky-markdown": "^7.0.0"
+    "co": "^4.6.0",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "defaults": "^1.0.3",
+    "less": "^2.6.1",
+    "marky-markdown": "^7.0.0",
+    "node-base64-image": "0.1.2",
+    "stacktrace-js": "1.1.2"
   },
   "devDependencies": {
-    "eslint": "2.3.0",
-    "eslint-config-airbnb": "6.0.2",
-    "eslint-plugin-react": "4.2.0"
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "1.6.1",
+    "eslint-plugin-jsx-a11y": "^1.0.4",
+    "eslint-plugin-react": "^5.0.1"
   },
   "engines": {
     "node": ">= 5.0.0"

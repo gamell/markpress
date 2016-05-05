@@ -8,12 +8,11 @@ const getCss = require('./lib/css-helper').getCss;
 const util = require('./lib/util');
 const transform = require('./lib/dom-transformer');
 const pathResolve = require('path').resolve;
-const co = require('co');
 
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
-  noEmbed: false,
+  noEmbed: true,
   autoSplit: false,
   noHtml: false,
   verbose: false,
@@ -61,20 +60,23 @@ function getLayoutData(slide, layout) {
 }
 
 function createSlideHtml(content, layout) {
-  const $ = transform(marky(content, { sanitize: options.noHtml }), !options.noEmbed);
-  return `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`;
+  return transform(marky(content, { sanitize: options.noHtml }), !options.noEmbed).then(($) =>
+    `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`
+  );
 }
 
-function* createImpressHtml(html) {
+function createImpressHtml(html, title) {
   const path = util.getPath('resources/');
   const tpl = util.readFile(path, 'impress.tpl');
-  const data = {
-    title: 'hola',
-    css: yield getCss(`${path}/styles`, options.theme),
-    js: util.readFile(path, 'impress.min.js'),
-    html,
-  };
-  return tpl.replace(/\$\{(\w+)\}/g, ($, $1) => data[$1]);
+  return getCss(`${path}/styles`, options.theme).then((css) => {
+    const data = {
+      title,
+      css,
+      js: util.readFile(path, 'impress.min.js'),
+      html,
+    };
+    return tpl.replace(/\$\{(\w+)\}/g, ($, $1) => data[$1]);
+  });
 }
 
 function containsLayoutData(markdown) {
@@ -90,8 +92,9 @@ function splitSlides(markdown, autoSplit) {
   return markdown.split(slideSeparatorRegex);
 }
 
-function* processMarkdownFile(path, optionsArg) {
+function processMarkdownFile(path, optionsArg) {
   options = defaults(optionsArg, optionDefaults);
+  const title = util.getFileName(path);
   log.init(options.verbose);
   const markdown = String(util.readFile(path));
   // disable auto layout if custom metadata is found
@@ -101,22 +104,23 @@ function* processMarkdownFile(path, optionsArg) {
   }
   slides = splitSlides(markdown, options.autoSplit);
   log.info(`creating ${options.layout} layout...`);
-  let html = '';
-  slides.forEach((content) => {
-    html += createSlideHtml(content, options.layout);
-  });
-  const impressHtml = yield createImpressHtml(html);
-  return impressHtml;
+  const slidesHtml = slides.reduce((prev, content) =>
+      createSlideHtml(content, options.layout).then(
+        (h1) => prev.then(
+          (h0) => h0 + h1
+        )
+      )
+      , Promise.resolve('') /* initial value */);
+  return slidesHtml.then((html) => createImpressHtml(html, title));
 }
 
+// return Promise
 function init(path, optionsArg) {
   try {
-    return co(processMarkdownFile(path, optionsArg));
+    return processMarkdownFile(path, optionsArg);
   } catch (e) {
-    log.error(e);
-    process.exit(1);
+    return Promise.reject(e);
   }
-  return null;
 }
 
 module.exports = init;
