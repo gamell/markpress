@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs');
 const pkg = require('../package');
 const log = require('../lib/log');
+const StackTrace = require('stacktrace-js');
 
 const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|grid|random-7d|random)$/i;
 const themeRegex = /^(light|dark|light-serif|dark-serif)$/i;
@@ -72,4 +73,7 @@ const t0 = new Date();
 markpress(input, options).then((html) => {
   fs.writeFileSync(output, html);
   log.info(`html presentation generated in ${new Date() - t0}ms`);
+}, (reason) => {
+  log.error(`${reason} \n\nStackTrace: \n\n`);
+  StackTrace.fromError(reason).then(console.log).then(() => process.exit(1));
 });

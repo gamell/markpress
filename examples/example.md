@@ -101,3 +101,4 @@ main()
 # Images
 
 ![How to use markpress](../markpress-help.png)
+![External image](https://bitcoin.org/img/icons/opengraph.png)
