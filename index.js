@@ -12,7 +12,7 @@ const pathResolve = require('path').resolve;
 const optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
-  noEmbed: true,
+  noEmbed: false,
   autoSplit: false,
   noHtml: false,
   verbose: false,
@@ -94,6 +94,7 @@ function splitSlides(markdown, autoSplit) {
 
 function processMarkdownFile(path, optionsArg) {
   options = defaults(optionsArg, optionDefaults);
+  global.mdFilePath = util.getDir(path);
   const title = util.getFileName(path);
   log.init(options.verbose);
   const markdown = String(util.readFile(path));
