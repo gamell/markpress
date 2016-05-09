@@ -10,7 +10,7 @@
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "defaults": "^1.0.3",
-    "less": "^2.6.1",
+    "less": "^2.7.0",
     "marky-markdown": "^7.0.0",
     "mime-types": "^2.1.11",
     "stacktrace-js": "1.1.2"
