@@ -12,7 +12,7 @@
     "defaults": "^1.0.3",
     "less": "^2.6.1",
     "marky-markdown": "^7.0.0",
-    "node-base64-image": "0.1.2",
+    "mime-types": "^2.1.11",
     "stacktrace-js": "1.1.2"
   },
   "devDependencies": {
