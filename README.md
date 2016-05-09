@@ -19,17 +19,17 @@ or
 
 -----------------------------
 ## Features
-- Automatic layout generation (if wanted)
-- Automatic slide split by `h1` (if wanted)
+- Automatic layout generation
+- Automatic slide split by `h1`
 - Built-in themes ( `dark`, `light`, `dark-serif`, `light-serif`)
-- ~~Allows individual slide-level CSS customizations~~
-- Generates self-contained HTML file by embedding images (no network connection required to present)
-- Github-inspired CSS styles
+- ~~Individual slide-level CSS customizations~~ (soon)
+- Generates self-contained HTML file by embedding images (no network connection needed when presenting)
 - Code highlighting for most common programming languages
 - Supports [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
 - Responsive design adapts to different screen sizes
 - Adaptive text size (using `vmin` and `vmax`)
-- Will run fine in the last browsers: Edge, Firefox ?+, Chrome ?+, Safari ?+
+- Github-inspired CSS styles
+- Will run fine in the latest Firefox, Chrome, Safari and *probably* Edge
 
 -----------------------------
 ## Markdown format
@@ -139,14 +139,13 @@ var content = markpress('file.md', options).then(() => {
 `npm link`
 
 -------------------------------
-## Todo
+## Roadmap
 
-- Improve styles for links
-- Impersonate Browser when trying to embed remote images
-- Generate examples and link to readme.md
-- Unit tests
-- Allow to define slide-specific CSS
-- `custom-theme` option to use your own CSS / Less file
+Roadmap of planned features can be found [here](https://github.com/gamell/markpress/issues?q=is%3Aopen+is%3Aissue+label%3Aroadmap). Suggestions are welcome.
+
+## Contributing
+
+Please see [`CONTRIBUTING.md`](https://github.com/gamell/markpress/blob/master/CONTRIBUTING.md)
 
 
 ## References and tools used
