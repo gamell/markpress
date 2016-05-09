@@ -1,7 +1,5 @@
-# Markpress
+# Markpress - from MD to impress
 
------------------------------
-## What is it
 *markpress* is a tool to convert markdown files to an [*impressjs*](https://github.com/impress/impress.js/) html presentation. It was initially based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990) and greatly extended.
 
 -----------------------------
