@@ -101,4 +101,4 @@ main()
 # Images
 
 ![How to use markpress](../markpress-help.png)
-![External image](http://cointelegraph.com/storage/uploads/view/79d6571e21f6e242a1dbe489e02ecbc7.png)
+![External image](http://gamell.io/sprite.png)

@@ -23,7 +23,7 @@ let options = {};
 
 // Regex
 
-const commentRegex = /^\s*<!--\s*(.*?)\s*-->\s*$/gm;
+const commentRegex = /^\s*<!--slide-attr\s*(.*?)\s*-->\s*$/gm;
 const slideSeparatorRegex = /^-{6,}$/m;
 const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separator - http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
