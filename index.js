@@ -27,6 +27,8 @@ const commentRegex = /^\s*<!--slide-attr\s*(.*?)\s*-->\s*$/gm;
 const slideSeparatorRegex = /^-{6,}$/m;
 const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separator - http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
+const commaRegex = /\s*,\s*/;
+const spaceRegex = /\s/;
 
 // setting the app root folder for later use in other files
 global.appRoot = pathResolve(__dirname);
@@ -42,8 +44,9 @@ function getLayoutFromSlide(slide) {
     throw new Error('you must provide layout metadata for all slides');
   }
   const metaData = [];
-  // clean the match from possible 'data-' and split by comma
-  const metaArr = match[1].replace(/data-/g, '').split(/\s*,\s*/);
+  // clean the match from possible 'data-' and split by comma or space
+  const splitRegex = (match[1].indexOf(',') > -1) ? commaRegex : spaceRegex;
+  const metaArr = match[1].replace(/data-/g, '').split(splitRegex);
   metaArr.forEach((meta) => {
     const kv = meta.split('=');
     const key = kv[0];
@@ -106,12 +109,12 @@ function processMarkdownFile(path, optionsArg) {
   slides = splitSlides(markdown, options.autoSplit);
   log.info(`creating ${options.layout} layout...`);
   const slidesHtml = slides.reduce((prev, content) =>
-      createSlideHtml(content, options.layout).then(
-        (h1) => prev.then(
-          (h0) => h0 + h1
-        )
+    prev.then(
+      (h0) => createSlideHtml(content, options.layout).then(
+        (h1) => h0 + h1
       )
-      , Promise.resolve('') /* initial value */);
+    ),
+    Promise.resolve('') /* initial value */);
   return slidesHtml.then((html) => createImpressHtml(html, title));
 }
 

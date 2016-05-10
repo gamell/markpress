@@ -1,10 +1,18 @@
+<!-- Positioning attributes can be separated by spaces... -->
+<!--slide-attr x=0 y=0 -->
+
 # Example Markdown presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd>
 
 This presentation was generated with the following command:
 
-`$ markpress.js -i example.md ...`
+`$ markpress.js -i example-custom-layout.md -o custom-layout.html`
+
+-----------------
+
+<!-- ...or commas -->
+<!--slide-attr x=2200, y=-4000, z=3000 -->
 
 # Headings
 
@@ -20,6 +28,9 @@ Vivamus consectetur ante dolor, vel pellentesque felis porta in. Donec feugiat c
 
 Donec et scelerisque velit. Aenean pellentesque laoreet lacus at ullamcorper. Maecenas interdum orci id molestie rhoncus. Vivamus bibendum lectus a enim tincidunt tempus. Vestibulum a condimentum lorem. Cras vel ex posuere, dictum magna commodo, ullamcorper ex. Pellentesque venenatis erat et purus convallis, faucibus dignissim mi tincidunt. Sed malesuada lacus at ligula consectetur, a mollis ipsum bibendum. Proin ante leo, elementum in nisi sit amet, egestas finibus elit.
 
+-----------------
+
+<!--slide-attr x=4400 y=0 -->
 
 # Markup support
 
@@ -30,6 +41,10 @@ Donec et scelerisque velit. Aenean pellentesque laoreet lacus at ullamcorper. Ma
 ## And all the common markup...
 
 **Lorem ipsum** dolor sit amet, *consectetur* adipiscing elit. **_Etiam_ iaculis sem** sit amet ultrices finibus. ~~Morbi non quam sit amet tortor volutpat convallis~~. `Curabitur egestas sit amet ante ut ultricies`.
+
+-----------------
+
+<!--slide-attr x=6600 y=4000 z=-3000 rotate-z=60 -->
 
 # Code Syntax and Highlighting
 
@@ -59,6 +74,10 @@ main()
 }
 ```
 
+-----------------
+
+<!--slide-attr x=9800 y=0 rotation=0 -->
+
 # Lists
 
 ## Unordered
@@ -83,6 +102,10 @@ main()
         - unordered list
 2. The end
 
+-----------------
+
+<!--slide-attr x=11000 y=-2000 rotate-z=-90 rotate-y=45 -->
+
 # Quotes
 
 ## Multi-line
@@ -96,6 +119,9 @@ main()
 
 > Donec feugiat ligula dolor, elementum mollis ipsum vulputate sit amet. Nam tellus sem, semper eget velit a, placerat laoreet sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus a dolor dictum, consectetur tellus at, faucibus est.
 
+-----------------
+
+<!--slide-attr x=13200 y=0 rotation=0 -->
 
 # Links
 
@@ -103,6 +129,9 @@ main()
 - [Cool pictures  by myself](http://500px.com/gamell)
 - A regular URL will also be turned into a clickable link: http://wikipedia.org
 
+-----------------
+
+<!--slide-attr x=16400 y=0 -->
 
 # Embedded Images
 
@@ -114,6 +143,10 @@ main()
 
 ![Remote image](http://cointelegraph.com/storage/uploads/view/79d6571e21f6e242a1dbe489e02ecbc7.png)
 
+-----------------
+
+<!--slide-attr x=18600 y=0 -->
+
 # You can also embed maps, or any HTML actually
 
 <div align="center">
@@ -121,5 +154,9 @@ main()
 </div>
 
 Be careful, you can break the presentation if you write the wrong HTML :smiley:
+
+-----------------
+
+<!--slide-attr x=18600 y=0 z=-4000 scale=0.5 -->
 
 # The end

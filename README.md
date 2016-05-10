@@ -27,7 +27,7 @@ or
 - Responsive design adapts to different screen sizes
 - Adaptive text size (using `vmin` and `vmax`)
 - Github-inspired CSS styles
-- Will run fine in the latest Firefox, Chrome, Safari and *probably* Edge
+- Will run fine in the latest Firefox, Chrome, Safari and *probably* Edge [*](http://caniuse.com/#feat=viewport-units)
 
 -----------------------------
 ## Markdown format
@@ -43,13 +43,15 @@ or
 
 ## Options
 
+### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
+
+**Default**: `false`
+
+Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
+
 ### `-i <path>` or `--input <path>`
 
 Path to the input file. A [Mardown file](https://daringfireball.net/projects/markdown/) is expected.
-
-### `-o <path>` or `--output <path>`
-
-Path to the output HTMl file.
 
 ### `-l`, `--layout` or `{ layout: String }` in code
 
@@ -67,17 +69,27 @@ Available Layouts:
 - `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
 - `random-7d`: [warning: **messy**] Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). This layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
 
-### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
+### `-ne`, `--no-embed` or `{ noEmbed: true }` in code
 
 **Default**: `false`
 
-Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
+By default, markpress will try to download / copy and embed the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 
 ### `-nh`, `--no-html` or `{ allowHtml: boolean }` in code
 
 **Default**: `false` (HTML allowed)
 
 Disallow HTML code embedded in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+
+### `-o <path>` or `--output <path>`
+
+Path to the output HTMl file.
+
+### `-s`, `--silent` or `{ silent: Boolean }` in code
+
+**Default**: `false`
+
+Silence all console outputs.
 
 ### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
 
@@ -90,20 +102,8 @@ Chose from the different available themes:
 - `light-serif`: Light theme with Sans-Serif font
 - `dark-serif`: Light theme with Serif font
 
-### `-ne`, `--no-embed` or `{ noEmbed: true }` in code
-
-**Default**: `false`
-
-By default, markpress will try to download / copy and embed the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
-
-### `-s`, `--silent` or `{ silent: Boolean }` in code
-
-**Default**: `false`
-
-Silence all console outputs.
-
 -------------------------------
-## Use in your code
+## Use it in your code
 
 ```js
 var fs = require('fs');
@@ -112,12 +112,12 @@ var markpress = require('markpress');
 var options = {
   layout: 'horizontal',
   theme: 'light',
-  autoSplit: false,
+  autoSplit: true,
   allowHtml: false,
   verbose: false
 }
-var content = markpress('file.md', options).then(() => {
-      fs.writeFileSync('file.html', content);
+markpress('input.md', options).then((content) => {
+      fs.writeFileSync('output.html', content);
 });
 ```
 
