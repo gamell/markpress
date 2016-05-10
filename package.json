@@ -1,7 +1,7 @@
 {
   "name": "markpress",
   "description": "A tool to generate impress.js presentations from markdown files",
-  "version": "0.0.1",
+  "version": "0.9.0",
   "author": "Joan Gamell <http://gamell.io>",
   "bugs": "https://github.com/gamell/markpress/issues",
   "preferGlobal": true,
@@ -34,6 +34,9 @@
   "main": "index.js",
   "bin": {
     "markpress": "bin/markpress.js"
+  },
+  "scripts": {
+      "test": "node test.js"
   },
   "repository": "https://github.com/gamell/markpress.git",
   "eslintConfig": {
