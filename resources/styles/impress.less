@@ -56,9 +56,13 @@ img{
 }
 
 a {
-    color: @linkColor;
-    text-decoration: underline;
-    padding: 0.1em;
+  color: @linkColor;
+  text-decoration: underline;
+  padding: 0.1em;
+}
+
+a:hover{
+  color: lighten(@linkColor,30); 
 }
 
 .step {

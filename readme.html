@@ -4,108 +4,980 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>impress.js</title>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
-    <style type="text/css">html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
-body{line-height:1}
-ol,ul{list-style:none}
-blockquote,q{quotes:none}
-blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
-table{border-collapse:collapse;border-spacing:0}
-body{font-family:'PT Sans',sans-serif;min-height:740px;background:#d7d7d7;background:-webkit-gradient(radial,50% 50%,0,50% 50%,500,from(#f0f0f0),to(#bebebe));background:-webkit-radial-gradient(#f0f0f0,#bebebe);background:-moz-radial-gradient(#f0f0f0,#bebebe);background:-ms-radial-gradient(#f0f0f0,#bebebe);background:-o-radial-gradient(#f0f0f0,#bebebe);background:radial-gradient(#f0f0f0,#bebebe)}
-b,strong{font-weight:bold}
-i,em{font-style:italic}
-a{color:inherit;text-decoration:none;padding:0 .1em;background:rgba(255,255,255,0.5);text-shadow:-1px -1px 2px rgba(100,100,100,0.9);border-radius:.2em;-webkit-transition:.5s;-moz-transition:.5s;-ms-transition:.5s;-o-transition:.5s;transition:.5s}
-a:hover,a:focus{background:rgba(255,255,255,1);text-shadow:-1px -1px 2px rgba(100,100,100,0.5)}
-.fallback-message{font-family:sans-serif;line-height:1.3;width:780px;padding:10px 10px 0;margin:20px auto;border:1px solid #e4c652;border-radius:10px;background:#eedc94}
-.fallback-message p{margin-bottom:10px}
-.impress-supported .fallback-message{display:none}
-.step{position:relative;width:900px;padding:40px;margin:20px auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;font-family:'PT Serif',georgia,serif;font-size:48px;line-height:1.5}
-.impress-enabled .step{margin:0;opacity:.3;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-ms-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s}
-.impress-enabled .step.active{opacity:1}
-.slide{display:block;width:900px;height:700px;padding:40px 60px;background-color:white;border:1px solid rgba(0,0,0,.3);border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1);color:#666;text-shadow:0 2px 2px rgba(0,0,0,.1);font-family:'Open Sans',Arial,sans-serif;font-size:30px;line-height:36px;letter-spacing:-1px}
-.slide q{display:block;font-size:50px;line-height:72px;margin-top:100px}
-.slide q strong{white-space:nowrap}
-#title{padding:0}
-#title .try{font-size:64px;position:absolute;top:-0.5em;left:1.5em;-webkit-transform:translateZ(20px);-moz-transform:translateZ(20px);-ms-transform:translateZ(20px);-o-transform:translateZ(20px);transform:translateZ(20px)}
-#title h1{font-size:190px;-webkit-transform:translateZ(50px);-moz-transform:translateZ(50px);-ms-transform:translateZ(50px);-o-transform:translateZ(50px);transform:translateZ(50px)}
-#title .footnote{font-size:32px}
-#big{width:600px;text-align:center;font-size:60px;line-height:1}
-#big b{display:block;font-size:250px;line-height:250px}
-#big .thoughts{font-size:90px;line-height:150px}
-#tiny{width:500px;text-align:center}
-#ing{width:500px}
-#ing b{display:inline-block;-webkit-transition:.5s;-moz-transition:.5s;-ms-transition:.5s;-o-transition:.5s;transition:.5s}
-#ing.present .positioning{-webkit-transform:translateY(-10px);-moz-transform:translateY(-10px);-ms-transform:translateY(-10px);-o-transform:translateY(-10px);transform:translateY(-10px)}
-#ing.present .rotating{-webkit-transform:rotate(-10deg);-moz-transform:rotate(-10deg);-ms-transform:rotate(-10deg);-o-transform:rotate(-10deg);transform:rotate(-10deg);-webkit-transition-delay:.25s;-moz-transition-delay:.25s;-ms-transition-delay:.25s;-o-transition-delay:.25s;transition-delay:.25s}
-#ing.present .scaling{-webkit-transform:scale(0.7);-moz-transform:scale(0.7);-ms-transform:scale(0.7);-o-transform:scale(0.7);transform:scale(0.7);-webkit-transition-delay:.5s;-moz-transition-delay:.5s;-ms-transition-delay:.5s;-o-transition-delay:.5s;transition-delay:.5s}
-#imagination{width:600px}
-#imagination .imagination{font-size:78px}
-#source{width:700px;padding-bottom:300px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAMAAACwUBm+AAAAAXNSR0IArs4c6QAAAKtQTFRFsAAAvbWSLUUrLEQqY1s8UYJMqJ1vNTEgOiIdIzYhjIFVLhsXZ6lgSEIsP2U8JhcCVzMsSXZEgXdOO145XJdWOl03LzAYMk4vSXNExr+hwcuxRTs1Qmk+RW9Am49eFRANQz4pUoNMQWc+OSMDTz0wLBsCNVMxa2NBOyUDUoNNSnlEWo9VRGxAVzYFl6tXCggHbLNmMUIcHhwTXkk5f3VNRT8wUT8xAAAACQocRBWFFwAAAAF0Uk5TAEDm2GYAAAPCSURBVHja7d3JctNAFIZRMwRCCGEmzPM8z/D+T8bu/ptbXXJFdij5fMt2Wuo+2UgqxVmtttq5WVotLzBgwIABAwYMGDCn0qVqbo69psPqVpWx+1XG5iaavF8wYMCAAQMGDBgwi4DJ6Y6qkxB1HNlcN3a92gbR5P2CAQMGDBgwYMCAWSxMlrU+UY5yu2l9okfV4bAxUVbf7TJnAwMGDBgwYMCAAbMLMHeqbGR82Zy+VR1Ht81nVca6R+UdTLaU24Ruzd3qM/e4yjnAgAEDBgwYMGDA7AJMd1l/3NRdVGcj3eX/2WEhCmDGxnM7yqygu8XIPjJj8iN/MGDAgAEDBgwYMAuDGb8q0RGlLCHLv1t9qDKWn3vdNHVuEI6HPaxO9Jo3GDBgwIABAwYMmIXBdC9ShGgMk+XnkXUeuGcsP/e1+lhNnZsL/G5Vs3OAAQMGDBgwYMCAWSxMR3SzOmraG5atdy9wZKzb+vg16qyqe2FltbnAgAEDBgwYMGDALAxmTJSuN3WA76rnVca6GTnemGN1WoEBAwYMGDBgwIBZGMxUomy4+xO899V4LAg5Xnc2MGDAgAEDBgwYMGA218Wq+2K1LDqvY9xZu8zN8fICdM6btYABAwYMGDBgwIABMzfH0+pGU5afze2tXebmeAfVz+p8BQYMGDBgwIABAwbMPBzZ+oWmfJrln1273FhkbHzee9WWbw7AgAEDBgwYMGDALAKm43hcdctKgblcPamOhuXnXlY5Xs6bsW4FGyQCAwYMGDBgwIABswiYMceZKgvMo+h8mrHLTdn676rj+FEFoTtHd8MwOxEYMGDAgAEDBgyYRcBM5UhXqiymW3R3c9ARhWO/OmjqfjVZy+xEYMCAAQMGDBgwYBYG073OnCV0RFNhMhaOa9WfKmOB6XjHMN1tQmaAAQMGDBgwYMCA2VWY7vXjz1U4croAzgPztwIDBgwYMGDAgAEDZhswh035NBw59Dww3RgYMGDAgAEDBgwYMJuD6f4tXT7NUqfCdBvZLkxXdgQGDBgwYMCAAQNmt2DGj8WzwAfV/w7T/aq7mxwwYMCAAQMGDBgwuwqTOo7uTwTngflSzQ3TdaJvAwEDBgwYMGDAgAED5gSvgbyo5oHZ4Pc+gwEDBgwYMGDAgAEzhOm+5G0qTGaAAQMGDBgwYMCAAXNaMOcnls3tNwWm+zRzp54NDBgwYMCAAQMGDJh5YNL36k1TLuGvVq+qnKMbS5n7tulT9asCAwYMGDBgwIABA2ZumKuztLnjgQEDBgwYMGDAgNl5mH/4/ltKA6vBNAAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat}
-#source q{font-size:60px}
-#its-in-3d p{-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-ms-transform-style:preserve-3d;-o-transform-style:preserve-3d;transform-style:preserve-3d}
-#its-in-3d span,#its-in-3d b{display:inline-block;-webkit-transform:translateZ(40px);-moz-transform:translateZ(40px);-ms-transform:translateZ(40px);-o-transform:translateZ(40px);transform:translateZ(40px);-webkit-transition:.5s;-moz-transition:.5s;-ms-transition:.5s;-o-transition:.5s;transition:.5s}
-#its-in-3d .have{-webkit-transform:translateZ(-40px);-moz-transform:translateZ(-40px);-ms-transform:translateZ(-40px);-o-transform:translateZ(-40px);transform:translateZ(-40px)}
-#its-in-3d .you{-webkit-transform:translateZ(20px);-moz-transform:translateZ(20px);-ms-transform:translateZ(20px);-o-transform:translateZ(20px);transform:translateZ(20px)}
-#its-in-3d .noticed{-webkit-transform:translateZ(-40px);-moz-transform:translateZ(-40px);-ms-transform:translateZ(-40px);-o-transform:translateZ(-40px);transform:translateZ(-40px)}
-#its-in-3d .its{-webkit-transform:translateZ(60px);-moz-transform:translateZ(60px);-ms-transform:translateZ(60px);-o-transform:translateZ(60px);transform:translateZ(60px)}
-#its-in-3d .in{-webkit-transform:translateZ(-10px);-moz-transform:translateZ(-10px);-ms-transform:translateZ(-10px);-o-transform:translateZ(-10px);transform:translateZ(-10px)}
-#its-in-3d .footnote{font-size:32px;-webkit-transform:translateZ(-10px);-moz-transform:translateZ(-10px);-ms-transform:translateZ(-10px);-o-transform:translateZ(-10px);transform:translateZ(-10px)}
-#its-in-3d.present span,#its-in-3d.present b{-webkit-transform:translateZ(0px);-moz-transform:translateZ(0px);-ms-transform:translateZ(0px);-o-transform:translateZ(0px);transform:translateZ(0px)}
-#overview{display:none}
-.impress-on-overview .step{opacity:1;cursor:pointer}
-.hint{display:none;position:fixed;left:0;right:0;bottom:200px;background:rgba(0,0,0,0.5);color:#EEE;text-align:center;font-size:50px;padding:20px;z-index:100;opacity:0;-webkit-transform:translateY(400px);-moz-transform:translateY(400px);-ms-transform:translateY(400px);-o-transform:translateY(400px);transform:translateY(400px);-webkit-transition:opacity 1s,-webkit-transform .5s 1s;-moz-transition:opacity 1s,-moz-transform .5s 1s;-ms-transition:opacity 1s,-ms-transform .5s 1s;-o-transition:opacity 1s,-o-transform .5s 1s;transition:opacity 1s,transform .5s 1s}
-.impress-enabled .hint{display:block}
-.impress-on-bored .hint{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px);-webkit-transition:opacity 1s 5s,-webkit-transform .5s 4.5s;-moz-transition:opacity 1s 5s,-moz-transform .5s 4.5s;-ms-transition:opacity 1s 5s,-ms-transform .5s 4.5s;-o-transition:opacity 1s 5s,-o-transform .5s 4.5s;transition:opacity 1s 5s,transform .5s 4.5s}
-.impress-enabled{pointer-events:none}
-.impress-enabled #impress{pointer-events:auto}
-*{font-size:72px}
-h1{font-size:250%;text-align:center}
-h2{font-size:180%}
-ul li{list-style:decimal;list-style-position:inside}
-ul>li>ul>li{list-style:lower-alpha;margin-left:2em}
-pre {background-color:#f8f8f8;padding:6px 10px;border-radius:3px;}
-code {background:#f8f8f8;}</style>
+    <title>README</title>
+    <style type="text/css">atom-text-editor,
+:host {
+  background-color: white;
+  color: #555;
+}
+atom-text-editor .invisible-character,
+:host .invisible-character {
+  color: rgba(85, 85, 85, 0.2);
+}
+atom-text-editor .indent-guide,
+:host .indent-guide {
+  color: rgba(85, 85, 85, 0.2);
+}
+atom-text-editor .wrap-guide,
+:host .wrap-guide {
+  background-color: rgba(85, 85, 85, 0.2);
+}
+atom-text-editor .gutter,
+:host .gutter {
+  color: #555;
+  background: white;
+}
+atom-text-editor .gutter .line-number.folded,
+:host .gutter .line-number.folded,
+atom-text-editor .gutter .line-number:after,
+:host .gutter .line-number:after,
+atom-text-editor .fold-marker:after,
+:host .fold-marker:after {
+  color: #e87b00;
+}
+atom-text-editor .invisible,
+:host .invisible {
+  color: #555;
+}
+atom-text-editor .selection .region,
+:host .selection .region {
+  background-color: #e1e1e1;
+}
+atom-text-editor.is-focused .cursor,
+:host.is-focused .cursor {
+  border-color: black;
+}
+atom-text-editor.is-focused .selection .region,
+:host.is-focused .selection .region {
+  background-color: #afc4da;
+}
+atom-text-editor.is-focused .line-number.cursor-line-no-selection,
+:host.is-focused .line-number.cursor-line-no-selection,
+atom-text-editor.is-focused .line.cursor-line,
+:host.is-focused .line.cursor-line {
+  background-color: rgba(255, 255, 134, 0.34);
+}
+atom-text-editor .source.gfm,
+:host .source.gfm {
+  color: #444;
+}
+atom-text-editor .gfm .markup.heading,
+:host .gfm .markup.heading {
+  color: #111;
+}
+atom-text-editor .gfm .link,
+:host .gfm .link {
+  color: #888;
+}
+atom-text-editor .gfm .variable.list,
+:host .gfm .variable.list {
+  color: #888;
+}
+atom-text-editor .markdown .paragraph,
+:host .markdown .paragraph {
+  color: #444;
+}
+atom-text-editor .markdown .heading,
+:host .markdown .heading {
+  color: #111;
+}
+atom-text-editor .markdown .link,
+:host .markdown .link {
+  color: #888;
+}
+atom-text-editor .markdown .link .string,
+:host .markdown .link .string {
+  color: #888;
+}
+:host(.is-focused) .cursor {
+  border-color: black;
+}
+:host(.is-focused) .selection .region {
+  background-color: #afc4da;
+}
+:host(.is-focused) .line-number.cursor-line-no-selection,
+:host(.is-focused) .line.cursor-line {
+  background-color: rgba(255, 255, 134, 0.34);
+}
+.comment {
+  color: #999988;
+  font-style: italic;
+}
+.string {
+  color: #D14;
+}
+.string .source,
+.string .meta.embedded.line {
+  color: #5A5A5A;
+}
+.string .punctuation.section.embedded {
+  color: #920B2D;
+}
+.string .punctuation.section.embedded .source {
+  color: #920B2D;
+}
+.constant.numeric {
+  color: #D14;
+}
+.constant.language {
+  color: #606aa1;
+}
+.constant.character,
+.constant.other {
+  color: #606aa1;
+}
+.constant.symbol {
+  color: #990073;
+}
+.constant.numeric.line-number.find-in-files .match {
+  color: rgba(143, 190, 0, 0.63);
+}
+.variable {
+  color: #008080;
+}
+.variable.parameter {
+  color: #606aa1;
+}
+.keyword {
+  color: #222;
+  font-weight: bold;
+}
+.keyword.unit {
+  color: #445588;
+}
+.keyword.special-method {
+  color: #0086B3;
+}
+.storage {
+  color: #222;
+}
+.storage.type {
+  color: #222;
+}
+.entity.name.class {
+  text-decoration: underline;
+  color: #606aa1;
+}
+.entity.other.inherited-class {
+  text-decoration: underline;
+  color: #606aa1;
+}
+.entity.name.function {
+  color: #900;
+}
+.entity.name.tag {
+  color: #008080;
+}
+.entity.other.attribute-name {
+  color: #458;
+  font-weight: bold;
+}
+.entity.name.filename.find-in-files {
+  color: #E6DB74;
+}
+.support.constant,
+.support.function,
+.support.type {
+  color: #458;
+}
+.support.class {
+  color: #008080;
+}
+.invalid {
+  color: #F8F8F0;
+  background-color: #00A8C6;
+}
+.invalid.deprecated {
+  color: #F8F8F0;
+  background-color: #8FBE00;
+}
+.meta.structure.dictionary.json > .string.quoted.double.json,
+.meta.structure.dictionary.json > .string.quoted.double.json .punctuation.string {
+  color: #000080;
+}
+.meta.structure.dictionary.value.json > .string.quoted.double.json {
+  color: #d14;
+}
+.meta.diff,
+.meta.diff.header {
+  color: #75715E;
+}
+.css.support.property-name {
+  font-weight: bold;
+  color: #333;
+}
+.css.constant {
+  color: #099;
+}
+.bracket-matcher .region {
+  background-color: #C9C9C9;
+  opacity: .7;
+  border-bottom: 0 none;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+a {
+  background-color: transparent;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+strong {
+  font-weight: bold;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+img {
+  border: 0;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+html input[disabled] {
+  cursor: default;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+input {
+  font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+a {
+  color: #4078c0;
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  text-decoration: underline;
+}
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+hr:before {
+  display: table;
+  content: "";
+}
+hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+h1 {
+  font-size: 30px;
+}
+h2 {
+  font-size: 21px;
+}
+h3 {
+  font-size: 16px;
+}
+h4 {
+  font-size: 14px;
+}
+h5 {
+  font-size: 12px;
+}
+h6 {
+  font-size: 11px;
+}
+blockquote {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
+}
+dd {
+  margin-left: 0;
+}
+code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.select::-ms-expand {
+  opacity: 0;
+}
+.octicon {
+  font: normal normal normal 16px/1 octicons-link;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.octicon-link:before {
+  content: '\f05c';
+}
+.markdown-body:before {
+  display: table;
+  content: "";
+}
+.markdown-body:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+.markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+.markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+.anchor {
+  display: inline-block;
+  padding-right: 2px;
+  margin-left: -18px;
+}
+.anchor:focus {
+  outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+  color: #000;
+  vertical-align: middle;
+  visibility: hidden;
+}
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+  text-decoration: none;
+}
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+h1 .anchor {
+  line-height: 1;
+}
+h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+h2 .anchor {
+  line-height: 1;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+h3 .anchor {
+  line-height: 1.2;
+}
+h4 {
+  font-size: 1.25em;
+}
+h4 .anchor {
+  line-height: 1.2;
+}
+h5 {
+  font-size: 1em;
+}
+h5 .anchor {
+  line-height: 1.1;
+}
+h6 {
+  font-size: 1em;
+  color: #777;
+}
+h6 .anchor {
+  line-height: 1.1;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+ul,
+ol {
+  padding-left: 2em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+li > p {
+  margin-top: 16px;
+}
+dl {
+  padding: 0;
+}
+dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+table th {
+  font-weight: bold;
+}
+table th,
+table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+}
+code:before,
+code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+.highlight {
+  margin-bottom: 16px;
+}
+.highlight pre,
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+.highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+pre {
+  word-wrap: normal;
+}
+pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+pre code:before,
+pre code:after {
+  content: normal;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+.pl-c {
+  color: #969896;
+}
+.pl-c1,
+.pl-s .pl-v {
+  color: #0086b3;
+}
+.pl-e,
+.pl-en {
+  color: #795da3;
+}
+.pl-s .pl-s1,
+.pl-smi {
+  color: #333;
+}
+.pl-ent {
+  color: #63a35c;
+}
+.pl-k {
+  color: #a71d5d;
+}
+.pl-pds,
+.pl-s,
+.pl-s .pl-pse .pl-s1,
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sra,
+.pl-sr .pl-sre {
+  color: #183691;
+}
+.pl-v {
+  color: #ed6a43;
+}
+.pl-id {
+  color: #b52a1d;
+}
+.pl-ii {
+  background-color: #b52a1d;
+  color: #f8f8f8;
+}
+.pl-sr .pl-cce {
+  color: #63a35c;
+  font-weight: bold;
+}
+.pl-ml {
+  color: #693a17;
+}
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+  color: #1d3e81;
+  font-weight: bold;
+}
+.pl-mq {
+  color: #008080;
+}
+.pl-mi {
+  color: #333;
+  font-style: italic;
+}
+.pl-mb {
+  color: #333;
+  font-weight: bold;
+}
+.pl-md {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+.pl-mi1 {
+  background-color: #eaffea;
+  color: #55a532;
+}
+.pl-mdr {
+  color: #795da3;
+  font-weight: bold;
+}
+.pl-mo {
+  color: #1d3e81;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+.task-list-item {
+  list-style-type: none;
+}
+.task-list-item + .task-list-item {
+  margin-top: 3px;
+}
+.task-list-item input {
+  margin: 0 0.35em 0.25em -1.6em;
+  vertical-align: middle;
+}
+:checked + .radio-label {
+  z-index: 1;
+  position: relative;
+  border-color: #4078c0;
+}
+body {
+  font-size: 100%;
+  font-size: 2.4vmin;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: 0;
+}
+h1 {
+  font-size: 6em;
+  font-size: 6.24vmin;
+  text-align: center;
+  margin-top: 0;
+}
+h2 {
+  font-size: 4em;
+  font-size: 4.32vmin;
+  margin-top: 2.4vmin;
+}
+h3 {
+  font-size: 3em;
+  font-size: 2.88vmin;
+  margin-top: 2.4vmin;
+}
+h4,
+h5,
+h6 {
+  font-size: 2.4vmin;
+}
+body {
+  line-height: 1;
+  min-height: 740px;
+  color: #0f0f0f;
+  background: #d7d7d7;
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f0f0f0), to(#bebebe));
+  background: -webkit-radial-gradient(#f0f0f0, #bebebe);
+  background: -moz-radial-gradient(#f0f0f0, #bebebe);
+  background: -ms-radial-gradient(#f0f0f0, #bebebe);
+  background: -o-radial-gradient(#f0f0f0, #bebebe);
+  background: radial-gradient(#f0f0f0, #bebebe);
+}
+blockquote {
+  color: #5c5c5c;
+}
+img {
+  background: transparent;
+}
+.highlight pre,
+pre {
+  background-color: #f0f0f0;
+}
+a {
+  color: #000;
+  text-decoration: underline;
+  padding: 0.1em;
+}
+a:hover {
+  color: #4d4d4d;
+}
+.step {
+  position: relative;
+  width: 85vw;
+  max-height: 100vh;
+  padding: 40px;
+  margin: 20px auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1.5;
+  opacity: 0.3;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -ms-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
+.step.past {
+  opacity: 0.3;
+}
+.step.active {
+  opacity: 1;
+}
+kbd {
+  font-size: 2.4vmin;
+  display: inline-block;
+  padding: 0.36vmin 0.84vmin;
+  font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 2.4vmin;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 0.4vmax;
+  box-shadow: inset 0 -0.1vmax 0 #bbb;
+}
+</style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="1500" data-y="500" data-z="1500"><!-- x=1500, y=500, z=1500 -->
-<h1 id="markdown-impress">Markdown-Impress</h1>
-</div><div class="step" data-x="500" data-y="0" data-scale="0.5"><!-- x=500,    y=0,   scale=0.5 -->
-<h2 id="what-is-it">What is it</h2>
-<p><em>markpress</em> is a tool to convert markdown to an <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> html presentation. It is based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a></p>
-</div><div class="step" data-x="2500" data-y="0"><!-- x=2500, y=0 -->
-<h2 id="how-to-install">How to install</h2>
-<h3 id="globally">Globally</h3>
-<p><code>$ npm install -g markpress</code></p>
-<h3 id="for-the-current-project-only">For the current project only</h3>
-<p><code>$ npm install markpress</code></p>
-</div><div class="step" data-x="3000" data-y="1000"><!-- x=3000, y=1000 -->
-<h2 id="markdown-format">Markdown format</h2>
+    <div id="impress"><div class="step" data-x="0" data-y="0"><!--slide-attr x=0 y=0 -->
+<h1 id="user-content-markpress" class="deep-link">Markpress</h1>
+<p><code>markpress</code> is a command line tool and node package to convert <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown files</a> into self-contained <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> html presentations. It was initially inspired and based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a>.</p>
+</div><div class="step" data-x="2600" data-y="0"><!--slide-attr x=2600 y=0 -->
+<h2 id="user-content-how-to-install" class="deep-link">How to install</h2>
+<p>You&apos;ll need <code>node</code> version &gt;= <code>5.0.0</code> installed on your system.</p>
+<p><code>$ npm install -g markpress</code> (globally)</p>
+<p>or</p>
+<p><code>$ npm install markpress</code> (for the current folder only)</p>
+</div><div class="step" data-x="2600" data-y="2600"><!--slide-attr x=2600 y=2600 -->
+<h2 id="user-content-features" class="deep-link">Features</h2>
 <ul>
-<li>use <code>------</code> to separate each slide</li>
-<li>use HTML comments to set impress <code>attr</code>, such as <code>&lt;!-- x=0 y=0 rotate=0 scale=1 --&gt;</code> please note that this will disable any <code>layout</code> selected.<!-- + [this page](http://steel1990.github.io/markdown-impress/) is made by *markdown-impress* use [this markdown](https://raw.githubusercontent.com/steel1990/markdown-impress/master/README.md). -->
+<li>Automatic layout generation</li>
+<li>Automatic slide split by <code>h1</code></li>
+<li>Built-in themes ( <code>dark</code>, <code>light</code>, <code>dark-serif</code>, <code>light-serif</code>)</li>
+<li><s>Individual slide-level CSS customizations</s> (soon)</li>
+<li>Generates self-contained HTML file by embedding images (no network connection needed when presenting)</li>
+<li>Code highlighting for most common programming languages</li>
+<li>Supports <a href="http://www.emoji-cheat-sheet.com/">Emojis</a>! &#x1F604;&#x1F44D; &#x1F42B;&#x1F4A8;</li>
+<li>Responsive design adapts to different screen sizes</li>
+<li>Adaptive text size (using <code>vmin</code> and <code>vmax</code>)</li>
+<li>Github-inspired CSS styles</li>
+<li>Will run fine in the latest Firefox, Chrome, Safari and <em>probably</em> Edge <a href="http://caniuse.com/#feat=viewport-units">*</a></li>
+</ul>
+</div><div class="step" data-x="0" data-y="2600" data-rotate="90"><!--slide-attr x=0 y=2600 rotate=90 -->
+<h2 id="user-content-usage" class="deep-link">Usage</h2>
+<h3 id="user-content-command-line" class="deep-link">Command line</h3>
+<p><code>$ markpress -i &lt;input file&gt; -o &lt;output file&gt; [options]</code></p>
+<p>E.g. to generate an Impress presentation from this very readme file:</p>
+<p><code>$ markpress -i README.md -o readme.html</code></p>
+<p>More information: <code>$ markpess -h</code></p>
+<h3 id="user-content-in-your-code" class="deep-link">In your code</h3>
+<div class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="storage modifier js"><span>var</span></span><span>&#xA0;fs&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>fs</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>var</span></span><span>&#xA0;markpress&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>markpress</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="comment line double-slash js"><span class="punctuation definition comment js"><span>//</span></span><span>&#xA0;defaults:</span><span>&#xA0;</span></span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>var</span></span><span>&#xA0;options&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;layout</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>horizontal</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;theme</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>light</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;autoSplit</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean true js"><span>true</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;allowHtml</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean false js"><span>false</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;verbose</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean false js"><span>false</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div><div class="line"><span class="source js"><span>markpress</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>input.md</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;options</span><span class="meta brace round js"><span>)</span></span><span class="meta delimiter method period js"><span>.</span></span><span>then</span><span class="meta brace round js"><span>(</span><span>(</span></span><span>content</span><span class="meta brace round js"><span>)</span></span><span>&#xA0;</span><span class="keyword operator js"><span>=</span><span>&gt;</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;fs</span><span class="meta delimiter method period js"><span>.</span></span><span>writeFileSync</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>output.html</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;content</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div></pre></div>
+</div><div class="step" data-x="-2600" data-y="1300" data-rotate-x="90" data-rotate-y="45"><!--slide-attr x=-2600 y=1300 rotate-x=90 rotate-y=45 -->
+<h2 id="user-content-markdown-format" class="deep-link">Markdown format</h2>
+<ul>
+<li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Standard Markdown format</a> is supported via <a href="https://www.npmjs.com/package/marky-markdown">marky-markdown</a> package.</li>
+<li>Use <code>------</code> to separate each slide, or user the <code>-a</code> option to generate a slide each time an <code>h1</code> element is found.</li>
+<li>Use HTML comments to set <a href="https://github.com/impress/impress.js/blob/master/index.html#L203">impress slide attributes</a>, such as <code>&lt;!--slide-attr x=0 y=0 rotate=0 scale=1 --&gt;</code>. Example</li>
+<li>You can embedded HTML in your markdown file (to embed videos or maps for example)</li>
+</ul>
+</div><div class="step" data-x="0" data-y="4000" data-z="0" data-rotate-y="0"><!--slide-attr x=0 y=4000 z=0 rotate-y=0 -->
+<h2 id="user-content-options" class="deep-link">Options</h2>
+<h3 id="user-content--a---auto-split-or--autosplit-boolean--in-code" class="deep-link">-a, --auto-split or { autoSplit: Boolean } in code</h3>
+<p><strong>Default</strong>: <code>false</code></p>
+<p>Automatically create a slide for every <code>H1</code> (<code># Heading 1</code>) level element (if <code>------</code> are present will be removed and ignored)</p>
+<h3 id="user-content--i-file-or---input-file" class="deep-link">-i &lt;file&gt; or --input &lt;file&gt;</h3>
+<p>Path to the input file. A <a href="https://daringfireball.net/projects/markdown/">Mardown file</a> is expected.</p>
+</div><div class="step" data-x="0" data-y="4000" data-z="1200" data-rotate-y="45"><!--slide-attr x=0 y=4000 z=1200 rotate-y=45 -->
+<h3 id="user-content--l---layout-or--layout-string--in-code" class="deep-link">-l, --layout or { layout: String } in code</h3>
+<p><strong>Default</strong>: <code>horizontal</code></p>
+<p>Automatically generate the layout for the slides. <strong>This option will be ignored if any HTML comment specifying slide positioning attributes is found</strong>, so please remove all HTML comments (<code>&lt;!--slide-attr ... --&gt;</code>) from the markdown file if you want to use this feature.</p>
+<p>Available Layouts:</p>
+<ul>
+<li><code>horizontal</code> (default): Slides positioned along the <code>x</code> axis. <a href="https://gamell.github.io/markpress/examples/horizontal.html">Example</a></li>
+<li><code>vertical</code>: Slides positioned along the <code>y</code> axis. <a href="https://gamell.github.io/markpress/examples/vertical.html">Example</a></li>
+<li><code>3d-push</code>: Slides positioned along the <code>z</code> axis. Slide <code>n</code> will be positioned <em>lower</em> than <code>n+1</code>. <a href="https://gamell.github.io/markpress/examples/3d-push.html">Example</a></li>
+<li><code>3d-pull</code>: Slides positioned along the <code>z</code> axis. Slide <code>n</code> will be positioned <em>higher</em> than <code>n+1</code>.</li>
+<li><code>grid</code>: Slides positioned along the <code>x</code> and <code>y</code> axis in a grid fashion. <a href="https://gamell.github.io/markpress/examples/grid.html">Example</a></li>
+<li><code>random</code>: Slides positioned randomly on a 5D space (<code>x</code>,<code>y</code>,<code>z</code>,<code>rotate</code>,<code>scale</code>). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. <a href="https://gamell.github.io/markpress/examples/grid.html">Example</a></li>
+<li><code>random-7d</code>: [warning: <strong>messy</strong>] Slides positioned randomly on the 7D space (<code>x</code>,<code>y</code>,<code>z</code>,<code>rotate-x</code>,<code>rotate-y</code>,<code>rotate-z</code>,<code>scale</code>). This layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. <a href="https://gamell.github.io/markpress/examples/random-7d.html">Example</a></li>
+</ul>
+</div><div class="step" data-x="1200" data-y="4000" data-z="1800" data-rotate-y="90"><!--slide-attr x=1200 y=4000 z=1800 rotate-y=90 -->
+<h3 id="user-content--ne---no-embed-or--noembed-true--in-code" class="deep-link">-ne, --no-embed or { noEmbed: true } in code</h3>
+<p><strong>Default</strong>: <code>false</code></p>
+<p>By default, markpress will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if <code>--no-embed</code> is set to true.</p>
+<h3 id="user-content--nh---no-html-or--allowhtml-boolean--in-code" class="deep-link">-nh, --no-html or { allowHtml: boolean } in code</h3>
+<p><strong>Default</strong>: <code>false</code> (HTML allowed)</p>
+<p>Disallow embedding of HTML code in the Markdown file. You should leave it enabled if you want to use things like <code>&lt;kbd&gt;&lt;/kbd&gt;</code> tags, embed videos, etc.</p>
+<h3 id="user-content--o-file-or---output-file" class="deep-link">-o &lt;file&gt; or --output &lt;file&gt;</h3>
+<p>Path to the output HTMl file.</p>
+</div><div class="step" data-x="2400" data-y="4000" data-z="2400" data-rotate-y="135"><!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
+<h3 id="user-content--s---silent-or--silent-boolean--in-code" class="deep-link">-s, --silent or { silent: Boolean } in code</h3>
+<p><strong>Default</strong>: <code>false</code></p>
+<p>Silence all console outputs.</p>
+<h3 id="user-content--t-theme---theme-theme-or--theme-string--in-code" class="deep-link">-t &lt;theme&gt;, --theme &lt;theme&gt; or { theme: String } in code</h3>
+<p><strong>Default</strong>: <code>light</code></p>
+<p>Chose from the different available themes:</p>
+<ul>
+<li><code>light</code> (default): Light theme with Sans-serif font</li>
+<li><code>dark</code>: Dark theme with Sans-serif font. <a href="https://gamell.github.io/markpress/examples/dark.html">Example</a></li>
+<li><code>light-serif</code>: Light theme with Sans-Serif font. <a href="https://gamell.github.io/markpress/examples/light-serif.html">Example</a></li>
+<li><code>dark-serif</code>: Light theme with Serif font</li>
+</ul>
+</div><div class="step" data-x="1000" data-y="1000" data-scale="0.5"><!--slide-attr x=1000 y=1000 scale=0.5 -->
+<h2 id="user-content-developing" class="deep-link">Developing</h2>
+<h3 id="user-content-run" class="deep-link">Run</h3>
+<p><code>$ node --harmony ./bin/markpress.js -i input.html -o output.html</code></p>
+<h3 id="user-content-debug" class="deep-link">Debug</h3>
+<p><code>$ node debug --harmony ./bin/markpress.js -i input.html -o output.html</code></p>
+<h3 id="user-content-linking" class="deep-link">Linking</h3>
+<p><code>npm link</code></p>
+<h3 id="user-content-installing-local-version-globally" class="deep-link">Installing local version globally</h3>
+<p><code>npm install . -g</code></p>
+</div><div class="step" data-x="1000" data-y="1500" data-z="500" data-rotate-x="90" data-scale="0.5"><!--slide-attr x=1000 y=1500 z=500 rotate-x=90 scale=0.5 -->
+<h2 id="user-content-roadmap" class="deep-link">Roadmap</h2>
+<p>Roadmap of planned features can be found <a href="https://github.com/gamell/markpress/issues?q=is%3Aopen+is%3Aissue+label%3Aroadmap">here</a>. Suggestions are welcome.</p>
+<h2 id="user-content-contributing" class="deep-link">Contributing</h2>
+<p>Please see <a href="https://github.com/gamell/markpress/blob/master/CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a></p>
+<h2 id="user-content-references-and-tools-used" class="deep-link">References and tools used</h2>
+<ul>
+<li>Inspired by and based on:
+<ul>
+<li><a href="https://github.com/steel1990/markdown-impress">https://github.com/steel1990/markdown-impress</a></li>
+<li><a href="https://www.npmjs.com/package/impress.md">https://www.npmjs.com/package/impress.md</a></li>
+</ul>
+</li>
+<li>Styles based on:
+<ul>
+<li>Github markdown CSS: <a href="https://github.com/sindresorhus/github-markdown-css">https://github.com/sindresorhus/github-markdown-css</a></li>
+<li>Atom Code highlighting CSS:
+<ul>
+<li>Dark: <a href="https://github.com/atom/atom-dark-syntax">https://github.com/atom/atom-dark-syntax</a></li>
+<li>Light: <a href="https://github.com/atom/atom-light-syntax">https://github.com/atom/atom-light-syntax</a></li>
+</ul>
 </li>
 </ul>
-</div><div class="step" data-x="1500" data-y="1000" data-rotate="90"><!-- x=1500, y=1000, rotate=90 -->
-<h2 id="how-to-use">How To Use</h2>
-<p><img src="./mtoi-help.png" alt="How to use markpress"></p>
-</div><div class="step" data-x="0" data-y="1000"><!-- x=0, y=1000 -->
-<h2 id="use-in-your-code">Use in your code</h2>
-<pre><code>var fs = require(&#39;fs&#39;);
-var mtoi = require(&#39;markdown-impress&#39;);
-var content = mtoi(&#39;file.md&#39;);
-fs.writeFileSync(&#39;file.html&#39;, content);
-</code></pre><h2 id="todo">Todo</h2>
-<ul>
-<li>Layout and Style options</li>
-<li>ES2015</li>
-<li>eslint</li>
-<li>unit tests</li>
+</li>
 </ul>
-<h2 id="other-packages">Other packages</h2>
-<p><a href="https://www.npmjs.com/package/impress.md">https://www.npmjs.com/package/impress.md</a>
-<a href="https://github.com/steel1990/markdown-impress">https://github.com/steel1990/markdown-impress</a></p>
+</div><div class="step" data-x="1200" data-y="2000" data-z="4000" data-scale="2"><!-- zoom-out slide -->
+<!--slide-attr x=1200 y=2000 z=4000 scale=2 -->
 </div></div>
     <script>/**
  * impress.js

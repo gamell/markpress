@@ -14,8 +14,9 @@ const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|grid|random-7d|random
 const themeRegex = /^(light|dark|light-serif|dark-serif)$/i;
 
 program.version(pkg.version)
-    .option('-i, --input <path>', 'Input markdown file path')
-    .option('-o, --output <path>', 'Impress htmll file output path')
+    .usage('-i <input file> -o <output file> [options]')
+    .option('-i, --input <file>', 'Input markdown file path')
+    .option('-o, --output <file>', 'Impress html file output path')
     .option('-s, --silent', 'Do not display progress & debug messages')
     .option(
       '-l, --layout <layout>',
@@ -43,7 +44,7 @@ program.version(pkg.version)
     )
     .on('--help', () => {
       console.log('  Example:\n');
-      console.log('    $ markpress -i file.md -o file.html -a  -s -l random -t dark\n');
+      console.log('    $ markpress -i file.md -o file.html -a -s -l random -t dark\n');
     })
     .parse(process.argv);
 

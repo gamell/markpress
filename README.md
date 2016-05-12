@@ -1,22 +1,27 @@
-# Markpress - from MD to impress
+<!--slide-attr x=0 y=0 -->
 
-*markpress* is a tool to convert markdown files to an [*impressjs*](https://github.com/impress/impress.js/) html presentation. It was initially based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990) and greatly extended.
+# Markpress
+
+`markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) html presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
 -----------------------------
+<!--slide-attr x=2600 y=0 -->
+
 ## How to install
 
-`node` version >= `5.0.0` is required, as ES2015 features are used.
+You'll need `node` version >= `5.0.0` installed on your system.
 
-### Globally
-
-`$ npm install -g markpress`  (globally)
+`$ npm install -g markpress` (globally)
 
 or
 
 `$ npm install markpress` (for the current folder only)
 
 -----------------------------
+<!--slide-attr x=2600 y=2600 -->
+
 ## Features
+
 - Automatic layout generation
 - Automatic slide split by `h1`
 - Built-in themes ( `dark`, `light`, `dark-serif`, `light-serif`)
@@ -30,80 +35,21 @@ or
 - Will run fine in the latest Firefox, Chrome, Safari and *probably* Edge [*](http://caniuse.com/#feat=viewport-units)
 
 -----------------------------
-## Markdown format
-+ Standard Markdown format is supported via [marky-markdown](https://www.npmjs.com/package/marky-markdown) package.
-+ Use `------` to separate each slide (optional). Example
-+ Use HTML comments to set [impress slide attributes](https://github.com/impress/impress.js/blob/master/index.html#L203), such as `<!--slide-attr x=0 y=0 rotate=0 scale=1 -->`. Example
-+ You can write embedded HTML unless you pass the `-nh` or `--no-html` flag (see below for more information)
+<!--slide-attr x=0 y=2600 rotate=90 -->
 
------------------------------
-## How To Use
+## Usage
 
-![How to use markpress](./markpress-help.png)
+### Command line
 
-## Options
+`$ markpress -i <input file> -o <output file> [options]`
 
-### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
+E.g. to generate an Impress presentation from this very readme file:
 
-**Default**: `false`
+`$ markpress -i README.md -o readme.html`
 
-Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
+More information: `$ markpess -h`
 
-### `-i <path>` or `--input <path>`
-
-Path to the input file. A [Mardown file](https://daringfireball.net/projects/markdown/) is expected.
-
-### `-l`, `--layout` or `{ layout: String }` in code
-
-**Default**: `horizontal`
-
-Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positioning attributes is found**, so please remove all HTML comments (`<!--slide-attr ... -->`) from the markdown file if you want to use this feature.
-
-Available Layouts:
-
-- `horizontal` (default): Slides positioned along the `x` axis. Example
-- `vertical`: Slides positioned along the `y` axis. Example
-- `3d-push`: Slides positioned along the `z` axis. Slide `n` will be positioned *lower* than `n+1`. Example
-- `3d-pull`: Slides positioned along the `z` axis. Slide `n` will be positioned *higher* than `n+1`. Example
-- `grid`: Slides positioned along the `x` and `y` axis in a grid fashion. Example
-- `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
-- `random-7d`: [warning: **messy**] Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). This layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. Example
-
-### `-ne`, `--no-embed` or `{ noEmbed: true }` in code
-
-**Default**: `false`
-
-By default, markpress will try to download / copy and embed the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
-
-### `-nh`, `--no-html` or `{ allowHtml: boolean }` in code
-
-**Default**: `false` (HTML allowed)
-
-Disallow HTML code embedded in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
-
-### `-o <path>` or `--output <path>`
-
-Path to the output HTMl file.
-
-### `-s`, `--silent` or `{ silent: Boolean }` in code
-
-**Default**: `false`
-
-Silence all console outputs.
-
-### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
-
-**Default**: `light`
-
-Chose from the different available themes:
-
-- `light` (default): Light theme with Sans-serif font
-- `dark`: Dark theme with Sans-serif font
-- `light-serif`: Light theme with Sans-Serif font
-- `dark-serif`: Light theme with Serif font
-
--------------------------------
-## Use it in your code
+### In your code
 
 ```js
 var fs = require('fs');
@@ -121,7 +67,93 @@ markpress('input.md', options).then((content) => {
 });
 ```
 
+-----------------------------
+<!--slide-attr x=-2600 y=1300 rotate-x=90 rotate-y=45 -->
+
+## Markdown format
+
++ [Standard Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) is supported via [marky-markdown](https://www.npmjs.com/package/marky-markdown) package.
++ Use `------` to separate each slide, or user the `-a` option to generate a slide each time an `h1` element is found.
++ Use HTML comments to set [impress slide attributes](https://github.com/impress/impress.js/blob/master/index.html#L203), such as `<!--slide-attr x=0 y=0 rotate=0 scale=1 -->`. Example
++ You can embedded HTML in your markdown file (to embed videos or maps for example)
+
 -------------------------------
+<!--slide-attr x=0 y=4000 z=0 rotate-y=0 -->
+
+
+## Options
+
+### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
+
+**Default**: `false`
+
+Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
+
+### `-i <file>` or `--input <file>`
+
+Path to the input file. A [Mardown file](https://daringfireball.net/projects/markdown/) is expected.
+
+------------
+<!--slide-attr x=0 y=4000 z=1200 rotate-y=45 -->
+
+### `-l`, `--layout` or `{ layout: String }` in code
+
+**Default**: `horizontal`
+
+Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positioning attributes is found**, so please remove all HTML comments (`<!--slide-attr ... -->`) from the markdown file if you want to use this feature.
+
+Available Layouts:
+
+- `horizontal` (default): Slides positioned along the `x` axis. [Example](https://gamell.github.io/markpress/examples/horizontal.html)
+- `vertical`: Slides positioned along the `y` axis. [Example](https://gamell.github.io/markpress/examples/vertical.html)
+- `3d-push`: Slides positioned along the `z` axis. Slide `n` will be positioned *lower* than `n+1`. [Example](https://gamell.github.io/markpress/examples/3d-push.html)
+- `3d-pull`: Slides positioned along the `z` axis. Slide `n` will be positioned *higher* than `n+1`.
+- `grid`: Slides positioned along the `x` and `y` axis in a grid fashion. [Example](https://gamell.github.io/markpress/examples/grid.html)
+- `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. [Example](https://gamell.github.io/markpress/examples/grid.html)
+- `random-7d`: [warning: **messy**] Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). This layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. [Example](https://gamell.github.io/markpress/examples/random-7d.html)
+
+------------
+<!--slide-attr x=1200 y=4000 z=1800 rotate-y=90 -->
+
+### `-ne`, `--no-embed` or `{ noEmbed: true }` in code
+
+**Default**: `false`
+
+By default, markpress will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
+
+### `-nh`, `--no-html` or `{ allowHtml: boolean }` in code
+
+**Default**: `false` (HTML allowed)
+
+Disallow embedding of HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+
+### `-o <file>` or `--output <file>`
+
+Path to the output HTMl file.
+
+------------
+<!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
+
+### `-s`, `--silent` or `{ silent: Boolean }` in code
+
+**Default**: `false`
+
+Silence all console outputs.
+
+### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
+
+**Default**: `light`
+
+Chose from the different available themes:
+
+- `light` (default): Light theme with Sans-serif font
+- `dark`: Dark theme with Sans-serif font. [Example](https://gamell.github.io/markpress/examples/dark.html)
+- `light-serif`: Light theme with Sans-Serif font. [Example](https://gamell.github.io/markpress/examples/light-serif.html)
+- `dark-serif`: Light theme with Serif font
+
+-------------------------------
+<!--slide-attr x=1000 y=1000 scale=0.5 -->
+
 ## Developing
 
 ### Run
@@ -136,7 +168,14 @@ markpress('input.md', options).then((content) => {
 
 `npm link`
 
+### Installing local version globally
+
+`npm install . -g`
+
 -------------------------------
+<!--slide-attr x=1000 y=1500 z=500 rotate-x=90 scale=0.5 -->
+
+
 ## Roadmap
 
 Roadmap of planned features can be found [here](https://github.com/gamell/markpress/issues?q=is%3Aopen+is%3Aissue+label%3Aroadmap). Suggestions are welcome.
@@ -156,3 +195,7 @@ Please see [`CONTRIBUTING.md`](https://github.com/gamell/markpress/blob/master/C
   - Atom Code highlighting CSS:
     - Dark: https://github.com/atom/atom-dark-syntax
     - Light: https://github.com/atom/atom-light-syntax
+
+-------------------------------
+<!-- zoom-out slide -->
+<!--slide-attr x=1200 y=2000 z=4000 scale=2 -->
