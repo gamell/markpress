@@ -4,6 +4,8 @@
 
 `markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) html presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
+[This is the outcome](https://gamell.github.io/markpress) of feeding this very `README.md` to markpress: `$ markpress -i README.md -o readme.html`
+
 -----------------------------
 <!--slide-attr x=2600 y=0 -->
 
