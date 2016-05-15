@@ -54,10 +54,10 @@ More information: `$ markpess -h`
 ### In your code
 
 ```js
-var fs = require('fs');
-var markpress = require('markpress');
+const fs = require('fs');
+const markpress = require('markpress');
 // defaults:
-var options = {
+const options = {
   layout: 'horizontal',
   theme: 'light',
   autoSplit: true,
