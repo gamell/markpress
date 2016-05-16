@@ -17,11 +17,15 @@
     "stacktrace-js": "1.1.2"
   },
   "devDependencies": {
+    "chai": "3.5.0",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-import": "1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
-    "eslint-plugin-react": "^5.0.1"
+    "eslint-plugin-react": "^5.0.1",
+    "intercept-stdout": "0.1.2",
+    "mocha": "2.4.5",
+    "sinon": "1.17.4"
   },
   "engines": {
     "node": ">= 5.0.0"
@@ -37,7 +41,7 @@
     "markpress": "bin/markpress.js"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha --recursive ./test"
   },
   "repository": "https://github.com/gamell/markpress.git",
   "eslintConfig": {
