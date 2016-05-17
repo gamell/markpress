@@ -75,7 +75,7 @@ function createImpressHtml(html, title) {
     const data = {
       title,
       css,
-      js: util.readFile(path, 'impress.min.js'),
+      js: util.readFile(path, 'impress.js'),
       html,
     };
     return tpl.replace(/\$\{(\w+)\}/g, ($, $1) => data[$1]);
