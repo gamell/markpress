@@ -76,7 +76,7 @@ markpress('input.md', options).then((content) => {
 
 + [Standard Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) is supported via [marky-markdown](https://www.npmjs.com/package/marky-markdown) package.
 + Use `------` to separate each slide, or user the `-a` option to generate a slide each time an `h1` element is found.
-+ Use HTML comments to set [impress slide attributes](https://github.com/impress/impress.js/blob/master/index.html#L203), such as `<!--slide-attr x=0 y=0 rotate=0 scale=1 -->`. Example
++ Use HTML comments to set [impress slide attributes](https://github.com/impress/impress.js/blob/master/index.html#L203), such as `<!--slide-attr x=0 y=0 rotate=0 scale=1 -->`. [Example](https://gamell.github.io/markpress/examples/custom-layout.html)
 + You can embedded HTML in your markdown file (to embed videos or maps for example)
 
 -------------------------------
@@ -111,7 +111,7 @@ Available Layouts:
 - `3d-push`: Slides positioned along the `z` axis. Slide `n` will be positioned *lower* than `n+1`. [Example](https://gamell.github.io/markpress/examples/3d-push.html)
 - `3d-pull`: Slides positioned along the `z` axis. Slide `n` will be positioned *higher* than `n+1`.
 - `grid`: Slides positioned along the `x` and `y` axis in a grid fashion. [Example](https://gamell.github.io/markpress/examples/grid.html)
-- `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. [Example](https://gamell.github.io/markpress/examples/grid.html)
+- `random`: Slides positioned randomly on a 5D space (`x`,`y`,`z`,`rotate`,`scale`). Note that this layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. [Example](https://gamell.github.io/markpress/examples/random.html)
 - `random-7d`: [warning: **messy**] Slides positioned randomly on the 7D space (`x`,`y`,`z`,`rotate-x`,`rotate-y`,`rotate-z`,`scale`). This layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. [Example](https://gamell.github.io/markpress/examples/random-7d.html)
 
 ------------
