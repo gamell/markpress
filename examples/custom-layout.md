@@ -1,13 +1,13 @@
 <!-- Positioning attributes can be separated by spaces... -->
 <!--slide-attr x=0 y=0 -->
 
-# Example Markdown presentation
+# Custom Layout Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd>
 
 This presentation was generated with the following command:
 
-`$ markpress.js -i example-custom-layout.md -o custom-layout.html`
+`$ markpress -i custom-layout.md -o custom-layout.html`
 
 -----------------
 
