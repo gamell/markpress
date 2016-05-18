@@ -41,7 +41,8 @@
     "markpress": "bin/markpress.js"
   },
   "scripts": {
-    "test": "mocha --recursive ./test"
+    "test": "mocha --recursive ./test",
+    "generate-examples": "node ./tools/generate-examples.js"
   },
   "repository": "https://github.com/gamell/markpress.git",
   "eslintConfig": {
