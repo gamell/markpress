@@ -9,7 +9,7 @@ const util = require('../../lib/util');
 const less = require('less');
 const log = require('../../lib/log');
 
-describe('Log', () => {
+describe('CSS Helper', () => {
   before(() => {
     sinon.stub(less, 'render', () => Promise.resolve('compiled css file'));
   });
@@ -22,7 +22,7 @@ describe('Log', () => {
   afterEach(() => {
     log.error.restore();
   });
-  describe('#css-helper', () => {
+  describe('getCss()', () => {
     it('should log an error when the theme is invalid', (done) => {
       cssHelper.getCss('non-existant-path', 'invalid-theme').then(() => {
         assert(log.error.calledOnce);
@@ -59,6 +59,5 @@ describe('Log', () => {
         done();
       }).catch(done);
     });
-
   });
 });
