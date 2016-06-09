@@ -9,6 +9,8 @@ const util = require('../../lib/util');
 const less = require('less');
 const log = require('../../lib/log');
 
+let sandbox;
+
 describe('CSS Helper', () => {
   before(() => {
     sinon.stub(less, 'render', () => Promise.resolve('compiled css file'));
@@ -17,10 +19,11 @@ describe('CSS Helper', () => {
     less.render.restore();
   });
   beforeEach(() => {
-    sinon.spy(log, 'error');
+    sandbox = sinon.sandbox.create();
+    sandbox.spy(log, 'error');
   });
   afterEach(() => {
-    log.error.restore();
+    sandbox.restore();
   });
   describe('getCss()', () => {
     it('should log an error when the theme is invalid', (done) => {
@@ -31,19 +34,18 @@ describe('CSS Helper', () => {
     });
 
     it('should log an error when the path is invalid', (done) => {
-      sinon.stub(util, 'readFile', () => { throw new Error('File not found'); });
+      sandbox.stub(util, 'readFile', () => { throw new Error('File not found'); });
       cssHelper.getCss('incorrect-path', 'dark').then(() => {
         const testPath = 'incorrect-path/styles.less';
         assert(util.readFile.calledOnce);
         assert(util.readFile.calledWith(testPath));
         assert(log.error.calledOnce);
-        util.readFile.restore();
         done();
       }).catch(done);
     });
 
     it('should call less.render when path and theme are valid', (done) => {
-      sinon.stub(util, 'readFile', () => 'test less file');
+      sandbox.stub(util, 'readFile', () => 'test less file');
       cssHelper.getCss('correct-path', 'dark').then(() => {
         const testPath = 'correct-path/styles.less';
         assert(util.readFile.calledOnce);
@@ -55,7 +57,6 @@ describe('CSS Helper', () => {
           },
           filename: testPath,
         }));
-        util.readFile.restore();
         done();
       }).catch(done);
     });
