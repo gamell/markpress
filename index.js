@@ -29,7 +29,7 @@ const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separato
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
 const commaRegex = /\s*,\s*/;
 const spaceRegex = /\s/;
-const emptySlideRegex = /[^ -~]+/;
+const emptySlideRegex = /^\s+$/;
 
 // setting the app root folder for later use in other files
 global.appRoot = pathResolve(__dirname);
@@ -92,6 +92,7 @@ function splitSlides(markdown, autoSplit) {
     log.info('auto-split option enabled, splitting tiles automatically. Ignoring \'------\'');
     // remove the separators, if any and split by H1
     const slideArray = markdown.replace(slideSeparatorRegex, '').split(h1Regex);
+    debugger;
     if (slideArray[0].match(emptySlideRegex) !== null) slideArray.shift(); // remove first slide if empty
     return slideArray;
   }
