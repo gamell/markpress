@@ -9,7 +9,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress -i random.md -o html/random.html -a -l random`
+`$ markpress random.md html/random.html -a -l random`
 
 
 

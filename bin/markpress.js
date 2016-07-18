@@ -18,7 +18,8 @@ let input = '';
 let output = '';
 
 program.version(pkg.version)
-    .usage('<input file> [output file] [options]')
+    .usage(`<input file> [output file] [options] \n\n
+        If no outpuf file is passed, the input's filename will be used changing the extension to .html`)
     .arguments('<input> [output]')
     .option('-s, --silent', 'Do not display progress & debug messages')
     .option(

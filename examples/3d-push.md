@@ -9,7 +9,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress -i 3d-push.md -o html/3d-push.html -a -l 3d-push`
+`$ markpress 3d-push.md html/3d-push.html -a -l 3d-push`
 
 
 
