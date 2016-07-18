@@ -18,7 +18,7 @@ let input = '';
 let output = '';
 
 program.version(pkg.version)
-    //.usage('<input file> <output file> [options]')
+    .usage('<input file> [output file] [options]')
     .arguments('<input> [output]')
     .option('-s, --silent', 'Do not display progress & debug messages')
     .option(
@@ -55,7 +55,6 @@ program.version(pkg.version)
         output = path.resolve(basePath, o);
       } else {
         const ext = path.extname(input);
-        console.log('extension: '+ext);
         output = input.replace(ext, '.html');
       }
     })
