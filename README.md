@@ -2,9 +2,9 @@
 
 # Markpress
 
-`markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) html presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
+`markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) `html` presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
-[This is the outcome](https://gamell.github.io/markpress) of feeding this very `README.md` to markpress: `$ markpress -i README.md -o readme.html`
+[This is the outcome](https://gamell.github.io/markpress) of feeding this very `README.md` to markpress: `$ markpress README.md`
 
 -----------------------------
 <!--slide-attr x=2600 y=0 -->
@@ -41,13 +41,13 @@ or
 
 ## Usage
 
-### Command line
+### CLI
 
-`$ markpress -i <input file> -o <output file> [options]`
+`$ markpress <input file> [output file] [options]`
 
-E.g. to generate an Impress presentation from this very readme file:
+If no output file is passed, the input's filename will be used, changing the extension to `.html`. E.g. to generate an Impress presentation from this very readme file:
 
-`$ markpress -i README.md -o readme.html`
+`$ markpress README.md`, which is the same as: `$ markpress README.md README.html`
 
 More information: `$ markpess -h`
 
@@ -91,10 +91,6 @@ markpress('input.md', options).then((content) => {
 
 Automatically create a slide for every `H1` (`# Heading 1`) level element (if `------` are present will be removed and ignored)
 
-### `-i <file>` or `--input <file>`
-
-Path to the input file. A [Mardown file](https://daringfireball.net/projects/markdown/) is expected.
-
 ------------
 <!--slide-attr x=0 y=4000 z=1200 rotate-y=45 -->
 
@@ -129,10 +125,6 @@ By default, markpress will try to embed (using base64 encoding) the referenced i
 
 Disallow embedding of HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
 
-### `-o <file>` or `--output <file>`
-
-Path to the output HTMl file.
-
 ------------
 <!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 
@@ -160,11 +152,11 @@ Chose from the different available themes:
 
 ### Run
 
-`$ node --harmony ./bin/markpress.js -i input.html -o output.html`
+`$ node --harmony ./bin/markpress.js input.html output.html`
 
 ### Debug
 
-`$ node debug --harmony ./bin/markpress.js -i input.html -o output.html`
+`$ node debug --harmony ./bin/markpress.js input.html output.html`
 
 ### Linking
 

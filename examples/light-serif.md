@@ -9,7 +9,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress -i light-serif.md -o html/light-serif.html -a -t light-serif`
+`$ markpress light-serif.md html/light-serif.html -a -t light-serif`
 
 
 

@@ -7,7 +7,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress -i custom-layout.md -o custom-layout.html`
+`$ markpress custom-layout.md html/custom-layout.html`
 
 -----------------
 

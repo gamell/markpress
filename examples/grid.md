@@ -9,7 +9,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress -i grid.md -o html/grid.html -a -l grid`
+`$ markpress grid.md html/grid.html -a -l grid`
 
 
 

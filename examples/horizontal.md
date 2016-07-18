@@ -9,7 +9,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress -i horizontal.md -o html/horizontal.html -a -l horizontal`
+`$ markpress horizontal.md html/horizontal.html -a -l horizontal`
 
 
 
