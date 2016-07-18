@@ -9,14 +9,17 @@ const fs = require('fs');
 const pkg = require('../package');
 const log = require('../lib/log');
 const StackTrace = require('stacktrace-js');
+const basePath = process.cwd();
 
 const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|grid|random-7d|random)$/i;
 const themeRegex = /^(light|dark|light-serif|dark-serif)$/i;
 
+let input = '';
+let output = '';
+
 program.version(pkg.version)
-    .usage('-i <input file> -o <output file> [options]')
-    .option('-i, --input <file>', 'Input markdown file path')
-    .option('-o, --output <file>', 'Impress html file output path')
+    //.usage('<input file> <output file> [options]')
+    .arguments('<input> [output]')
     .option('-s, --silent', 'Do not display progress & debug messages')
     .option(
       '-l, --layout <layout>',
@@ -44,19 +47,26 @@ program.version(pkg.version)
     )
     .on('--help', () => {
       console.log('  Example:\n');
-      console.log('    $ markpress -i file.md -o file.html -a -s -l random -t dark\n');
+      console.log('    $ markpress file.md file.html -a -s -l random -t dark\n');
+    })
+    .action((i, o) => {
+      input = path.resolve(basePath, i);
+      if (!!o) {
+        output = path.resolve(basePath, o);
+      } else {
+        const ext = path.extname(input);
+        console.log('extension: '+ext);
+        output = input.replace(ext, '.html');
+      }
     })
     .parse(process.argv);
 
-if (!program.input || !program.output) {
-  console.log('\nError: Must have input and output arg!');
+if (!input || !output) {
+  console.log('\nError: Must have input argument!');
   program.help();
   process.exit();
 }
 
-const basePath = process.cwd();
-const input = path.resolve(basePath, program.input);
-const output = path.resolve(basePath, program.output);
 const options = {
   layout: program.layout,
   style: program.style,
