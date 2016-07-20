@@ -24,13 +24,12 @@ or
 
 ## Features
 
-- Automatic layout generation
+- Automatic slide layout generation
 - Automatic slide split by `h1`
-- Built-in themes ( `dark`, `light`, `dark-serif`, `light-serif`)
-- ~~Individual slide-level CSS customizations~~ (soon)
+- Built-in themes ( `dark`, `light`, `dark-serif`, `light-serif`). Customizable through `<style>` tags.
 - Generates self-contained HTML file by embedding images (no network connection needed when presenting)
 - Code highlighting for most common programming languages
-- Supports [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
+- Supports HTML & [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
 - Responsive design adapts to different screen sizes
 - Adaptive text size (using `vmin` and `vmax`)
 - Github-inspired CSS styles
@@ -69,12 +68,13 @@ markpress('input.md', options).then((content) => {
 -----------------------------
 <!--slide-attr x=-2600 y=1300 rotate-x=90 rotate-y=45 -->
 
-## Markdown format
+## Markdown format, Custom Layout and Styles
 
-+ [Standard Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) is supported via [marky-markdown](https://www.npmjs.com/package/marky-markdown) package.
++ [Github Flavored Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) is supported via [marky-markdown](https://www.npmjs.com/package/marky-markdown) package, including [tables](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables).
 + Use `------` to separate each slide, or user the `-a` option to generate a slide each time an `h1` element is found.
 + Use HTML comments to set [impress slide attributes](https://github.com/impress/impress.js/blob/master/index.html#L203), such as `<!--slide-attr x=0 y=0 rotate=0 scale=1 -->`. [Example](https://gamell.github.io/markpress/examples/custom-layout.html)
-+ You can embedded HTML in your markdown file (to embed videos or maps for example)
++ You can **customize the styles** by embedding CSS in `<style>` tags as you would in any HTML.
++ You can **embedded any HTML in your markdown file** and it will be included in your slides HTML.
 
 -------------------------------
 <!--slide-attr x=0 y=4000 z=0 rotate-y=0 -->
