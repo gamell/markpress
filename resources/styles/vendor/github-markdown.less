@@ -420,22 +420,21 @@ table th {
 table th,
 table td {
   padding: 6px 13px;
-  border: 1px solid #ddd;
+  border: 0.1em solid @tableBorderColor;
 }
 
 table tr {
-  background-color: #fff;
-  border-top: 1px solid #ccc;
+  background-color: @tableBackgroundColor;
+  border-top: 1px solid @tableBorderColor;
 }
 
 table tr:nth-child(2n) {
-  background-color: #f8f8f8;
+  background-color: @tableAlternateBackground;
 }
 
 img {
   max-width: 100%;
   box-sizing: content-box;
-  background-color: #fff;
 }
 
 code {
@@ -444,8 +443,8 @@ code {
   padding-bottom: 0.2em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(0,0,0,0.04);
-  border-radius: 3px;
+  background-color: @codeTagBackground;
+  border-radius: 0.2em;
 }
 
 code:before,
