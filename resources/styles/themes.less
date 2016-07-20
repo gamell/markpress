@@ -4,24 +4,34 @@
 
 .dark(){
   @bgColorStart: #333;
+  @bgColor: #333;
   @bgColorEnd: #0f0f0f;
-  @bgColor: #d7d7d7;
   @fontColor: #eee;
   @linkColor: #f8f8f8;
   @quoteColor: darken(@fontColor,30);
+  @quoteBorderColor: lighten(@quoteColor, 15);
   @codeBackground: #000;
+  @codeTagBackground: rgba(255,255,255,0.1);
   @codeTheme: "dark";
+  @tableBorderColor: #555;
+  @tableBackgroundColor: #222;
+  @tableAlternateBackground: lighten(@tableBackgroundColor, 12);
 }
 
 .light(){
+  @bgColor: #f0f0f0;
   @bgColorStart: #f0f0f0;
   @bgColorEnd: #bebebe;
-  @bgColor: #d7d7d7;
   @fontColor: #0f0f0f;
   @linkColor: #000;
   @quoteColor: lighten(@fontColor,30);
+  @quoteBorderColor: darken(@quoteColor, 15);
   @codeBackground: #f0f0f0;
+  @codeTagBackground: rgba(0,0,0,0.06);
   @codeTheme: "light";
+  @tableBorderColor: #ccc;
+  @tableBackgroundColor: #eee;
+  @tableAlternateBackground: darken(@tableBackgroundColor, 7);
 }
 
 .serif(){

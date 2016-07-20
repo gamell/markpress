@@ -45,10 +45,11 @@ body {
 
 blockquote {
   color: @quoteColor;
+  border-color: @quoteBorderColor;
 }
 
-img{
-  background: transparent;
+p,li {
+  margin-bottom: 1em;
 }
 
 .highlight pre, pre{
@@ -62,7 +63,7 @@ a {
 }
 
 a:hover{
-  color: lighten(@linkColor,30); 
+  color: lighten(@linkColor,30);
 }
 
 .step {
@@ -93,7 +94,6 @@ a:hover{
     opacity: 1;
   }
 }
-
 
 kbd{
   font-size: @fontBase;
