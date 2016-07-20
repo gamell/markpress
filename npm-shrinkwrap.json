@@ -1,6 +1,6 @@
 {
   "name": "markpress",
-  "version": "0.10.2",
+  "version": "1.0.0",
   "dependencies": {
     "abab": {
       "version": "1.0.3",
