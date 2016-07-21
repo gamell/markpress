@@ -858,7 +858,16 @@ kbd {
 </style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="0" data-y="0"><!--slide-attr x=0 y=0 -->
+  <style>
+    #badges a{
+      padding: 0;
+    }
+  </style>
+  <div id="badges">
+    <a href="https://www.npmjs.com/package/markpress"><img src="https://img.shields.io/npm/dt/markpress.svg" alt="NPM downloads" /></a>
+    <a class="github-button" href="https://github.com/gamell/markpress" data-icon="octicon-star" data-style="mega" data-count-href="/gamell/markpress/stargazers" data-count-api="/repos/gamell/markpress#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star gamell/markpress on GitHub">Star</a>
+  </div>
+  <div id="impress"><div class="step" data-x="0" data-y="0"><!--slide-attr x=0 y=0 -->
 <h1 id="user-content-markpress" class="deep-link">Markpress</h1>
 <p><code>markpress</code> is a command line tool and node package to convert <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown files</a> into self-contained <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> <code>html</code> presentations. It was initially inspired and based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a>.</p>
 <p><a href="https://gamell.github.io/markpress">This is the outcome</a> of feeding this very <code>README.md</code> to markpress: <code>$ markpress README.md</code></p>
@@ -1815,5 +1824,7 @@ kbd {
 // will help somebody learn at least some part of it.
 </script>
     <script>impress().init();</script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
