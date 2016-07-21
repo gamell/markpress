@@ -561,19 +561,18 @@ table th {
 table th,
 table td {
   padding: 6px 13px;
-  border: 1px solid #ddd;
+  border: 0.1em solid #ccc;
 }
 table tr {
-  background-color: #fff;
+  background-color: #eee;
   border-top: 1px solid #ccc;
 }
 table tr:nth-child(2n) {
-  background-color: #f8f8f8;
+  background-color: #dcdcdc;
 }
 img {
   max-width: 100%;
   box-sizing: content-box;
-  background-color: #fff;
 }
 code {
   padding: 0;
@@ -581,8 +580,8 @@ code {
   padding-bottom: 0.2em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 0.2em;
 }
 code:before,
 code:after {
@@ -608,7 +607,7 @@ pre {
   font-size: 85%;
   line-height: 1.45;
   background-color: #f7f7f7;
-  border-radius: 3px;
+  border-radius: 0.2em;
 }
 .highlight pre {
   margin-bottom: 0;
@@ -754,7 +753,7 @@ kbd {
 }
 body {
   font-size: 100%;
-  font-size: 2.4vmin;
+  font-size: 2.9vmin;
 }
 h1,
 h2,
@@ -766,30 +765,30 @@ h6 {
 }
 h1 {
   font-size: 6em;
-  font-size: 6.24vmin;
+  font-size: 6.09vmin;
   text-align: center;
   margin-top: 0;
 }
 h2 {
   font-size: 4em;
-  font-size: 4.32vmin;
-  margin-top: 2.4vmin;
+  font-size: 4.06vmin;
+  margin-top: 2.9vmin;
 }
 h3 {
   font-size: 3em;
-  font-size: 2.88vmin;
-  margin-top: 2.4vmin;
+  font-size: 3.19vmin;
+  margin-top: 2.9vmin;
 }
 h4,
 h5,
 h6 {
-  font-size: 2.4vmin;
+  font-size: 2.9vmin;
 }
 body {
   line-height: 1;
   min-height: 740px;
   color: #0f0f0f;
-  background: #d7d7d7;
+  background: #f0f0f0;
   background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f0f0f0), to(#bebebe));
   background: -webkit-radial-gradient(#f0f0f0, #bebebe);
   background: -moz-radial-gradient(#f0f0f0, #bebebe);
@@ -799,9 +798,11 @@ body {
 }
 blockquote {
   color: #5c5c5c;
+  border-color: #353535;
 }
-img {
-  background: transparent;
+p,
+li {
+  margin-bottom: 1em;
 }
 .highlight pre,
 pre {
@@ -841,11 +842,11 @@ a:hover {
   opacity: 1;
 }
 kbd {
-  font-size: 2.4vmin;
+  font-size: 2.9vmin;
   display: inline-block;
-  padding: 0.36vmin 0.84vmin;
+  padding: 0.435vmin 1.015vmin;
   font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  line-height: 2.4vmin;
+  line-height: 2.9vmin;
   color: #555;
   vertical-align: middle;
   background-color: #fcfcfc;
@@ -857,14 +858,10 @@ kbd {
 </style>
 </head>
 <body>
-
-<iframe src="https://ghbtns.com/github-btn.html?user=gamell&repo=markpress&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-<iframe src="https://ghbtns.com/github-btn.html?user=gamell&repo=markpress&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-
     <div id="impress"><div class="step" data-x="0" data-y="0"><!--slide-attr x=0 y=0 -->
 <h1 id="user-content-markpress" class="deep-link">Markpress</h1>
-<p><code>markpress</code> is a command line tool and node package to convert <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown files</a> into self-contained <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> html presentations. It was initially inspired and based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a>.</p>
-<p><a href="https://gamell.github.io/markpress">This is the outcome</a> of feeding this very <code>README.md</code> to markpress: <code>$ markpress -i README.md -o readme.html</code></p>
+<p><code>markpress</code> is a command line tool and node package to convert <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown files</a> into self-contained <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> <code>html</code> presentations. It was initially inspired and based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a>.</p>
+<p><a href="https://gamell.github.io/markpress">This is the outcome</a> of feeding this very <code>README.md</code> to markpress: <code>$ markpress README.md</code></p>
 </div><div class="step" data-x="2600" data-y="0"><!--slide-attr x=2600 y=0 -->
 <h2 id="user-content-how-to-install" class="deep-link">How to install</h2>
 <p>You&apos;ll need <code>node</code> version &gt;= <code>5.0.0</code> installed on your system.</p>
@@ -874,13 +871,12 @@ kbd {
 </div><div class="step" data-x="2600" data-y="2600"><!--slide-attr x=2600 y=2600 -->
 <h2 id="user-content-features" class="deep-link">Features</h2>
 <ul>
-<li>Automatic layout generation</li>
+<li>Automatic slide layout generation</li>
 <li>Automatic slide split by <code>h1</code></li>
-<li>Built-in themes ( <code>dark</code>, <code>light</code>, <code>dark-serif</code>, <code>light-serif</code>)</li>
-<li><s>Individual slide-level CSS customizations</s> (soon)</li>
+<li>Built-in themes ( <code>dark</code>, <code>light</code>, <code>dark-serif</code>, <code>light-serif</code>). Customizable through <code>&lt;style&gt;</code> tags.</li>
 <li>Generates self-contained HTML file by embedding images (no network connection needed when presenting)</li>
 <li>Code highlighting for most common programming languages</li>
-<li>Supports <a href="http://www.emoji-cheat-sheet.com/">Emojis</a>! &#x1F604;&#x1F44D; &#x1F42B;&#x1F4A8;</li>
+<li>Supports HTML &amp; <a href="http://www.emoji-cheat-sheet.com/">Emojis</a>! &#x1F604;&#x1F44D; &#x1F42B;&#x1F4A8;</li>
 <li>Responsive design adapts to different screen sizes</li>
 <li>Adaptive text size (using <code>vmin</code> and <code>vmax</code>)</li>
 <li>Github-inspired CSS styles</li>
@@ -888,33 +884,30 @@ kbd {
 </ul>
 </div><div class="step" data-x="0" data-y="2600" data-rotate="90"><!--slide-attr x=0 y=2600 rotate=90 -->
 <h2 id="user-content-usage" class="deep-link">Usage</h2>
-<h3 id="user-content-command-line" class="deep-link">Command line</h3>
-<p><code>$ markpress -i &lt;input file&gt; -o &lt;output file&gt; [options]</code></p>
-<p>E.g. to generate an Impress presentation from this very readme file:</p>
-<p><code>$ markpress -i README.md -o readme.html</code></p>
-<p>More information: <code>$ markpess -h</code></p>
+<h3 id="user-content-cli" class="deep-link">CLI</h3>
+<p><code>$ markpress &lt;input file&gt; [output file] [options]</code></p>
+<p>If no output file is passed, the input&apos;s filename will be used, changing the extension to <code>.html</code></p>
+<p>More information: <code>$ markpress -h</code></p>
 <h3 id="user-content-in-your-code" class="deep-link">In your code</h3>
-<div class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="storage modifier js"><span>const</span></span><span>&#xA0;fs&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>fs</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>const</span></span><span>&#xA0;markpress&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>markpress</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="comment line double-slash js"><span class="punctuation definition comment js"><span>//</span></span><span>&#xA0;defaults:</span><span>&#xA0;</span></span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>const</span></span><span>&#xA0;options&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;layout</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>horizontal</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;theme</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>light</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;autoSplit</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean true js"><span>true</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;allowHtml</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean false js"><span>false</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;verbose</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean false js"><span>false</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div><div class="line"><span class="source js"><span>markpress</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>input.md</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;options</span><span class="meta brace round js"><span>)</span></span><span class="meta delimiter method period js"><span>.</span></span><span>then</span><span class="meta brace round js"><span>(</span><span>(</span></span><span>content</span><span class="meta brace round js"><span>)</span></span><span>&#xA0;</span><span class="keyword operator js"><span>=</span><span>&gt;</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;fs</span><span class="meta delimiter method period js"><span>.</span></span><span>writeFileSync</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>output.html</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;content</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div></pre></div>
+<div class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="storage modifier js"><span>const</span></span><span>&#xA0;fs&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>fs</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>const</span></span><span>&#xA0;markpress&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>markpress</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>const</span></span><span>&#xA0;options&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;layout</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>horizontal</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;theme</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>light</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;autoSplit</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean true js"><span>true</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;allowHtml</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean false js"><span>false</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;verbose</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="constant language boolean false js"><span>false</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div><div class="line"><span class="source js"><span>markpress</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>input.md</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;options</span><span class="meta brace round js"><span>)</span></span><span class="meta delimiter method period js"><span>.</span></span><span>then</span><span class="meta brace round js"><span>(</span><span>(</span></span><span>content</span><span class="meta brace round js"><span>)</span></span><span>&#xA0;</span><span class="keyword operator js"><span>=</span><span>&gt;</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;fs</span><span class="meta delimiter method period js"><span>.</span></span><span>writeFileSync</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation definition string begin js"><span>&apos;</span></span><span>output.html</span><span class="punctuation definition string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;content</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div></pre></div>
 </div><div class="step" data-x="-2600" data-y="1300" data-rotate-x="90" data-rotate-y="45"><!--slide-attr x=-2600 y=1300 rotate-x=90 rotate-y=45 -->
-<h2 id="user-content-markdown-format" class="deep-link">Markdown format</h2>
+<h2 id="user-content-markdown-format-custom-layout-and-styles" class="deep-link">Markdown format, Custom Layout and Styles</h2>
 <ul>
-<li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Standard Markdown format</a> is supported via <a href="https://www.npmjs.com/package/marky-markdown">marky-markdown</a> package.</li>
+<li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Github Flavored Markdown format</a> is supported via <a href="https://www.npmjs.com/package/marky-markdown">marky-markdown</a> package, including <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables">tables</a>.</li>
 <li>Use <code>------</code> to separate each slide, or user the <code>-a</code> option to generate a slide each time an <code>h1</code> element is found.</li>
 <li>Use HTML comments to set <a href="https://github.com/impress/impress.js/blob/master/index.html#L203">impress slide attributes</a>, such as <code>&lt;!--slide-attr x=0 y=0 rotate=0 scale=1 --&gt;</code>. <a href="https://gamell.github.io/markpress/examples/custom-layout.html">Example</a></li>
-<li>You can embedded HTML in your markdown file (to embed videos or maps for example)</li>
+<li>You can <strong>customize the styles</strong> by embedding CSS in <code>&lt;style&gt;</code> tags as you would in any HTML.</li>
+<li>You can <strong>embedded any HTML in your markdown file</strong> and it will be included in your slides HTML.</li>
 </ul>
 </div><div class="step" data-x="0" data-y="4000" data-z="0" data-rotate-y="0"><!--slide-attr x=0 y=4000 z=0 rotate-y=0 -->
 <h2 id="user-content-options" class="deep-link">Options</h2>
 <h3 id="user-content--a---auto-split-or--autosplit-boolean--in-code" class="deep-link">-a, --auto-split or { autoSplit: Boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code></p>
 <p>Automatically create a slide for every <code>H1</code> (<code># Heading 1</code>) level element (if <code>------</code> are present will be removed and ignored)</p>
-<h3 id="user-content--i-file-or---input-file" class="deep-link">-i &lt;file&gt; or --input &lt;file&gt;</h3>
-<p>Path to the input file. A <a href="https://daringfireball.net/projects/markdown/">Mardown file</a> is expected.</p>
 </div><div class="step" data-x="0" data-y="4000" data-z="1200" data-rotate-y="45"><!--slide-attr x=0 y=4000 z=1200 rotate-y=45 -->
 <h3 id="user-content--l---layout-or--layout-string--in-code" class="deep-link">-l, --layout or { layout: String } in code</h3>
 <p><strong>Default</strong>: <code>horizontal</code></p>
-<p>Automatically generate the layout for the slides. <strong>This option will be ignored if any HTML comment specifying slide positioning attributes is found</strong>, so please remove all HTML comments (<code>&lt;!--slide-attr ... --&gt;</code>) from the markdown file if you want to use this feature.</p>
-<p>Available Layouts:</p>
+<p>Automatically generate the layout for the slides. <strong>This option will be ignored if any HTML comment specifying slide positioning attributes is found</strong>, so please remove all HTML comments (<code>&lt;!--slide-attr ... --&gt;</code>) from the markdown file if you want to use this feature. Available Layouts:</p>
 <ul>
 <li><code>horizontal</code> (default): Slides positioned along the <code>x</code> axis. <a href="https://gamell.github.io/markpress/examples/horizontal.html">Example</a></li>
 <li><code>vertical</code>: Slides positioned along the <code>y</code> axis. <a href="https://gamell.github.io/markpress/examples/vertical.html">Example</a></li>
@@ -931,8 +924,6 @@ kbd {
 <h3 id="user-content--nh---no-html-or--allowhtml-boolean--in-code" class="deep-link">-nh, --no-html or { allowHtml: boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code> (HTML allowed)</p>
 <p>Disallow embedding of HTML code in the Markdown file. You should leave it enabled if you want to use things like <code>&lt;kbd&gt;&lt;/kbd&gt;</code> tags, embed videos, etc.</p>
-<h3 id="user-content--o-file-or---output-file" class="deep-link">-o &lt;file&gt; or --output &lt;file&gt;</h3>
-<p>Path to the output HTMl file.</p>
 </div><div class="step" data-x="2400" data-y="4000" data-z="2400" data-rotate-y="135"><!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 <h3 id="user-content--s---silent-or--silent-boolean--in-code" class="deep-link">-s, --silent or { silent: Boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code></p>
@@ -949,9 +940,9 @@ kbd {
 </div><div class="step" data-x="1000" data-y="1000" data-scale="0.5"><!--slide-attr x=1000 y=1000 scale=0.5 -->
 <h2 id="user-content-developing" class="deep-link">Developing</h2>
 <h3 id="user-content-run" class="deep-link">Run</h3>
-<p><code>$ node --harmony ./bin/markpress.js -i input.html -o output.html</code></p>
+<p><code>$ node --harmony ./bin/markpress.js input.html output.html</code></p>
 <h3 id="user-content-debug" class="deep-link">Debug</h3>
-<p><code>$ node debug --harmony ./bin/markpress.js -i input.html -o output.html</code></p>
+<p><code>$ node debug --harmony ./bin/markpress.js input.html output.html</code></p>
 <h3 id="user-content-linking" class="deep-link">Linking</h3>
 <p><code>npm link</code></p>
 <h3 id="user-content-installing-local-version-globally" class="deep-link">Installing local version globally</h3>
@@ -1825,3 +1816,4 @@ kbd {
 </script>
     <script>impress().init();</script>
 </body>
+</html>
