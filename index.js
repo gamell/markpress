@@ -31,9 +31,6 @@ const commaRegex = /\s*,\s*/;
 const spaceRegex = /\s/;
 const emptySlideRegex = /^\s+$/;
 
-// pageBreak
-const pageBreak = '<div class="page-break"></div>';
-
 // setting the app root folder for later use in other files
 global.appRoot = pathResolve(__dirname);
 
@@ -120,7 +117,7 @@ function processMarkdownFile(path, optionsArg) {
   const slidesHtml = slides.reduce((prev, content) =>
     prev.then(
       (h0) => createSlideHtml(content, options.layout).then(
-        (h1) => h0 + pageBreak + h1
+        (h1) => h0 + h1
       )
     ),
     Promise.resolve('') /* initial value */);
