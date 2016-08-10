@@ -72,10 +72,13 @@ function createSlideHtml(content, layout) {
 function createImpressHtml(html, title) {
   const path = util.getPath('resources/');
   const tpl = util.readFile(path, 'impress.tpl');
-  return getCss(`${path}/styles`, options.theme).then((css) => {
+  const css = getCss(`${path}/styles`, options.theme);
+  const printCss = getCss(`${path}/styles/print.less`);
+  return Promise.all([css, printCss]).then((styles) => {
     const data = {
       title,
-      css,
+      css: styles[0], // css
+      printCss: styles[1], // printCss
       js: util.readFile(path, 'impress.js'),
       html,
     };
@@ -92,7 +95,6 @@ function splitSlides(markdown, autoSplit) {
     log.info('auto-split option enabled, splitting tiles automatically. Ignoring \'------\'');
     // remove the separators, if any and split by H1
     const slideArray = markdown.replace(slideSeparatorRegex, '').split(h1Regex);
-    debugger;
     if (slideArray[0].match(emptySlideRegex) !== null) slideArray.shift(); // remove first slide if empty
     return slideArray;
   }
