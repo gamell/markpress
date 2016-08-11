@@ -48,12 +48,26 @@ describe('markpress feature test', () => {
     it('should allow HTML by default', () => {
       assert.include(
         html,
-        '<h2>It <strong>should</strong> support HTML</h2>', 'HTML contains correct native HTML code'
+        '<h2>It <strong>should</strong> support HTML</h2>', 'HTML contains correct native HTML tags'
       );
     });
   });
-  describe('Emoji Support', () => {
-
+  describe('CSS', () => {
+    it('should contain Print CSS', () => {
+      assert.include(html, '<style media="print"', 'HTML contains Print CSS tag');
+      assert.include(
+        html,
+        'break-after: always !important;',
+        'HTML includes page-breaks for printing'
+      );
+    });
+  });
+  describe('Feature Support', () => {
+    it('should support Emojis', () => {
+      // U+1f42a = Camel Emoji
+      // &#x1F42A; = Camel Emoji encoded for HTML
+      assert.include(html, 'Emoji: &#x1F42A;', 'HTML contains Emoji');
+    });
   });
   describe('Code Block support', () => {
 
