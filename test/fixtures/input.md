@@ -19,6 +19,8 @@
 
 Bla Bla Bla
 
+Emoji: :dromedary_camel:
+
 -------------------
 
 # Fourth slide
