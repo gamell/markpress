@@ -13,7 +13,7 @@ let html;
 describe('markpress feature test', () => {
   before((done) => {
     markpress(input, {
-      autoSplit: true
+      autoSplit: true,
     }).then((content) => {
       html = content;
       done();
@@ -61,21 +61,40 @@ describe('markpress feature test', () => {
         'HTML includes page-breaks for printing'
       );
     });
+    it('should contain the impressjs CSS', () => {
+      assert.include(html, '<style type="text/css">', 'HTML contains general CSS tag');
+      assert.include(
+        html,
+        'break-after: always !important;',
+        'HTML includes page-breaks for printing'
+      );
+    });
   });
   describe('Feature Support', () => {
     it('should support Emojis', () => {
       // U+1f42a = Camel Emoji
-      // &#x1F42A; = Camel Emoji encoded for HTML
+      // &#x1F42A; = Camel Emoji encoded for HTML❤️
       assert.include(html, 'Emoji: &#x1F42A;', 'HTML contains Emoji');
     });
-  });
-  describe('Code Block support', () => {
+    it('should support simple Code Blocks', () => {
+      assert.include(
+        html,
+        '<code>Code code code</code>',
+        'HTML contains simple code blocks'
+      );
+    });
+    it('should support language-specifc Code Blocks', () => {
+      assert.include(
+        html,
+        '<code>Code code code</code>',
+        'HTML contains simple code blocks'
+      );
+    });
+    it('should support Tables', () => {
 
-  });
-  describe('Themes', () => {
+    });
+    it('should support Layouts', () => {
 
-  });
-  describe('Layouts', () => {
-
+    });
   });
 });

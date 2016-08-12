@@ -27,6 +27,11 @@ Emoji: :dromedary_camel:
 
 `Code code code`
 
+```js
+
+var text = 'helloWorld';
+```
+
 > Blocquote bla bla bla bla
 
 ------------------------
