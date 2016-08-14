@@ -52,12 +52,8 @@ program.version(pkg.version)
     })
     .action((i, o) => {
       input = path.resolve(basePath, i);
-      if (!!o) {
-        output = path.resolve(basePath, o);
-      } else {
-        const ext = path.extname(input);
-        output = input.replace(ext, '.html');
-      }
+      const ext = path.extname(input);
+      output = (!!o) ? path.resolve(basePath, o) : input.replace(ext, '.html');
     })
     .parse(process.argv);
 
@@ -78,6 +74,11 @@ const options = {
 };
 
 log.init(options.verbose);
+
+if (path.extname(input).toUpperCase() !== '.MD') {
+  log.warn('Are you sure it\'s the right file? Markdown extension not found.');
+}
+
 const t0 = new Date();
 
 // markpress() returns a co promise

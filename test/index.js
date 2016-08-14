@@ -14,6 +14,7 @@ describe('markpress feature test', () => {
   before((done) => {
     markpress(input, {
       autoSplit: true,
+      theme: 'dark',
     }).then((content) => {
       html = content;
       done();
@@ -86,15 +87,30 @@ describe('markpress feature test', () => {
     it('should support language-specifc Code Blocks', () => {
       assert.include(
         html,
-        '<code>Code code code</code>',
-        'HTML contains simple code blocks'
+        '<span class="punctuation terminator statement js"><span>;</span>',
+        'HTML contains language-specific code blocks'
       );
     });
     it('should support Tables', () => {
-
+      assert.include(
+        html,
+        '<table>',
+        'HTML contains table tag'
+      );
     });
     it('should support Layouts', () => {
-
+      assert.include(
+        html,
+        'class="step" data-x="2600"',
+        'HTML contains layout position data attributes'
+      );
+    });
+    it('should support Themes', () => {
+      assert.include(
+        html,
+        'background: radial-gradient(#333, #0f0f0f);',
+        'HTML contains dark theme CSS'
+      );
     });
   });
 });
