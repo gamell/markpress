@@ -2,6 +2,8 @@
 
 # Markpress
 
+[![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress)
+
 `markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) `html` presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
 [This is the outcome](https://gamell.github.io/markpress) of feeding this very `README.md` to markpress: `$ markpress README.md`
@@ -95,7 +97,7 @@ Automatically create a slide for every `H1` (`# Heading 1`) level element (if `-
 
 **Default**: `horizontal`
 
-Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positioning attributes is found**, so please remove all HTML comments (`<!--slide-attr ... -->`) from the markdown file if you want to use this feature. Available Layouts:
+Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positioning attributes is found**, so please remove **all** slide-positioning comments (`<!--slide-attr ... -->`) from the markdown file if you want to use this feature. Available Layouts:
 
 - `horizontal` (default): Slides positioned along the `x` axis. [Example](https://gamell.github.io/markpress/examples/horizontal.html)
 - `vertical`: Slides positioned along the `y` axis. [Example](https://gamell.github.io/markpress/examples/vertical.html)
@@ -114,18 +116,18 @@ Automatically generate the layout for the slides. **This option will be ignored 
 
 By default, markpress will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 
-### `-nh`, `--no-html` or `{ allowHtml: boolean }` in code
+### `-sa`, `--sanitize` or `{ sanitize: boolean }` in code
 
-**Default**: `false` (HTML allowed)
+**Default**: `false` (*dangerous* HTML & scripts allowed)
 
-Disallow embedding of HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
 
 ------------
 <!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 
-### `-s`, `--silent` or `{ silent: Boolean }` in code
+### `-si`, `--silent` or `{ silent: Boolean }` in code
 
-**Default**: `false`
+**Default**: `false` in CLI mode, **defaults to silent when used as a module**
 
 Silence all console outputs.
 

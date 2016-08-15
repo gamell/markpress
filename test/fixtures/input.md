@@ -1,6 +1,9 @@
 # Test markdown page
 <h2>It <strong>should</strong> support HTML</h2>
+<script>var helloWorld;</script>
 
+-------------------
+this slide will only be created when auto-split = false
 -------------------
 
 # Second slide
@@ -27,7 +30,12 @@ Emoji: :dromedary_camel:
 
 `Code code code`
 
-> Blocquote bla bla bla bla
+```js
+
+var text = 'helloWorld';
+```
+
+> Blockquote bla bla bla bla
 
 ------------------------
 
@@ -46,3 +54,4 @@ Emoji: :dromedary_camel:
 Transparent image!
 
 ![bitcoin image](http://www.canbike.org/public/images/030114/Bitcoin_Logo.png)
+![local image](joan-gamell.png)
