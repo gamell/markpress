@@ -54,3 +54,4 @@ var text = 'helloWorld';
 Transparent image!
 
 ![bitcoin image](http://www.canbike.org/public/images/030114/Bitcoin_Logo.png)
+![local image](joan-gamell.png)

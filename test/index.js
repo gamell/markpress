@@ -7,7 +7,7 @@ const path = require('path');
 const markpress = require('../index.js');
 const input = path.resolve(__dirname, './fixtures/input.md');
 
-const slidesRegex = /<div class\="step"/gi
+const slidesRegex = /<div class="step"/gi;
 
 let sandbox;
 let html;
@@ -123,6 +123,44 @@ describe('markpress feature test', function test() {
     });
     it('should contain dark theme CSS', () => {
       assert.include(html, 'background: radial-gradient(#333, #0f0f0f);');
+    });
+  });
+  describe('Image embed: On', () => {
+    before((done) => {
+      generateHtml({
+        noEmbed: false,
+      }, done);
+    });
+    it('should not contain the remote image url', () => {
+      assert.notInclude(html, 'http://www.canbike.org/public/images/030114/Bitcoin_Logo.png');
+    });
+    it('should not contain local image path', () => {
+      assert.notInclude(html, 'joan-gamell.png');
+    });
+    it('should contain remote embedded image', () => {
+      assert.include(html, 'ABWggAAVoIBmJzXMQAAABl0RVh0U29mdHdh');
+    });
+    it('should contain local embedded image', () => {
+      assert.include(html, '/4CkYFhJeWFjarSFgTxPVsG80LCCKbhyzjxyUkIhOSEpKODQAA');
+    });
+  });
+  describe('Image embed: Off', () => {
+    before((done) => {
+      generateHtml({
+        noEmbed: true,
+      }, done);
+    });
+    it('should contain the remote image url', () => {
+      assert.include(html, 'http://www.canbike.org/public/images/030114/Bitcoin_Logo.png');
+    });
+    it('should contain local image path', () => {
+      assert.include(html, 'joan-gamell.png');
+    });
+    it('should contain remote embedded image', () => {
+      assert.notInclude(html, 'ABWggAAVoIBmJzXMQAAABl0RVh0U29mdHdh');
+    });
+    it('should contain local embedded image', () => {
+      assert.notInclude(html, '/4CkYFhJeWFjarSFgTxPVsG80LCCKbhyzjxyUkIhOSEpKODQAA');
     });
   });
   describe('Feature Support', () => {

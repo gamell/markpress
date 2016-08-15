@@ -95,7 +95,7 @@ Automatically create a slide for every `H1` (`# Heading 1`) level element (if `-
 
 **Default**: `horizontal`
 
-Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positioning attributes is found**, so please remove all HTML comments (`<!--slide-attr ... -->`) from the markdown file if you want to use this feature. Available Layouts:
+Automatically generate the layout for the slides. **This option will be ignored if any HTML comment specifying slide positioning attributes is found**, so please remove **all** slide-positioning comments (`<!--slide-attr ... -->`) from the markdown file if you want to use this feature. Available Layouts:
 
 - `horizontal` (default): Slides positioned along the `x` axis. [Example](https://gamell.github.io/markpress/examples/horizontal.html)
 - `vertical`: Slides positioned along the `y` axis. [Example](https://gamell.github.io/markpress/examples/vertical.html)
