@@ -21,7 +21,7 @@ program.version(pkg.version)
     .usage(`<input file> [output file] [options] \n\n
         If no outpuf file is passed, the input's filename will be used changing the extension to .html`)
     .arguments('<input> [output]')
-    .option('-s, --silent', 'Do not display progress & debug messages')
+    .option('-si, --silent', 'Do not display progress & debug messages')
     .option(
       '-l, --layout <layout>',
       'The impress.js generated layout [horizontal (default)|vertical|3d-push|3d-pull|grid|random-7d|random]',
@@ -39,8 +39,8 @@ program.version(pkg.version)
       'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
     )
     .option(
-      '-nh, --no-html',
-      'Disallow embedded HTML in the Markdown file (e.g. to use <kbd></kbd>)'
+      '-sa, --sanitize',
+      'Disallow *dangerous* HTML in the Markdown file (e.g. <script> tags)'
     )
     .option(
       '-ne --no-embed',
