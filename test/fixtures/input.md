@@ -3,6 +3,8 @@
 <script>var helloWorld;</script>
 
 -------------------
+this slide will only be created when auto-split = false
+-------------------
 
 # Second slide
 
@@ -33,7 +35,7 @@ Emoji: :dromedary_camel:
 var text = 'helloWorld';
 ```
 
-> Blocquote bla bla bla bla
+> Blockquote bla bla bla bla
 
 ------------------------
 
