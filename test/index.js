@@ -7,6 +7,8 @@ const path = require('path');
 const markpress = require('../index.js');
 const input = path.resolve(__dirname, './fixtures/input.md');
 
+const slidesRegex = /<div class\="step"/gi
+
 let sandbox;
 let html;
 
@@ -18,6 +20,8 @@ const generateHtml = (options, done) => {
 };
 
 describe('markpress feature test', function test() {
+  // can't use arrow functions because of 'this' problem
+  // https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/
   this.timeout(5000);
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
@@ -25,7 +29,7 @@ describe('markpress feature test', function test() {
   afterEach(() => {
     sandbox.restore();
   });
-  describe('Auto-split: on', () => {
+  describe('Auto-split: On', () => {
     before((done) => {
       generateHtml({
         autoSplit: true,
@@ -44,6 +48,21 @@ describe('markpress feature test', function test() {
         html,
         '<h1 id="user-content-third-slide" class="deep-link">Third slide</h1>'
       );
+    });
+    it('should not split slides by \'-----\'', () => {
+      const slides = html.match(slidesRegex);
+      assert.equal(slides.length, 6);
+    });
+  });
+  describe('Auto-split: Off', () => {
+    before((done) => {
+      generateHtml({
+        autoSplit: false,
+      }, done);
+    });
+    it('should split slides by \'-----\'', () => {
+      const slides = html.match(slidesRegex);
+      assert.equal(slides.length, 7);
     });
   });
   describe('Sanitize: off', () => {
@@ -84,6 +103,26 @@ describe('markpress feature test', function test() {
         '<script>var helloWorld;</script>',
         'HTML doesn\'t contain script tag'
       );
+    });
+  });
+  describe('Theme: Light', () => {
+    before((done) => {
+      generateHtml({
+        theme: 'light',
+      }, done);
+    });
+    it('should contain light theme CSS', () => {
+      assert.include(html, 'background: radial-gradient(#f0f0f0, #bebebe);');
+    });
+  });
+  describe('Theme: Dark', () => {
+    before((done) => {
+      generateHtml({
+        theme: 'dark',
+      }, done);
+    });
+    it('should contain dark theme CSS', () => {
+      assert.include(html, 'background: radial-gradient(#333, #0f0f0f);');
     });
   });
   // describe('CSS', () => {
