@@ -14,7 +14,7 @@ const optionDefaults = {
   theme: 'light',
   noEmbed: false,
   autoSplit: false,
-  noHtml: false,
+  sanitize: false,
   verbose: false,
 };
 

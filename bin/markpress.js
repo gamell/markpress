@@ -67,7 +67,7 @@ const options = {
   layout: program.layout,
   style: program.style,
   autoSplit: program.autoSplit,
-  noHtml: program.noHtml,
+  sanitize: program.sanitize,
   verbose: !program.silent, // output logs
   theme: program.theme,
   noEmbed: program.noEmbed,

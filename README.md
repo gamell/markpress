@@ -114,18 +114,18 @@ Automatically generate the layout for the slides. **This option will be ignored 
 
 By default, markpress will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 
-### `-nh`, `--no-html` or `{ allowHtml: boolean }` in code
+### `-sa`, `--sanitize` or `{ sanitize: boolean }` in code
 
-**Default**: `false` (HTML allowed)
+**Default**: `false` (*dangerous* HTML & scripts allowed)
 
-Disallow embedding of HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
 
 ------------
 <!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 
-### `-s`, `--silent` or `{ silent: Boolean }` in code
+### `-si`, `--silent` or `{ silent: Boolean }` in code
 
-**Default**: `false`
+**Default**: `false` (in CLI mode, **defaults to silent when used as a module**)
 
 Silence all console outputs.
 

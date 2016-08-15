@@ -10,26 +10,27 @@ const input = path.resolve(__dirname, './fixtures/input.md');
 let sandbox;
 let html;
 
-describe('markpress feature test', () => {
-  before((done) => {
-    markpress(input, {
-      autoSplit: true,
-      theme: 'dark',
-    }).then((content) => {
-      html = content;
-      done();
-    }).catch(done);
-  });
-  after(() => {
+const generateHtml = (options, done) => {
+  markpress(input, options).then((content) => {
+    html = content;
+    done();
+  }).catch(done);
+};
 
-  });
+describe('markpress feature test', function test() {
+  this.timeout(5000);
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
   afterEach(() => {
     sandbox.restore();
   });
-  describe('Auto Split', () => {
+  describe('Auto-split: on', () => {
+    before((done) => {
+      generateHtml({
+        autoSplit: true,
+      }, done);
+    });
     it('should split slides correctly by H1', () => {
       assert.include(
         html,
@@ -45,72 +46,104 @@ describe('markpress feature test', () => {
       );
     });
   });
-  describe('Allow HTML', () => {
-    it('should allow HTML by default', () => {
+  describe('Sanitize: off', () => {
+    before((done) => {
+      generateHtml({
+        noHtml: false,
+      }, done);
+    });
+    it('should not remove HTML', () => {
       assert.include(
         html,
         '<h2>It <strong>should</strong> support HTML</h2>', 'HTML contains correct native HTML tags'
       );
     });
-  });
-  describe('CSS', () => {
-    it('should contain Print CSS', () => {
-      assert.include(html, '<style media="print"', 'HTML contains Print CSS tag');
+    it('should not remove <script>', () => {
       assert.include(
         html,
-        'break-after: always !important;',
-        'HTML includes page-breaks for printing'
-      );
-    });
-    it('should contain the impressjs CSS', () => {
-      assert.include(html, '<style type="text/css">', 'HTML contains general CSS tag');
-      assert.include(
-        html,
-        'break-after: always !important;',
-        'HTML includes page-breaks for printing'
+        '<script>var helloWorld;</script>',
+        'HTML contains script tag'
       );
     });
   });
-  describe('Feature Support', () => {
-    it('should support Emojis', () => {
-      // U+1f42a = Camel Emoji
-      // &#x1F42A; = Camel Emoji encoded for HTML❤️
-      assert.include(html, 'Emoji: &#x1F42A;', 'HTML contains Emoji');
+  describe('Sanitize: On', () => {
+    before((done) => {
+      generateHtml({
+        noHtml: true,
+      }, done);
     });
-    it('should support simple Code Blocks', () => {
+    it('should not remove HTML', () => {
       assert.include(
         html,
-        '<code>Code code code</code>',
-        'HTML contains simple code blocks'
+        '<h2>It <strong>should</strong> support HTML</h2>', 'HTML contains correct native HTML tags'
       );
     });
-    it('should support language-specifc Code Blocks', () => {
-      assert.include(
+    it('should remove <script>', () => {
+      assert.notInclude(
         html,
-        '<span class="punctuation terminator statement js"><span>;</span>',
-        'HTML contains language-specific code blocks'
-      );
-    });
-    it('should support Tables', () => {
-      assert.include(
-        html,
-        '<table>',
-        'HTML contains table tag'
-      );
-    });
-    it('should support Layouts', () => {
-      assert.include(
-        html,
-        'class="step" data-x="2600"',
-        'HTML contains layout position data attributes'
-      );
-    });
-    it('should support Themes', () => {
-      assert.include(
-        html,
-        'background: radial-gradient(#333, #0f0f0f);',
-        'HTML contains dark theme CSS'
+        '<script>var helloWorld;</script>',
+        'HTML doesn\'t contain script tag'
       );
     });
   });
+  // describe('CSS', () => {
+  //   it('should contain Print CSS', () => {
+  //     assert.include(html, '<style media="print"', 'HTML contains Print CSS tag');
+  //     assert.include(
+  //       html,
+  //       'break-after: always !important;',
+  //       'HTML includes page-breaks for printing'
+  //     );
+  //   });
+  //   it('should contain the impressjs CSS', () => {
+  //     assert.include(html, '<style type="text/css">', 'HTML contains general CSS tag');
+  //     assert.include(
+  //       html,
+  //       'break-after: always !important;',
+  //       'HTML includes page-breaks for printing'
+  //     );
+  //   });
+  // });
+  // describe('Feature Support', () => {
+  //   it('should support Emojis', () => {
+  //     // U+1f42a = Camel Emoji
+  //     // &#x1F42A; = Camel Emoji encoded for HTML❤️
+  //     assert.include(html, 'Emoji: &#x1F42A;', 'HTML contains Emoji');
+  //   });
+  //   it('should support simple Code Blocks', () => {
+  //     assert.include(
+  //       html,
+  //       '<code>Code code code</code>',
+  //       'HTML contains simple code blocks'
+  //     );
+  //   });
+  //   it('should support language-specifc Code Blocks', () => {
+  //     assert.include(
+  //       html,
+  //       '<span class="punctuation terminator statement js"><span>;</span>',
+  //       'HTML contains language-specific code blocks'
+  //     );
+  //   });
+  //   it('should support Tables', () => {
+  //     assert.include(
+  //       html,
+  //       '<table>',
+  //       'HTML contains table tag'
+  //     );
+  //   });
+  //   it('should support Layouts', () => {
+  //     assert.include(
+  //       html,
+  //       'class="step" data-x="2600"',
+  //       'HTML contains layout position data attributes'
+  //     );
+  //   });
+  //   it('should support Themes', () => {
+  //     assert.include(
+  //       html,
+  //       'background: radial-gradient(#333, #0f0f0f);',
+  //       'HTML contains dark theme CSS'
+  //     );
+  //   });
+  // });
 });
