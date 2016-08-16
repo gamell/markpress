@@ -1,15 +1,15 @@
 'use strict';
 
-const marky = require('marky-markdown');
-const defaults = require('defaults');
-const layoutGenerator = require('./lib/layout');
-const log = require('./lib/log');
-const getCss = require('./lib/css-helper').getCss;
-const util = require('./lib/util');
-const transform = require('./lib/dom-transformer');
-const pathResolve = require('path').resolve;
+let marky = require('marky-markdown');
+let defaults = require('defaults');
+let layoutGenerator = require('./lib/layout');
+let log = require('./lib/log');
+let getCss = require('./lib/css-helper').getCss;
+let util = require('./lib/util');
+let transform = require('./lib/dom-transformer');
+let pathResolve = require('path').resolve;
 
-const optionDefaults = {
+let optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
   noEmbed: false,
@@ -64,7 +64,10 @@ function getLayoutData(slide, layout) {
 }
 
 function createSlideHtml(content, layout) {
-  return transform(marky(content, { sanitize: options.noHtml }), !options.noEmbed).then(($) =>
+  return transform(
+    marky(content, { sanitize: options.sanitize }),
+    !options.noEmbed
+  ).then(($) =>
     `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`
   );
 }

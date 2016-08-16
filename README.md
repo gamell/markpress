@@ -75,7 +75,7 @@ markpress('input.md', options).then((content) => {
 + [Github Flavored Markdown format](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) is supported via [marky-markdown](https://www.npmjs.com/package/marky-markdown) package, including [tables](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables).
 + Use `------` to separate each slide, or user the `-a` option to generate a slide each time an `h1` element is found.
 + Use HTML comments to set [impress slide attributes](https://github.com/impress/impress.js/blob/master/index.html#L203), such as `<!--slide-attr x=0 y=0 rotate=0 scale=1 -->`. [Example](https://gamell.github.io/markpress/examples/custom-layout.html)
-+ You can **customize the styles** by embedding CSS in `<style>` tags as you would in any HTML.
++ You can **customize the styles** by embedding CSS in `<style>` tags as you would in any HTML - be careful as an empty slide will be created when including styles at the top and enabling the `-a --auto-split` flag.
 + You can **embedded any HTML in your markdown file** and it will be included in your slides HTML.
 
 -------------------------------
@@ -120,7 +120,7 @@ By default, markpress will try to embed (using base64 encoding) the referenced i
 
 **Default**: `false` (*dangerous* HTML & scripts allowed)
 
-Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it enabled if you want to use things like `<kbd></kbd>` tags, embed videos, etc.
+Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it disabled if you want to use custom `<style>` tags, embed videos, etc.
 
 ------------
 <!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->

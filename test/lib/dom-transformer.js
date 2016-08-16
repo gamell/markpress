@@ -9,7 +9,7 @@ const fetch = require('fetch-base64');
 
 let sandbox;
 
-describe('CSS Helper', () => {
+describe('DOM Transformer', () => {
   before(() => {
   });
   after(() => {
