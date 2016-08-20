@@ -25,9 +25,9 @@ describe('CSS Helper', () => {
   afterEach(() => {
     sandbox.restore();
   });
-  describe('getCss()', () => {
+  describe('get()', () => {
     it('should log an error when the theme is invalid', (done) => {
-      cssHelper.getCss('non-existant-path', 'invalid-theme').then(() => {
+      cssHelper.get('non-existant-path', 'invalid-theme').then(() => {
         assert(log.error.calledOnce);
         done();
       }).catch(done);
@@ -35,7 +35,7 @@ describe('CSS Helper', () => {
 
     it('should log an error when the path is invalid', (done) => {
       sandbox.stub(util, 'readFile', () => { throw new Error('File not found'); });
-      cssHelper.getCss('incorrect-path', 'dark').then(() => {
+      cssHelper.get('incorrect-path', 'dark').then(() => {
         const testPath = 'incorrect-path/styles.less';
         assert(util.readFile.calledOnce);
         assert(util.readFile.calledWith(testPath));
@@ -46,7 +46,7 @@ describe('CSS Helper', () => {
 
     it('should call less.render when path and theme are valid', (done) => {
       sandbox.stub(util, 'readFile', () => 'test less file');
-      cssHelper.getCss('correct-path', 'dark').then(() => {
+      cssHelper.get('correct-path', 'dark').then(() => {
         const testPath = 'correct-path/styles.less';
         assert(util.readFile.calledOnce);
         assert(util.readFile.calledWith(testPath));

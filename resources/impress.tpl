@@ -5,7 +5,7 @@
     <!-- <meta name="viewport" content="width=1024" /> -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>${title}</title>
-    <style type="text/css">${css}</style>
+    <style type="text/css">${webCss}</style>
     <style media="print" type="text/css">${printCss}</style>
 </head>
 <body>
