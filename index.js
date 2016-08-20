@@ -1,10 +1,13 @@
+/* eslint-disable prefer-const */
+// Disabling const linting because of rewire
+
 'use strict';
 
 let marky = require('marky-markdown');
 let defaults = require('defaults');
 let layoutGenerator = require('./lib/layout');
 let log = require('./lib/log');
-let getCss = require('./lib/css-helper').getCss;
+let css = require('./lib/css-helper');
 let util = require('./lib/util');
 let transform = require('./lib/dom-transformer');
 let pathResolve = require('path').resolve;
@@ -20,6 +23,8 @@ let optionDefaults = {
 
 let slides = [];
 let options = {};
+
+/* eslint-enable prefer-const */
 
 // Regex
 
@@ -75,12 +80,12 @@ function createSlideHtml(content, layout) {
 function createImpressHtml(html, title) {
   const path = util.getPath('resources/');
   const tpl = util.readFile(path, 'impress.tpl');
-  const css = getCss(`${path}/styles`, options.theme);
-  const printCss = getCss(`${path}/styles/print.less`);
-  return Promise.all([css, printCss]).then((styles) => {
+  const webCss = css.get(`${path}/styles`, options.theme);
+  const printCss = css.get(`${path}/styles/print.less`);
+  return Promise.all([webCss, printCss]).then((styles) => {
     const data = {
       title,
-      css: styles[0], // css
+      webCss: styles[0], // css
       printCss: styles[1], // printCss
       js: util.readFile(path, 'impress.js'),
       html,
@@ -98,7 +103,8 @@ function splitSlides(markdown, autoSplit) {
     log.info('auto-split option enabled, splitting tiles automatically. Ignoring \'------\'');
     // remove the separators, if any and split by H1
     const slideArray = markdown.replace(slideSeparatorRegex, '').split(h1Regex);
-    if (slideArray[0].match(emptySlideRegex) !== null) slideArray.shift(); // remove first slide if empty
+    // remove first slide if empty
+    if (slideArray[0].match(emptySlideRegex) !== null) slideArray.shift();
     return slideArray;
   }
   return markdown.split(slideSeparatorRegex);
