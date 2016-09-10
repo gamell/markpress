@@ -60,10 +60,20 @@ const options = {
   theme: 'light',
   autoSplit: true,
   allowHtml: false,
-  verbose: false
+  verbose: false,
+  title: 'Optional <title> for output HTML'
 }
 markpress('input.md', options).then((content) => {
-      fs.writeFileSync('output.html', content);
+  fs.writeFileSync('output.html', content);
+});
+
+// or you can pass the Markdown content directly as parameter
+
+markpress(
+  '# This is markdown content \n > Test Blockquote',
+  options
+).then((content) => {
+  fs.writeFileSync('output.html', content);
 });
 ```
 

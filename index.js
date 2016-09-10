@@ -110,12 +110,25 @@ function splitSlides(markdown, autoSplit) {
   return markdown.split(slideSeparatorRegex);
 }
 
-function processMarkdownFile(path, optionsArg) {
+function processMarkdownFile(input, optionsArg) {
+  let markdown;
+  let title;
   options = defaults(optionsArg, optionDefaults);
-  global.mdFilePath = util.getDir(path);
-  const title = util.getFileName(path);
   log.init(options.verbose);
-  const markdown = String(util.readFile(path));
+  if (util.getExtUpperCase(input) === '.MD') { // treat input as path
+    const path = input;
+    log.info(`Path detected in input, using ${path} contents as input`);
+    global.mdFilePath = util.getDir(path);
+    title = options.title || util.getFileName(path);
+    markdown = String(util.readFile(path));
+  } else {
+    log.info('Using markdown content as input');
+    title = options.title || 'untitled';
+    markdown = input;
+    // using execution directory as path to which all resources will be relative to
+    global.mdFilePath = process.cwd();
+  }
+
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info('layout metadata found, ignoring default layout and --layout options');
@@ -134,9 +147,9 @@ function processMarkdownFile(path, optionsArg) {
 }
 
 // return Promise
-function init(path, optionsArg) {
+function init(input, optionsArg) {
   try {
-    return processMarkdownFile(path, optionsArg);
+    return processMarkdownFile(input, optionsArg);
   } catch (e) {
     return Promise.reject(e);
   }
