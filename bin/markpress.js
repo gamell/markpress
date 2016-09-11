@@ -70,7 +70,7 @@ const options = {
   sanitize: program.sanitize,
   verbose: !program.silent, // output logs
   theme: program.theme,
-  noEmbed: program.noEmbed,
+  noEmbed: program.noEmbed
 };
 
 log.init(options.verbose);
@@ -82,10 +82,10 @@ if (path.extname(input).toUpperCase() !== '.MD') {
 const t0 = new Date();
 
 // markpress() returns a co promise
-markpress(input, options).then((html) => {
+markpress(input, options).then(html => {
   fs.writeFileSync(output, html);
   log.info(`html presentation generated in ${new Date() - t0}ms`);
-}, (reason) => {
+}, reason => {
   log.error(`${reason} \n\nStackTrace: \n\n`);
   StackTrace.fromError(reason).then(console.log).then(() => process.exit(1));
 });

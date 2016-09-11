@@ -53,7 +53,9 @@
     },
     "rules": {
       "no-console": 0,
-      "strict": 0
+      "strict": 0,
+      "require-jsdoc": 0,
+      "max-len": ["warn", 120]
     }
   }
 }

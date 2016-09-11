@@ -19,6 +19,7 @@ let optionDefaults = {
   autoSplit: false,
   sanitize: false,
   verbose: false,
+  title: 'untitled'
 };
 
 let slides = [];
@@ -30,11 +31,14 @@ let options = {};
 
 const commentRegex = /^\s*<!--slide-attr\s*(.*?)\s*-->\s*$/gm;
 const slideSeparatorRegex = /^-{6,}$/m;
-const h1Regex = /^(?=#[^#]+)/m; // using positive lookahead to keep the separator - http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
+// using positive lookahead to keep the separator
+// http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
+const h1Regex = /^(?=#[^#]+)/m;
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
 const commaRegex = /\s*,\s*/;
 const spaceRegex = /\s/;
 const emptySlideRegex = /^\s+$/;
+const embeddedOptionsRegex = /<!--markpress-opt((.|\n)+)-->/;
 
 // setting the app root folder for later use in other files
 global.appRoot = pathResolve(__dirname);
@@ -53,11 +57,11 @@ function getLayoutFromSlide(slide) {
   // clean the match from possible 'data-' and split by comma or space
   const splitRegex = (match[1].indexOf(',') > -1) ? commaRegex : spaceRegex;
   const metaArr = match[1].replace(/data-/g, '').split(splitRegex);
-  metaArr.forEach((meta) => {
+  metaArr.forEach(meta => {
     const kv = meta.split('=');
     const key = kv[0];
     const value = kv[1].replace(cleanValueRegex, '$2');
-    const data = { key, value };
+    const data = {key, value};
     metaData.push(data);
   });
   return metaData;
@@ -65,14 +69,14 @@ function getLayoutFromSlide(slide) {
 
 function getLayoutData(slide, layout) {
   const layoutData = (layout === 'custom') ? getLayoutFromSlide(slide) : generateLayout(layout);
-  return layoutData.map((d) => `data-${d.key}="${d.value}"`).join(' ');
+  return layoutData.map(d => `data-${d.key}="${d.value}"`).join(' ');
 }
 
 function createSlideHtml(content, layout) {
   return transform(
-    marky(content, { sanitize: options.sanitize }),
+    marky(content, {sanitize: options.sanitize}),
     !options.noEmbed
-  ).then(($) =>
+  ).then($ =>
     `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`
   );
 }
@@ -82,13 +86,13 @@ function createImpressHtml(html, title) {
   const tpl = util.readFile(path, 'impress.tpl');
   const webCss = css.get(`${path}/styles`, options.theme);
   const printCss = css.get(`${path}/styles/print.less`);
-  return Promise.all([webCss, printCss]).then((styles) => {
+  return Promise.all([webCss, printCss]).then(styles => {
     const data = {
       title,
       webCss: styles[0], // css
       printCss: styles[1], // printCss
       js: util.readFile(path, 'impress.js'),
-      html,
+      html
     };
     return tpl.replace(/\$\{(\w+)\}/g, ($, $1) => data[$1]);
   });
@@ -110,25 +114,38 @@ function splitSlides(markdown, autoSplit) {
   return markdown.split(slideSeparatorRegex);
 }
 
-function processMarkdownFile(input, optionsArg) {
-  let markdown;
-  let title;
-  options = defaults(optionsArg, optionDefaults);
-  log.init(options.verbose);
+function getMarkdownAndSetBaseDir(input) {
   if (util.getExtUpperCase(input) === '.MD') { // treat input as path
     const path = input;
     log.info(`Path detected in input, using ${path} contents as input`);
     global.mdFilePath = util.getDir(path);
-    title = options.title || util.getFileName(path);
-    markdown = String(util.readFile(path));
-  } else {
-    log.info('Using markdown content as input');
-    title = options.title || 'untitled';
-    markdown = input;
-    // using execution directory as path to which all resources will be relative to
-    global.mdFilePath = process.cwd();
+    // options.title = options.title || util.getFileName(path);
+    return String(util.readFile(path));
   }
+  log.info('Using markdown content as input');
+  // using execution directory as path to which all resources will be relative to
+  global.mdFilePath = process.cwd();
+  return input;
+}
 
+function getEmbeddedOptions(markdown) {
+  try {
+    const matches = markdown.match(embeddedOptionsRegex);
+    if (!matches) return {};
+    return (JSON.parse(matches[1]) || {});
+  } catch (e) {
+    return {};
+  }
+}
+
+// Options priority: CLI Arguments > Embedded arguments in markdown > defaults
+function calculateOptions(optionsArg, markdown) {
+  const optionsEmbedded = getEmbeddedOptions(markdown);
+  const options = defaults(optionsArg, defaults(optionsEmbedded, optionDefaults));
+  return options;
+}
+
+function processMarkdown(markdown) {
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info('layout metadata found, ignoring default layout and --layout options');
@@ -138,21 +155,22 @@ function processMarkdownFile(input, optionsArg) {
   log.info(`creating ${options.layout} layout...`);
   const slidesHtml = slides.reduce((prev, content) =>
     prev.then(
-      (h0) => createSlideHtml(content, options.layout).then(
-        (h1) => h0 + h1
+      h0 => createSlideHtml(content, options.layout).then(
+        h1 => h0 + h1
       )
     ),
-    Promise.resolve('') /* initial value */);
-  return slidesHtml.then((html) => createImpressHtml(html, title));
+    Promise.resolve('')); // initial value
+  return slidesHtml.then(html => createImpressHtml(html, options.title));
 }
 
 // return Promise
-function init(input, optionsArg) {
+module.exports = (input, optionsArg) => {
   try {
-    return processMarkdownFile(input, optionsArg);
+    log.init(optionsArg.verbose || false);
+    const markdown = getMarkdownAndSetBaseDir(input);
+    options = calculateOptions(optionsArg, markdown);
+    return processMarkdown(markdown);
   } catch (e) {
     return Promise.reject(e);
   }
-}
-
-module.exports = init;
+};
