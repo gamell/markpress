@@ -2,6 +2,7 @@
 
 'use strict';
 
+const assert = require('chai').assert;
 const sinon = require('sinon');
 const path = require('path');
 const rewire = require('rewire');
@@ -149,6 +150,29 @@ describe('markpress option logic (index.js)', () => {
         sinon.match.any,
         true
       );
+      done();
+    }).catch(done);
+  });
+  it('save should be false by default', done => {
+    const embedOptionsSpy = sandbox.spy(markpress.__get__('embedOptions'));
+    const rewiredContext = markpress.__with__({embedOptions: embedOptionsSpy});
+    rewiredContext(() => markpress(input, {})).then(res => {
+      assert.equal(embedOptionsSpy.callCount, 0);
+      assert.isString(res[0]);
+      assert.isUndefined(res[1]);
+      done();
+    }).catch(done);
+  });
+  it('save should be respected when passed', done => {
+    const embedOptionsSpy = sandbox.spy(markpress.__get__('embedOptions'));
+    const rewiredContext = markpress.__with__({embedOptions: embedOptionsSpy});
+    rewiredContext(() => markpress(input, {save: true})).then(res => {
+      sinon.assert.calledOnce(embedOptionsSpy);
+      sinon.assert.calledWith(embedOptionsSpy,
+        sinon.match.any,
+        sinon.match({save: true})
+      );
+      assert.include(res[1], '<!--markpress-opt\n\n{\n\t"save": true,\n\t"layout": "horizontal",\n\t"theme": "light",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false,\n\t"verbose": false,\n\t"title": "untitled"\n}\n\n');
       done();
     }).catch(done);
   });

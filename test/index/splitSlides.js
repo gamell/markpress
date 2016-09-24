@@ -16,7 +16,6 @@ const emptyFirstSlidePath = path.resolve(__dirname, '../fixtures/empty-first-sli
 const md = String(util.readFile(mdPath));
 const emptyFirstSlide = String(util.readFile(emptyFirstSlidePath));
 
-
 let sandbox;
 
 const splitSlides = markpress.__get__('splitSlides');
@@ -38,13 +37,13 @@ describe('markpress split slides logic (index.js)', () => {
   });
   it('There should be no slide separators after split with autoSplit off', () => {
     const slides = splitSlides(md, false);
-    slides.forEach((s) => {
+    slides.forEach(s => {
       assert.notInclude('-----', s);
     });
   });
   it('There should be no slide separators after split with autoSplit on', () => {
     const slides = splitSlides(md, true);
-    slides.forEach((s) => {
+    slides.forEach(s => {
       assert.notInclude('-----', s);
     });
   });
