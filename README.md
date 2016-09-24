@@ -152,6 +152,12 @@ Chose from the different available themes:
 - `light-serif`: Light theme with Sans-Serif font. [Example](https://gamell.github.io/markpress/examples/light-serif.html)
 - `dark-serif`: Light theme with Serif font
 
+### `-sv`, `--save` or `{ save: Boolean }` in code
+
+**Default**: `false`
+
+Embedded passed options in the `.md` file for portability. **Warning:** it will override any existing options.
+
 -------------------------------
 <!--slide-attr x=1000 y=1000 scale=0.5 -->
 
