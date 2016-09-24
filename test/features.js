@@ -6,18 +6,26 @@ const path = require('path');
 
 const markpress = require('../index.js');
 const input = path.resolve(__dirname, './fixtures/input.md');
+const inputEmbeddedOptions = path.resolve(__dirname, './fixtures/embedded-options.md');
 
 const slidesRegex = /<div class="step"/gi;
 
 let sandbox;
 let html;
+let md;
 
-const generateHtml = (options, done) => {
-  markpress(input, options).then((content) => {
-    html = content;
+const runMarkpress = (i, options, done) =>
+  markpress(i, options).then(res => {
+    html = res[0];
+    md = res[1];
     done();
   }).catch(done);
-};
+
+const generateHtml = (options, done) =>
+  runMarkpress(input, options, done);
+
+const generateHtmlEmbeddedOptions = (options, done) =>
+  runMarkpress(inputEmbeddedOptions, options, done);
 
 describe('markpress feature test', function test() {
   // can't use arrow functions because of 'this' problem
@@ -30,9 +38,9 @@ describe('markpress feature test', function test() {
     sandbox.restore();
   });
   describe('Auto-split: On', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        autoSplit: true,
+        autoSplit: true
       }, done);
     });
     it('should split slides correctly by H1', () => {
@@ -51,9 +59,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Auto-split: Off', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        autoSplit: false,
+        autoSplit: false
       }, done);
     });
     it('should split slides by \'-----\'', () => {
@@ -62,9 +70,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Sanitize: off', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        sanitize: false,
+        sanitize: false
       }, done);
     });
     it('should not remove HTML', () => {
@@ -89,9 +97,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Sanitize: On', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        sanitize: true,
+        sanitize: true
       }, done);
     });
     it('should not remove HTML', () => {
@@ -116,9 +124,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Theme: Light', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        theme: 'light',
+        theme: 'light'
       }, done);
     });
     it('should contain light theme CSS', () => {
@@ -126,9 +134,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Theme: Dark', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        theme: 'dark',
+        theme: 'dark'
       }, done);
     });
     it('should contain dark theme CSS', () => {
@@ -136,9 +144,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Image embed: On', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        noEmbed: false,
+        noEmbed: false
       }, done);
     });
     it('should not contain the remote image url', () => {
@@ -155,9 +163,9 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Image embed: Off', () => {
-    before((done) => {
+    before(done => {
       generateHtml({
-        noEmbed: true,
+        noEmbed: true
       }, done);
     });
     it('should contain the remote image url', () => {
@@ -174,7 +182,7 @@ describe('markpress feature test', function test() {
     });
   });
   describe('Feature Support', () => {
-    before((done) => {
+    before(done => {
       generateHtml({}, done);
     });
     it('should support Emojis', () => {
@@ -218,6 +226,22 @@ describe('markpress feature test', function test() {
         'break-after: always !important;',
         'HTML includes page-breaks for printing'
       );
+    });
+  });
+  describe('Embedded Option saving support', () => {
+    before(done => {
+      generateHtmlEmbeddedOptions({
+        autoSplit: true,
+        save: true
+      }, done);
+    });
+    it('Should use markdown embedded options if defined over defaults', () => {
+      assert.isString(md);
+      assert.include(md, '"layout": "random"');
+    });
+    it('Should use command-line options over embedded options', () => {
+      assert.isString(md);
+      assert.include(md, '"autoSplit": true');
     });
   });
 });

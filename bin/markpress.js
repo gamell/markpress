@@ -43,8 +43,12 @@ program.version(pkg.version)
       'Disallow *dangerous* HTML in the Markdown file (e.g. <script> tags)'
     )
     .option(
-      '-ne --no-embed',
+      '-ne, --no-embed',
       'Do not embed the referenced images into the HTML. This can cause images not to be displayed'
+    )
+    .option(
+      '-sv, --save',
+      'Save the presentation options in the markdown file for portability. WARNING: will override existing options'
     )
     .on('--help', () => {
       console.log('  Example:\n');
@@ -53,7 +57,7 @@ program.version(pkg.version)
     .action((i, o) => {
       input = path.resolve(basePath, i);
       const ext = path.extname(input);
-      output = (!!o) ? path.resolve(basePath, o) : input.replace(ext, '.html');
+      output = o ? path.resolve(basePath, o) : input.replace(ext, '.html');
     })
     .parse(process.argv);
 
@@ -70,7 +74,8 @@ const options = {
   sanitize: program.sanitize,
   verbose: !program.silent, // output logs
   theme: program.theme,
-  noEmbed: program.noEmbed
+  noEmbed: program.noEmbed,
+  save: program.save
 };
 
 log.init(options.verbose);
@@ -82,7 +87,8 @@ if (path.extname(input).toUpperCase() !== '.MD') {
 const t0 = new Date();
 
 // markpress() returns a co promise
-markpress(input, options).then(html => {
+markpress(input, options).then((html, md) => {
+  if (md) fs.writeFileSync(input, md);
   fs.writeFileSync(output, html);
   log.info(`html presentation generated in ${new Date() - t0}ms`);
 }, reason => {

@@ -1,7 +1,7 @@
 <!--markpress-opt
 
 {
-  "layout": "horizontal",
+  "layout": "random",
   "theme": "light",
   "autoSplit": true
 }

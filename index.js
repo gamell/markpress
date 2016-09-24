@@ -19,7 +19,8 @@ let optionDefaults = {
   autoSplit: false,
   sanitize: false,
   verbose: false,
-  title: 'untitled'
+  title: 'untitled',
+  save: false
 };
 
 let slides = [];
@@ -118,13 +119,14 @@ function getMarkdownAndSetBaseDir(input) {
   if (util.getExtUpperCase(input) === '.MD') { // treat input as path
     const path = input;
     log.info(`Path detected in input, using ${path} contents as input`);
-    global.mdFilePath = util.getDir(path);
+    global.mdPath = path;
+    global.basePath = util.getDir(path);
     // options.title = options.title || util.getFileName(path);
     return String(util.readFile(path));
   }
   log.info('Using markdown content as input');
   // using execution directory as path to which all resources will be relative to
-  global.mdFilePath = process.cwd();
+  global.basePath = process.cwd();
   return input;
 }
 
@@ -138,6 +140,14 @@ function getEmbeddedOptions(markdown) {
   }
 }
 
+function embedOptions(md, opt) {
+  // delete any existing options
+  let markdown = md.replace(embeddedOptionsRegex, '');
+  // save new options
+  const options = `<!--markpress-opt\n\n${JSON.stringify(opt, null, '\t')}\n\n-->\n\n`;
+  return options + markdown;
+}
+
 // Options priority: CLI Arguments > Embedded arguments in markdown > defaults
 function calculateOptions(optionsArg, markdown) {
   const optionsEmbedded = getEmbeddedOptions(markdown);
@@ -145,7 +155,7 @@ function calculateOptions(optionsArg, markdown) {
   return options;
 }
 
-function processMarkdown(markdown) {
+function processMarkdown(markdown, updateInput) {
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info('layout metadata found, ignoring default layout and --layout options');
@@ -167,9 +177,14 @@ function processMarkdown(markdown) {
 module.exports = (input, optionsArg) => {
   try {
     log.init(optionsArg.verbose || false);
-    const markdown = getMarkdownAndSetBaseDir(input);
+    let markdown = getMarkdownAndSetBaseDir(input);
     options = calculateOptions(optionsArg, markdown);
-    return processMarkdown(markdown);
+    const updateInput = options.save && global.mdPath;
+    let updatedMd;
+    if (updateInput) {
+      updatedMd = embedOptions(markdown, options, global.mdPath);
+    }
+    return Promise.all([processMarkdown(markdown), updatedMd]);
   } catch (e) {
     return Promise.reject(e);
   }
