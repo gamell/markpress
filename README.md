@@ -2,7 +2,7 @@
 
 # Markpress
 
-[![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress)
+[![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress) [![Markpress npm badge](https://nodei.co/npm/markpress.png?downloads=true)](https://www.npmjs.com/package/markpress)
 
 `markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) `html` presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
