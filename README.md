@@ -26,14 +26,15 @@ or
 
 ## Features
 
-- Automatic slide layout generation
-- Automatic slide split by `h1`
-- Built-in themes ( `dark`, `light`, `dark-serif`, `light-serif`). Customizable through `<style>` tags.
-- Generates self-contained HTML file by embedding images (no network connection needed when presenting)
-- Code highlighting for most common programming languages
-- Supports HTML & [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
-- Responsive design adapts to different screen sizes
-- Adaptive text size (using `vmin` and `vmax`)
+- Automatic slide **layout generation**
+- Automatic **slide split** by `h1`
+- Built-in **themes** ( `dark`, `light`, `dark-serif`, `light-serif`). Customizable through `<style>` tags.
+- Generates **self-contained HTML** file by embedding images (no network connection needed when presenting)
+- **Code highlighting** for most common programming languages
+- Supports **HTML & [Emojis](http://www.emoji-cheat-sheet.com/)**! :smile::thumbsup: :camel::dash:
+- **Live editor** mode via the `--edit` option to live-preview your changes
+- **Responsive** design adapts to different screen sizes
+- **Adaptive text size** (using `vmin` and `vmax`)
 - Github-inspired CSS styles
 - Will run fine in the latest Firefox, Chrome, Safari and *probably* Edge [*](http://caniuse.com/#feat=viewport-units)
 
@@ -46,34 +47,24 @@ or
 
 `$ markpress <input file> [output file] [options]`
 
-If no output file is passed, the input's filename will be used, changing the extension to `.html`
+If no `output` file is passed, the `input`'s filename will be used with `.html` extension.
 
 More information: `$ markpress -h`
 
 ### In your code
+See [Examples section](#examples) for more.
 
 ```js
 const fs = require('fs');
 const markpress = require('markpress');
-const options = {
-  layout: 'horizontal',
-  theme: 'light',
-  autoSplit: true,
-  allowHtml: false,
-  verbose: false,
-  title: 'Optional <title> for output HTML'
-}
-markpress('input.md', options).then((content) => {
-  fs.writeFileSync('output.html', content);
+const options = { ... };
+markpress('input.md', options).then((html) => {
+  fs.writeFileSync('output.html', html);
 });
 
 // or you can pass the Markdown content directly as parameter
-
-markpress(
-  '# This is markdown content \n > Test Blockquote',
-  options
-).then((content) => {
-  fs.writeFileSync('output.html', content);
+markpress('# Markdown content \n > Blockquote', options).then((html) => {
+  fs.writeFileSync('output.html', html);
 });
 ```
 
@@ -93,6 +84,11 @@ markpress(
 
 
 ## Options
+
+The options precedence is as follows (higher in the least means higher precedence):
+
+- Options passed directly through `CLI` / code.
+- Options embedded in the `.md` file (see `--save` option)
 
 ### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
 
@@ -169,11 +165,11 @@ Start edit mode. This will start an embedded web server to preview the resulting
 
 ### Run
 
-`$ node --harmony ./bin/markpress.js input.html output.html`
+`$ node --harmony ./bin/markpress.js input.md`
 
 ### Debug
 
-`$ node debug --harmony ./bin/markpress.js input.html output.html`
+`$ node debug --harmony ./bin/markpress.js input.md`
 
 ### Linking
 
@@ -184,8 +180,63 @@ Start edit mode. This will start an embedded web server to preview the resulting
 `npm install . -g`
 
 -------------------------------
-<!--slide-attr x=1000 y=1500 z=500 rotate-x=90 scale=0.5 -->
+<!--slide-attr x=2000 y=1000 z=0 -->
 
+## API
+
+### `markpress(input, options)`
+
+### `input`
+
+An `String` with **either**:
+
+- The **path** relative to the execution directory to the input Markdown file. e.g. `../input.md`, `/abs/path/input.md`
+- A Markdown-formatted `String`
+
+### `options`
+
+An `Object` containing the options as specified in the [Options section](#options)
+
+### `returns`
+
+A `Promise` which will call it's `resolve` method with **two parameters**:
+
+- `html`: The html `String` produced from the Markdown input.
+- `md`: [Optional] - If this parameter is defined, it contains the Markdown input updated with the embedded options (see `--save` option).
+
+-------------------------------
+<!--slide-attr x=1000 y=2000 z=0 -->
+
+## Examples
+
+```js
+const fs = require('fs');
+const markpress = require('markpress');
+const options = {
+  layout: 'horizontal',
+  theme: 'light',
+  autoSplit: true,
+  allowHtml: false,
+  verbose: false,
+  title: 'Optional <title> for output HTML'
+}
+markpress('input.md', options).then((html, md) => {
+  fs.writeFileSync('output.html', html);
+  // if md exists it contains the markdown content with embedded options (see --save option)
+});
+
+// or you can pass the Markdown content directly as parameter
+
+markpress(
+  '# This is markdown content \n > Test Blockquote',
+  options
+).then((html) => {
+  fs.writeFileSync('output.html', html);
+});
+```
+
+-------------------------------
+<!--slide-attr x=1000 y=1500 z=500 rotate-x=90 scale=0.5 -->
 
 ## Roadmap
 
@@ -210,3 +261,5 @@ Please see [`CONTRIBUTING.md`](https://github.com/gamell/markpress/blob/master/C
 -------------------------------
 <!-- zoom-out slide -->
 <!--slide-attr x=1200 y=2000 z=4000 scale=2 -->
+
+## Thanks for reading until the end :grin:
