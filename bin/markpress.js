@@ -9,6 +9,7 @@ const fs = require('fs');
 const pkg = require('../package');
 const log = require('../lib/log');
 const StackTrace = require('stacktrace-js');
+const bs = require('browser-sync').create();
 const basePath = process.cwd();
 
 const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|grid|random-7d|random)$/i;
@@ -50,6 +51,10 @@ program.version(pkg.version)
       '-sv, --save',
       'Save the presentation options in the markdown file for portability. WARNING: will override existing options'
     )
+    .option(
+      '-d, --dev',
+      'Enable developer mode, with live-preview upon input file change.'
+    )
     .on('--help', () => {
       console.log('  Example:\n');
       console.log('    $ markpress file.md file.html -a -s -l random -t dark\n');
@@ -75,7 +80,8 @@ const options = {
   verbose: !program.silent, // output logs
   theme: program.theme,
   noEmbed: program.noEmbed,
-  save: program.save
+  save: program.save,
+  dev: program.dev
 };
 
 log.init(options.verbose);
@@ -86,12 +92,31 @@ if (path.extname(input).toUpperCase() !== '.MD') {
 
 const t0 = new Date();
 
-// markpress() returns a co promise
-markpress(input, options).then((html, md) => {
-  if (md) fs.writeFileSync(input, md);
-  fs.writeFileSync(output, html);
-  log.info(`html presentation generated in ${new Date() - t0}ms`);
-}, reason => {
-  log.error(`${reason} \n\nStackTrace: \n\n`);
-  StackTrace.fromError(reason).then(console.log).then(() => process.exit(1));
-});
+const execMarkpress = () =>
+  // markpress() returns a Promise
+  markpress(input, options).then((html, md) => {
+    if (md) fs.writeFileSync(input, md);
+    fs.writeFileSync(output, html);
+    log.info(`html presentation generated in ${new Date() - t0}ms`);
+  }, reason => {
+    log.error(`${reason} \n\nStackTrace: \n\n`);
+    StackTrace.fromError(reason).then(console.log).then(() => process.exit(1));
+  });
+
+function startBs() {
+  if (options.dev) {
+    // startup browsersync
+    const outputPath = path.parse(output);
+    bs.init({
+      server: {
+        baseDir: outputPath.dir,
+        index: outputPath.name + outputPath.ext
+      }
+    });
+    bs.watch(input, (e, file) =>
+      (e === "change") ? execMarkpress().then(() => bs.reload(output)) : null
+    );
+  }
+}
+
+execMarkpress().then(startBs());

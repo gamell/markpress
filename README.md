@@ -2,7 +2,7 @@
 
 # Markpress
 
-[![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress) [![Markpress npm badge](https://nodei.co/npm/markpress.png?downloads=true)](https://www.npmjs.com/package/markpress)
+[![Markpress npm badge](https://nodei.co/npm/markpress.png?downloads=true)](https://www.npmjs.com/package/markpress) [![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress)
 
 `markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) `html` presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
@@ -157,6 +157,12 @@ Chose from the different available themes:
 **Default**: `false`
 
 Embedded passed options in the `.md` file for portability. **Warning:** it will override any existing options.
+
+### `-d`, `--dev` **only available in CLI**
+
+**Default**: `false`
+
+Start an embedded web server to preview the resulting HTML with live refresh upon input file change.
 
 -------------------------------
 <!--slide-attr x=1000 y=1000 scale=0.5 -->
