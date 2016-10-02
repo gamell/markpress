@@ -52,8 +52,8 @@ program.version(pkg.version)
       'Save the presentation options in the markdown file for portability. WARNING: will override existing options'
     )
     .option(
-      '-d, --dev',
-      'Enable developer mode, with live-preview upon input file change.'
+      '-e, --edit',
+      'Enable editor mode, with live-preview of changes in the input file.'
     )
     .on('--help', () => {
       console.log('  Example:\n');
@@ -81,7 +81,7 @@ const options = {
   theme: program.theme,
   noEmbed: program.noEmbed,
   save: program.save,
-  dev: program.dev
+  edit: program.edit
 };
 
 log.init(options.verbose);
@@ -104,19 +104,25 @@ const execMarkpress = () =>
   });
 
 function startBs() {
-  if (options.dev) {
-    // startup browsersync
-    const outputPath = path.parse(output);
-    bs.init({
-      server: {
-        baseDir: outputPath.dir,
-        index: outputPath.name + outputPath.ext
-      }
-    });
-    bs.watch(input, (e, file) =>
-      (e === "change") ? execMarkpress().then(() => bs.reload(output)) : null
-    );
-  }
+  // startup browsersync
+  const outputPath = path.parse(output);
+  bs.init({
+    server: {
+      baseDir: outputPath.dir,
+      index: outputPath.name + outputPath.ext
+    }
+  });
+  bs.watch(input, (e, file) =>
+    (e === "change") ? execMarkpress().then(() => bs.reload(output)) : null
+  );
 }
 
-execMarkpress().then(startBs());
+function refreshBs() {
+  bs.reload(output);
+}
+
+if (options.edit) {
+  startBs();
+}
+
+execMarkpress().then(refreshBs());

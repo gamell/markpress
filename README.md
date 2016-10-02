@@ -132,14 +132,14 @@ By default, markpress will try to embed (using base64 encoding) the referenced i
 
 Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it disabled if you want to use custom `<style>` tags, embed videos, etc.
 
-------------
-<!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
-
 ### `-si`, `--silent` or `{ silent: Boolean }` in code
 
 **Default**: `false` in CLI mode, **defaults to silent when used as a module**
 
 Silence all console outputs.
+
+------------
+<!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 
 ### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
 
@@ -156,13 +156,11 @@ Chose from the different available themes:
 
 **Default**: `false`
 
-Embedded passed options in the `.md` file for portability. **Warning:** it will override any existing options.
+Embed the markpress options into the `.md` file for portability. **Warning:** it will override any existing options.
 
-### `-d`, `--dev` **only available in CLI**
+### `-e`, `--edit` **only available in CLI**
 
-**Default**: `false`
-
-Start an embedded web server to preview the resulting HTML with live refresh upon input file change.
+Start edit mode. This will start an embedded web server to preview the resulting HTML with live refresh upon input file change. Press `ctrl+c` to stop the server.
 
 -------------------------------
 <!--slide-attr x=1000 y=1000 scale=0.5 -->

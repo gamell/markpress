@@ -155,7 +155,7 @@ function calculateOptions(optionsArg, markdown) {
   return options;
 }
 
-function processMarkdown(markdown, updateInput) {
+function mdToHtml(markdown, updateInput) {
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info('layout metadata found, ignoring default layout and --layout options');
@@ -184,7 +184,11 @@ module.exports = (input, optionsArg) => {
     if (updateInput) {
       updatedMd = embedOptions(markdown, options, global.mdPath);
     }
-    return Promise.all([processMarkdown(markdown), updatedMd]);
+    return new Promise((resolve, reject) =>
+      // wrapper to let the consumer be called with 2 arguments
+      Promise.all([mdToHtml(markdown), updatedMd])
+          .then(res => resolve(res[0], res[1]))
+    );
   } catch (e) {
     return Promise.reject(e);
   }
