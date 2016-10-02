@@ -967,10 +967,10 @@ body {
 <h3 id="user-content--sa---sanitize-or--sanitize-boolean--in-code" class="deep-link">-sa, --sanitize or { sanitize: boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code> (<em>dangerous</em> HTML &amp; scripts allowed)</p>
 <p>Disallow embedding of <em>dangerous</em> HTML code in the Markdown file. You should leave it disabled if you want to use custom <code>&lt;style&gt;</code> tags, embed videos, etc.</p>
-</div><div class="step" data-x="2400" data-y="4000" data-z="2400" data-rotate-y="135"><!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 <h3 id="user-content--si---silent-or--silent-boolean--in-code" class="deep-link">-si, --silent or { silent: Boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code> in CLI mode, <strong>defaults to silent when used as a module</strong></p>
 <p>Silence all console outputs.</p>
+</div><div class="step" data-x="2400" data-y="4000" data-z="2400" data-rotate-y="135"><!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 <h3 id="user-content--t-theme---theme-theme-or--theme-string--in-code" class="deep-link">-t &lt;theme&gt;, --theme &lt;theme&gt; or { theme: String } in code</h3>
 <p><strong>Default</strong>: <code>light</code></p>
 <p>Chose from the different available themes:</p>
@@ -982,10 +982,9 @@ body {
 </ul>
 <h3 id="user-content--sv---save-or--save-boolean--in-code" class="deep-link">-sv, --save or { save: Boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code></p>
-<p>Embedded passed options in the <code>.md</code> file for portability. <strong>Warning:</strong> it will override any existing options.</p>
-<h3 id="user-content--d---dev-only-available-in-cli" class="deep-link">-d, --dev only available in CLI</h3>
-<p><strong>Default</strong>: <code>false</code></p>
-<p>Start an embedded web server to preview the resulting HTML with live refresh upon input file change.</p>
+<p>Embed the markpress options into the <code>.md</code> file for portability. <strong>Warning:</strong> it will override any existing options.</p>
+<h3 id="user-content--e---edit-only-available-in-cli" class="deep-link">-e, --edit only available in CLI</h3>
+<p>Start edit mode. This will start an embedded web server to preview the resulting HTML with live refresh upon input file change. Press <code>ctrl+c</code> to stop the server.</p>
 </div><div class="step" data-x="1000" data-y="1000" data-scale="0.5"><!--slide-attr x=1000 y=1000 scale=0.5 -->
 <h2 id="user-content-developing" class="deep-link">Developing</h2>
 <h3 id="user-content-run" class="deep-link">Run</h3>
@@ -1866,4 +1865,3 @@ body {
     <script>impress().init();</script>
 </body>
 </html>
-,
