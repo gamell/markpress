@@ -6,6 +6,7 @@
   "bugs": "https://github.com/gamell/markpress/issues",
   "preferGlobal": true,
   "dependencies": {
+    "browser-sync": "^2.17.0",
     "co": "^4.6.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
@@ -55,7 +56,10 @@
       "no-console": 0,
       "strict": 0,
       "require-jsdoc": 0,
-      "max-len": ["warn", 120]
+      "max-len": [
+        "warn",
+        120
+      ]
     }
   }
 }
