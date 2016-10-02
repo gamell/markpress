@@ -90,11 +90,10 @@ if (path.extname(input).toUpperCase() !== '.MD') {
   log.warn('Are you sure it\'s the right file? Markdown extension not found.');
 }
 
-const t0 = new Date();
-
-const execMarkpress = () =>
-  // markpress() returns a Promise
-  markpress(input, options).then((html, md) => {
+function execMarkpress() {
+  const t0 = new Date();
+  // markpress() returns a Promise which when resolved has 2 params: HTML and MD
+  return markpress(input, options).then((html, md) => {
     if (md) fs.writeFileSync(input, md);
     fs.writeFileSync(output, html);
     log.info(`html presentation generated in ${new Date() - t0}ms`);
@@ -102,9 +101,9 @@ const execMarkpress = () =>
     log.error(`${reason} \n\nStackTrace: \n\n`);
     StackTrace.fromError(reason).then(console.log).then(() => process.exit(1));
   });
+}
 
 function startBs() {
-  // startup browsersync
   const outputPath = path.parse(output);
   bs.init({
     server: {
@@ -121,6 +120,7 @@ function refreshBs() {
   bs.reload(output);
 }
 
+// start Browsersync in parallel to save time
 if (options.edit) {
   startBs();
 }
