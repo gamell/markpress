@@ -120,7 +120,7 @@ Automatically generate the layout for the slides. **This option will be ignored 
 
 **Default**: `false`
 
-By default, markpress will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
+By default, `markpress` will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 
 ### `-sa`, `--sanitize` or `{ sanitize: boolean }` in code
 
