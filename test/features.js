@@ -15,9 +15,9 @@ let html;
 let md;
 
 const runMarkpress = (i, options, done) =>
-  markpress(i, options).then(res => {
-    html = res[0];
-    md = res[1];
+  markpress(i, options).then((htmlRes, mdRes) => {
+    html = htmlRes;
+    md = mdRes;
     done();
   }).catch(done);
 
