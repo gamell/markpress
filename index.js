@@ -185,9 +185,7 @@ module.exports = (input, optionsArg) => {
       updatedMd = embedOptions(markdown, options, global.mdPath);
     }
     return new Promise((resolve, reject) =>
-      // wrapper to let the consumer be called with 2 arguments
-      Promise.all([mdToHtml(markdown), updatedMd])
-          .then(res => resolve(res[0], res[1]))
+      mdToHtml(markdown).then(html => resolve(html, updatedMd))
     );
   } catch (e) {
     return Promise.reject(e);
