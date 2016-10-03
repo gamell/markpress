@@ -58,12 +58,12 @@ See [Examples section](#examples) for more.
 const fs = require('fs');
 const markpress = require('markpress');
 const options = { ... };
-markpress('input.md', options).then((html) => {
+markpress('input.md', options).then(({html, md}) => {
   fs.writeFileSync('output.html', html);
 });
 
 // or you can pass the Markdown content directly as parameter
-markpress('# Markdown content \n > Blockquote', options).then((html) => {
+markpress('# Markdown content \n > Blockquote', options).then(({html, md}) => {
   fs.writeFileSync('output.html', html);
 });
 ```
@@ -180,7 +180,7 @@ Start edit mode. This will start an embedded web server to preview the resulting
 `npm install . -g`
 
 -------------------------------
-<!--slide-attr x=2000 y=1000 z=0 -->
+<!--slide-attr x=2000 y=1000 scale=0.5 -->
 
 ## API
 
@@ -199,13 +199,15 @@ An `Object` containing the options as specified in the [Options section](#option
 
 ### `returns`
 
-A `Promise` which will call it's `resolve` method with **two parameters**:
+A `Promise` which will call it's `resolve` method with an `Object` with two properties:
 
 - `html`: The html `String` produced from the Markdown input.
 - `md`: [Optional] - If this parameter is defined, it contains the Markdown input updated with the embedded options (see `--save` option).
 
+Note that you can use [ES6 destructuring](http://www.2ality.com/2015/01/es6-destructuring.html) to simulate Python's *named parameters* in JS.
+
 -------------------------------
-<!--slide-attr x=1000 y=2000 z=0 -->
+<!--slide-attr x=1000 y=2000 z=1000 -->
 
 ## Examples
 
@@ -220,9 +222,10 @@ const options = {
   verbose: false,
   title: 'Optional <title> for output HTML'
 }
-markpress('input.md', options).then((html, md) => {
+// Simulating named parameters through destructuring
+markpress('input.md', options).then(({html, md}) => {
   fs.writeFileSync('output.html', html);
-  // if md exists it contains the markdown content with embedded options (see --save option)
+  // if `md` is defined it contains the markdown content with embedded options (see --save option)
 });
 
 // or you can pass the Markdown content directly as parameter
@@ -230,7 +233,7 @@ markpress('input.md', options).then((html, md) => {
 markpress(
   '# This is markdown content \n > Test Blockquote',
   options
-).then((html) => {
+).then(({html, md}) => {
   fs.writeFileSync('output.html', html);
 });
 ```

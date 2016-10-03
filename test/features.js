@@ -15,9 +15,9 @@ let html;
 let md;
 
 const runMarkpress = (i, options, done) =>
-  markpress(i, options).then((htmlRes, mdRes) => {
-    html = htmlRes;
-    md = mdRes;
+  markpress(i, options).then(res => {
+    html = res.html;
+    md = res.md;
     done();
   }).catch(done);
 
@@ -228,18 +228,49 @@ describe('markpress feature test', function test() {
       );
     });
   });
-  describe('Embedded Option saving support', () => {
+  describe('Use Embedded Options over defaults', () => {
+    before(done => {
+      generateHtmlEmbeddedOptions({
+        autoSplit: true
+      }, done);
+    });
+    it('Should not return markdown when save is off', () => {
+      assert.isUndefined(md);
+    });
+    it('Should use embedded options in the Markdown file over defaults', () => {
+      // default sanitize is false, but it's set to true in the embedded options, so <script> tag should be removed
+      assert.isUndefined(md);
+      assert.notInclude(html, '<script></script>');
+    });
+  });
+  describe('Use CLI Options over embedded Options', () => {
+    before(done => {
+      generateHtmlEmbeddedOptions({
+        autoSplit: true,
+        sanitize: false
+      }, done);
+    });
+    it('Should use CLI options over Markdown embedded options', () => {
+      // default sanitize is false, but it's set to true in the embedded options, so <script> tag should be removed
+      assert.isUndefined(md);
+      assert.include(html, '<script></script>');
+    });
+  });
+  describe('Saving Options support', () => {
     before(done => {
       generateHtmlEmbeddedOptions({
         autoSplit: true,
         save: true
       }, done);
     });
+    it('markpress() should return markdown when --save is on', () => {
+      assert.isString(md);
+    });
     it('Should use markdown embedded options if defined over defaults', () => {
       assert.isString(md);
       assert.include(md, '"layout": "random"');
     });
-    it('Should use command-line options over embedded options', () => {
+    it('Should save command-line options to markdown file', () => {
       assert.isString(md);
       assert.include(md, '"autoSplit": true');
     });

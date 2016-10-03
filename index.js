@@ -142,10 +142,11 @@ function getEmbeddedOptions(markdown) {
 
 function embedOptions(md, opt) {
   // delete any existing options
-  let markdown = md.replace(embeddedOptionsRegex, '');
+  const cleanMarkdown = md.replace(embeddedOptionsRegex, '');
   // save new options
   const options = `<!--markpress-opt\n\n${JSON.stringify(opt, null, '\t')}\n\n-->\n\n`;
-  return options + markdown;
+  const res = options + cleanMarkdown;
+  return res;
 }
 
 // Options priority: CLI Arguments > Embedded arguments in markdown > defaults
@@ -179,13 +180,11 @@ module.exports = (input, optionsArg) => {
     log.init(optionsArg.verbose || false);
     let markdown = getMarkdownAndSetBaseDir(input);
     options = calculateOptions(optionsArg, markdown);
-    const updateInput = options.save && global.mdPath;
-    let updatedMd;
-    if (updateInput) {
-      updatedMd = embedOptions(markdown, options, global.mdPath);
-    }
+    const updatedMd = (options.save) ? embedOptions(markdown, options) : undefined;
     return new Promise((resolve, reject) =>
-      mdToHtml(markdown).then(html => resolve(html, updatedMd))
+      mdToHtml(markdown).then(html =>
+        resolve({html: html, md: updatedMd})
+      )
     );
   } catch (e) {
     return Promise.reject(e);
