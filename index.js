@@ -144,7 +144,8 @@ function embedOptions(md, opt) {
   // delete any existing options
   const cleanMarkdown = md.replace(embeddedOptionsRegex, '');
   // save new options
-  const options = `<!--markpress-opt\n\n${JSON.stringify(opt, null, '\t')}\n\n-->\n\n`;
+  delete opt.save;
+  const options = `<!--markpress-opt\n\n${JSON.stringify(opt, null, '\t')}\n\n-->`;
   const res = options + cleanMarkdown;
   return res;
 }

@@ -7,24 +7,16 @@
 	"verbose": true,
 	"theme": "light",
 	"noEmbed": false,
-	"save": true,
 	"title": "untitled"
 }
 
--->
-
-
-
-
-
-
-# Random Layout Example Markpress presentation
+--># Random Layout Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 
 This presentation was generated with the following command:
 
-`$ markpress random.md html/random.html -a -l random`
+`$ markpress random.md html/random.html -a -l random --save`
 
 
 
