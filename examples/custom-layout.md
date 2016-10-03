@@ -1,3 +1,18 @@
+<!--markpress-opt
+
+{
+	"layout": "horizontal",
+	"autoSplit": false,
+	"sanitize": false,
+	"verbose": true,
+	"theme": "light",
+	"noEmbed": false,
+	"save": true,
+	"title": "untitled"
+}
+
+-->
+
 <!-- Positioning attributes can be separated by spaces... -->
 <!--slide-attr x=0 y=0 -->
 
@@ -141,7 +156,7 @@ main()
 
 ## Remote
 
-![Remote image](http://cointelegraph.com/storage/uploads/view/79d6571e21f6e242a1dbe489e02ecbc7.png)
+![Remote image](http://gamell.io/qr.png)
 
 -----------------
 

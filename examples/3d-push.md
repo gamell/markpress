@@ -1,3 +1,17 @@
+<!--markpress-opt
+
+{
+	"layout": "3d-push",
+	"autoSplit": true,
+	"sanitize": false,
+	"verbose": true,
+	"theme": "light",
+	"noEmbed": false,
+	"save": true,
+	"title": "untitled"
+}
+
+-->
 
 
 
@@ -126,7 +140,7 @@ main()
 
 ## Remote
 
-![Remote image](http://cointelegraph.com/storage/uploads/view/79d6571e21f6e242a1dbe489e02ecbc7.png)
+![Remote image](http://gamell.io/qr.png)
 
 # You can also embed maps, or any HTML actually
 
