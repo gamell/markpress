@@ -7,24 +7,16 @@
 	"verbose": true,
 	"theme": "light",
 	"noEmbed": false,
-	"save": true,
 	"title": "untitled"
 }
 
--->
-
-
-
-
-
-
-# Vertical Layout Example Markpress presentation
+--># Vertical Layout Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 
 This presentation was generated with the following command:
 
-`$ markpress vertical.md html/vertical.html -a -l vertical`
+`$ markpress vertical.md html/vertical.html -a -l vertical --save`
 
 
 

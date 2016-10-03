@@ -7,24 +7,16 @@
 	"verbose": true,
 	"theme": "dark",
 	"noEmbed": false,
-	"save": true,
 	"title": "untitled"
 }
 
--->
-
-
-
-
-
-
-# Dark Theme Example Markpress presentation
+--># Dark Theme Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 
 This presentation was generated with the following command:
 
-`$ markpress dark.md html/dark.html -a -t dark`
+`$ markpress dark.md html/dark.html -a -t dark --save`
 
 
 

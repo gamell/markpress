@@ -166,13 +166,14 @@ describe('markpress option logic (index.js)', () => {
   it('save should be respected when passed', done => {
     const embedOptionsSpy = sandbox.spy(markpress.__get__('embedOptions'));
     const rewiredContext = markpress.__with__({embedOptions: embedOptionsSpy});
-    rewiredContext(() => markpress(input, {save: true})).then(({html, md}) => {
+    rewiredContext(() => markpress(input, {save: true, theme: 'dark'})).then(({html, md}) => {
       sinon.assert.calledOnce(embedOptionsSpy);
       sinon.assert.calledWith(embedOptionsSpy,
         sinon.match.any,
-        sinon.match({save: true})
+        sinon.match({theme: 'dark'})
       );
-      assert.include(md, '<!--markpress-opt\n\n{\n\t"save": true,\n\t"layout": "horizontal",\n\t"theme": "light",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false,\n\t"verbose": false,\n\t"title": "untitled"\n}\n\n');
+      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"layout": "horizontal",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false,\n\t"verbose": false,\n\t"title": "untitled"\n}\n\n-->\n\n# one slide\n');
+      assert.notInclude(md, '"save": true');
       done();
     }).catch(done);
   });

@@ -7,24 +7,16 @@
 	"verbose": true,
 	"theme": "light-serif",
 	"noEmbed": false,
-	"save": true,
 	"title": "untitled"
 }
 
--->
-
-
-
-
-
-
-# Light Serif Theme Example Markpress presentation
+--># Light Serif Theme Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 
 This presentation was generated with the following command:
 
-`$ markpress light-serif.md html/light-serif.html -a -t light-serif`
+`$ markpress light-serif.md html/light-serif.html -a -t light-serif --save`
 
 
 

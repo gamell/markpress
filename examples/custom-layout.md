@@ -7,13 +7,10 @@
 	"verbose": true,
 	"theme": "light",
 	"noEmbed": false,
-	"save": true,
 	"title": "untitled"
 }
 
--->
-
-<!-- Positioning attributes can be separated by spaces... -->
+--><!-- Positioning attributes can be separated by spaces... -->
 <!--slide-attr x=0 y=0 -->
 
 # Custom Layout Example Markpress presentation
@@ -22,7 +19,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress custom-layout.md html/custom-layout.html`
+`$ markpress custom-layout.md html/custom-layout.html --save`
 
 -----------------
 

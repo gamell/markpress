@@ -274,5 +274,9 @@ describe('markpress feature test', function test() {
       assert.isString(md);
       assert.include(md, '"autoSplit": true');
     });
+    it('Should not save the `save` property itself', () => {
+      assert.isString(md);
+      assert.notInclude(md, '"save": true');
+    });
   });
 });
