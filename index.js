@@ -19,7 +19,6 @@ let optionDefaults = {
   autoSplit: false,
   sanitize: false,
   verbose: false,
-  title: 'untitled',
   save: false
 };
 
@@ -38,7 +37,7 @@ const h1Regex = /^(?=#[^#]+)/m;
 const cleanValueRegex = /^('|")?(.+)(\1)?$/;
 const commaRegex = /\s*,\s*/;
 const spaceRegex = /\s/;
-const emptySlideRegex = /^\s+$/;
+const emptySlideRegex = /^(<!--(\s|.)*-->)?\s*$/;
 const embeddedOptionsRegex = /<!--markpress-opt((.|\n)+)-->/;
 
 // setting the app root folder for later use in other files
@@ -108,32 +107,34 @@ function splitSlides(markdown, autoSplit) {
     log.info('auto-split option enabled, splitting tiles automatically. Ignoring \'------\'');
     // remove the separators, if any and split by H1
     const slideArray = markdown.replace(slideSeparatorRegex, '').split(h1Regex);
-    // remove first slide if empty
+    // remove first slide if empty or markpress options
     if (slideArray[0].match(emptySlideRegex) !== null) slideArray.shift();
     return slideArray;
   }
   return markdown.split(slideSeparatorRegex);
 }
 
-function getMarkdownAndSetBaseDir(input) {
+function getMarkdownAndSetBaseDir(input, opts) {
   if (util.getExtUpperCase(input) === '.MD') { // treat input as path
     const path = input;
-    log.info(`Path detected in input, using ${path} contents as input`);
+    log.info(`Path detected in input, using ${path} as input`);
     global.mdPath = path;
     global.basePath = util.getDir(path);
-    // options.title = options.title || util.getFileName(path);
-    return String(util.readFile(path));
+    opts.title = opts.title || util.getFileName(path);
+    return {markdown: String(util.readFile(path)), opts};
   }
+  opts.title = opts.title || 'untitled';
   log.info('Using markdown content as input');
   // using execution directory as path to which all resources will be relative to
   global.basePath = process.cwd();
-  return input;
+  return {markdown: input, opts};
 }
 
 function getEmbeddedOptions(markdown) {
   try {
     const matches = markdown.match(embeddedOptionsRegex);
     if (!matches) return {};
+    log.info('Embedded options found');
     return (JSON.parse(matches[1]) || {});
   } catch (e) {
     return {};
@@ -157,7 +158,7 @@ function calculateOptions(optionsArg, markdown) {
   return options;
 }
 
-function mdToHtml(markdown, updateInput) {
+function mdToHtml(markdown, options) {
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info('layout metadata found, ignoring default layout and --layout options');
@@ -179,11 +180,11 @@ function mdToHtml(markdown, updateInput) {
 module.exports = (input, optionsArg) => {
   try {
     log.init(optionsArg.verbose || false);
-    let markdown = getMarkdownAndSetBaseDir(input);
-    options = calculateOptions(optionsArg, markdown);
+    let {markdown, opts} = getMarkdownAndSetBaseDir(input, optionsArg);
+    options = calculateOptions(opts, markdown);
     const updatedMd = (options.save) ? embedOptions(markdown, options) : undefined;
     return new Promise((resolve, reject) =>
-      mdToHtml(markdown).then(html =>
+      mdToHtml(markdown, options).then(html =>
         resolve({html: html, md: updatedMd})
       )
     );
