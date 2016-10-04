@@ -1,15 +1,21 @@
+<!--markpress-opt
 
+{
+	"layout": "horizontal",
+	"autoSplit": true,
+	"sanitize": false,
+	"theme": "dark",
+	"noEmbed": false
+}
 
-
-
-
+-->
 # Dark Theme Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 
 This presentation was generated with the following command:
 
-`$ markpress dark.md html/dark.html -a -t dark`
+`$ markpress dark.md html/dark.html -a -t dark --save`
 
 
 
@@ -126,7 +132,7 @@ main()
 
 ## Remote
 
-![Remote image](http://cointelegraph.com/storage/uploads/view/79d6571e21f6e242a1dbe489e02ecbc7.png)
+![Remote image](http://gamell.io/qr.png)
 
 # You can also embed maps, or any HTML actually
 

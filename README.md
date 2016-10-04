@@ -2,7 +2,7 @@
 
 # Markpress
 
-[![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress)
+[![Markpress npm badge](https://nodei.co/npm/markpress.png?mini=true)](https://www.npmjs.com/package/markpress)  [![Build Status](https://travis-ci.org/gamell/markpress.svg?branch=master)](https://travis-ci.org/gamell/markpress) ![node](https://img.shields.io/node/v/markpress.svg?maxAge=2592000) [![GitHub stars](https://img.shields.io/github/stars/gamell/markpress.svg?style=social&label=Star&maxAge=2592000)](https://github.com/gamell/markpress) [![GitHub followers](https://img.shields.io/github/followers/gamell.svg?style=social&label=Follow&maxAge=2592000)](https://github.com/gamell)
 
 `markpress` is a command line tool and node package to convert [markdown files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) into self-contained [*impressjs*](https://github.com/impress/impress.js/) `html` presentations. It was initially inspired and based on [*markdown-impress*](https://github.com/steel1990/markdown-impress) by [steel1990](https://github.com/steel1990).
 
@@ -26,14 +26,15 @@ or
 
 ## Features
 
-- Automatic slide layout generation
-- Automatic slide split by `h1`
-- Built-in themes ( `dark`, `light`, `dark-serif`, `light-serif`). Customizable through `<style>` tags.
-- Generates self-contained HTML file by embedding images (no network connection needed when presenting)
-- Code highlighting for most common programming languages
-- Supports HTML & [Emojis](http://www.emoji-cheat-sheet.com/)! :smile::thumbsup: :camel::dash:
-- Responsive design adapts to different screen sizes
-- Adaptive text size (using `vmin` and `vmax`)
+- Automatic slide **layout generation**
+- Automatic **slide split** by `h1`
+- Built-in **themes** ( `dark`, `light`, `dark-serif`, `light-serif`). Customizable through `<style>` tags.
+- Generates **self-contained HTML** file by embedding images (no network connection needed when presenting)
+- **Code highlighting** for most common programming languages
+- Supports **HTML & [Emojis](http://www.emoji-cheat-sheet.com/)**! :smile::thumbsup: :camel::dash:
+- **Live editor** mode via the `--edit` option to live-preview your changes
+- **Responsive** design adapts to different screen sizes
+- **Adaptive text size** (using `vmin` and `vmax`)
 - Github-inspired CSS styles
 - Will run fine in the latest Firefox, Chrome, Safari and *probably* Edge [*](http://caniuse.com/#feat=viewport-units)
 
@@ -46,24 +47,24 @@ or
 
 `$ markpress <input file> [output file] [options]`
 
-If no output file is passed, the input's filename will be used, changing the extension to `.html`
+If no `output` file is passed, the `input`'s filename will be used with `.html` extension.
 
 More information: `$ markpress -h`
 
 ### In your code
+See [Examples section](#examples) for more.
 
 ```js
 const fs = require('fs');
 const markpress = require('markpress');
-const options = {
-  layout: 'horizontal',
-  theme: 'light',
-  autoSplit: true,
-  allowHtml: false,
-  verbose: false
-}
-markpress('input.md', options).then((content) => {
-      fs.writeFileSync('output.html', content);
+const options = { ... };
+markpress('input.md', options).then(({html, md}) => {
+  fs.writeFileSync('output.html', html);
+});
+
+// or you can pass the Markdown content directly as parameter
+markpress('# Markdown content \n > Blockquote', options).then(({html, md}) => {
+  fs.writeFileSync('output.html', html);
 });
 ```
 
@@ -83,6 +84,11 @@ markpress('input.md', options).then((content) => {
 
 
 ## Options
+
+The options precedence is as follows (higher in the least means higher precedence):
+
+- Options passed directly through `CLI` / code.
+- Options embedded in the `.md` file (see `--save` option)
 
 ### `-a`, `--auto-split` or `{ autoSplit: Boolean }` in code
 
@@ -114,7 +120,7 @@ Automatically generate the layout for the slides. **This option will be ignored 
 
 **Default**: `false`
 
-By default, markpress will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
+By default, `markpress` will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 
 ### `-sa`, `--sanitize` or `{ sanitize: boolean }` in code
 
@@ -122,14 +128,14 @@ By default, markpress will try to embed (using base64 encoding) the referenced i
 
 Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it disabled if you want to use custom `<style>` tags, embed videos, etc.
 
-------------
-<!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
-
 ### `-si`, `--silent` or `{ silent: Boolean }` in code
 
 **Default**: `false` in CLI mode, **defaults to silent when used as a module**
 
 Silence all console outputs.
+
+------------
+<!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 
 ### `-t <theme>`, `--theme <theme>` or `{ theme: String }` in code
 
@@ -142,6 +148,16 @@ Chose from the different available themes:
 - `light-serif`: Light theme with Sans-Serif font. [Example](https://gamell.github.io/markpress/examples/light-serif.html)
 - `dark-serif`: Light theme with Serif font
 
+### `-sv`, `--save` or `{ save: Boolean }` in code
+
+**Default**: `false`
+
+Embed the markpress options into the `.md` file for portability. **Warning:** it will override any existing options.
+
+### `-e`, `--edit` **only available in CLI**
+
+Start edit mode. This will start an embedded web server to preview the resulting HTML with live refresh upon input file change. Press `ctrl+c` to stop the server.
+
 -------------------------------
 <!--slide-attr x=1000 y=1000 scale=0.5 -->
 
@@ -149,11 +165,11 @@ Chose from the different available themes:
 
 ### Run
 
-`$ node --harmony ./bin/markpress.js input.html output.html`
+`$ node --harmony ./bin/markpress.js input.md`
 
 ### Debug
 
-`$ node debug --harmony ./bin/markpress.js input.html output.html`
+`$ node debug --harmony ./bin/markpress.js input.md`
 
 ### Linking
 
@@ -164,8 +180,66 @@ Chose from the different available themes:
 `npm install . -g`
 
 -------------------------------
-<!--slide-attr x=1000 y=1500 z=500 rotate-x=90 scale=0.5 -->
+<!--slide-attr x=2000 y=1000 scale=0.5 -->
 
+## API
+
+### `markpress(input, options)`
+
+### `input`
+
+An `String` with **either**:
+
+- The **path** relative to the execution directory to the input Markdown file. e.g. `../input.md`, `/abs/path/input.md`
+- A Markdown-formatted `String`
+
+### `options`
+
+An `Object` containing the options as specified in the [Options section](#options)
+
+### `returns`
+
+A `Promise` which will call it's `resolve` method with an `Object` with two properties:
+
+- `html`: The html `String` produced from the Markdown input.
+- `md`: [Optional] - If this parameter is defined, it contains the Markdown input updated with the embedded options (see `--save` option).
+
+Note that you can use [ES6 destructuring](http://www.2ality.com/2015/01/es6-destructuring.html) to simulate Python's *named parameters* in JS.
+
+-------------------------------
+<!--slide-attr x=1000 y=2000 z=1000 -->
+
+## Examples
+
+```js
+const fs = require('fs');
+const markpress = require('markpress');
+const options = {
+  layout: 'horizontal',
+  theme: 'light',
+  autoSplit: true,
+  allowHtml: false,
+  verbose: false,
+  title: 'Optional <title> for output HTML'
+}
+// Simulating named parameters through destructuring
+markpress('input.md', options).then(({html, md}) => {
+  fs.writeFileSync('output.html', html);
+  // if `md` is defined it contains the markdown content with embedded options (see --save option)
+});
+
+// or you can pass the Markdown content directly as parameter
+
+markpress(
+  '# This is markdown content \n > Test Blockquote',
+  options
+).then(({html, md}) => {
+  fs.writeFileSync('output.html', html);
+});
+```
+
+-------------------------------
+<!--slide-attr x=1000 y=1500 z=500 rotate-x=90 scale=0.5 -->
 
 ## Roadmap
 
@@ -190,3 +264,5 @@ Please see [`CONTRIBUTING.md`](https://github.com/gamell/markpress/blob/master/C
 -------------------------------
 <!-- zoom-out slide -->
 <!--slide-attr x=1200 y=2000 z=4000 scale=2 -->
+
+## Thanks for reading until the end :grin:
