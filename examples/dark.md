@@ -4,13 +4,11 @@
 	"layout": "horizontal",
 	"autoSplit": true,
 	"sanitize": false,
-	"verbose": true,
 	"theme": "dark",
 	"noEmbed": false
 }
 
 -->
-
 # Dark Theme Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.

@@ -4,13 +4,12 @@
 	"layout": "grid",
 	"autoSplit": true,
 	"sanitize": false,
-	"verbose": true,
 	"theme": "light",
-	"noEmbed": false,
-	"title": "untitled"
+	"noEmbed": false
 }
 
---># Grid Layout Example Markpress presentation
+-->
+# Grid Layout Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 

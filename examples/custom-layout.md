@@ -4,13 +4,12 @@
 	"layout": "horizontal",
 	"autoSplit": false,
 	"sanitize": false,
-	"verbose": true,
 	"theme": "light",
-	"noEmbed": false,
-	"title": "untitled"
+	"noEmbed": false
 }
 
---><!-- Positioning attributes can be separated by spaces... -->
+-->
+<!-- Positioning attributes can be separated by spaces... -->
 <!--slide-attr x=0 y=0 -->
 
 # Custom Layout Example Markpress presentation

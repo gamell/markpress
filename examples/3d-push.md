@@ -4,13 +4,13 @@
 	"layout": "3d-push",
 	"autoSplit": true,
 	"sanitize": false,
-	"verbose": true,
-	"theme": "light",
 	"noEmbed": false,
-	"title": "untitled"
+	"title": "3d-push",
+	"theme": "light"
 }
 
---># 3d-push Layout Example Markpress presentation
+-->
+# 3d-push Layout Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
 
