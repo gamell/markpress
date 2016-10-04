@@ -1,4 +1,4 @@
-#! /usr/bin/env node -harmony
+#! /usr/bin/env node --harmony
 
 'use strict';
 
@@ -72,13 +72,14 @@ if (!input || !output) {
   process.exit();
 }
 
+program.verbose = (typeof program.silent === 'undefined') ? true : !program.silent;
+
 const options = {
   layout: program.layout,
   style: program.style,
   autoSplit: program.autoSplit,
   sanitize: program.sanitize,
-  verbose: (typeof program.silent === 'undefined') ? undefined : !program.silent, // output logs
-  theme: program.theme,
+  verbose: program.verbose,
   noEmbed: program.noEmbed,
   save: program.save,
   edit: program.edit
