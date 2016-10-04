@@ -2,7 +2,7 @@
 
 body {
   font-size: 100%; // fallback
-  font-size: @fontBase;
+  font-size: @fontSizeLandscape;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -10,24 +10,21 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-  font-size: 6em; //fallback
-  font-size: @fontH1;
+  font-size: 2.1em;
   text-align: center;
   margin-top: 0;
 }
 h2 {
-  font-size: 4em; //fallback
-  font-size: @fontH2;
-  margin-top: @fontBase;
+  font-size: 1.4em;
+  margin-top: @fontSizeLandscape;
 }
 h3 {
-  font-size: 3em; //fallback
-  font-size: @fontH3;
-  margin-top: @fontBase;
+  font-size: 1.1em;
+  margin-top: @fontSizeLandscape;
 }
 
 h4, h5, h6 {
-  font-size: @fontBase
+  font-size: @fontSizeLandscape
 }
 
 body {
@@ -69,16 +66,14 @@ a:hover{
 .step {
   position: relative;
   width: @slideWidth;
-  max-height: 100vh; // so it's v-aligned
-  padding: 40px;
-  margin: 20px auto;
+  margin: 0 auto;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
   line-height: 1.5;
-  opacity: 0.3;
+  opacity: 0.15;
 
   -webkit-transition: opacity 1s;
   -moz-transition: opacity 1s;
@@ -86,21 +81,17 @@ a:hover{
   -o-transition: opacity 1s;
   transition: opacity 1s;
 
-  &.past{
-    opacity: 0.3;
-  }
-
   &.active{
     opacity: 1;
   }
 }
 
 kbd{
-  font-size: @fontBase;
+  font-size: @fontSizeLandscape;
+  line-height: @fontSizeLandscape;
   display: inline-block;
-  padding: @fontBase*0.15 @fontBase*0.35;
+  padding: 0.15em 0.35em;
   font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  line-height: @fontBase;
   color: #555;
   vertical-align: middle;
   background-color: #fcfcfc;
@@ -108,4 +99,17 @@ kbd{
   border-bottom-color: #bbb;
   border-radius: 0.4vmax;
   box-shadow: inset 0 -0.1vmax 0 #bbb;
+}
+
+@media (orientation: portrait) {
+  body{
+    font-size: @fontSizePortrait;
+  }
+  h1,h2,h3{
+    margin-top: @fontSizePortrait;
+  }
+  kbd{
+    font-size: @fontSizePortrait;
+    line-height: @fontSizePortrait;
+  }
 }

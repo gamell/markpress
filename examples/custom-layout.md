@@ -1,3 +1,14 @@
+<!--markpress-opt
+
+{
+	"layout": "horizontal",
+	"autoSplit": false,
+	"sanitize": false,
+	"theme": "light",
+	"noEmbed": false
+}
+
+-->
 <!-- Positioning attributes can be separated by spaces... -->
 <!--slide-attr x=0 y=0 -->
 
@@ -7,7 +18,7 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 
 This presentation was generated with the following command:
 
-`$ markpress custom-layout.md html/custom-layout.html`
+`$ markpress custom-layout.md html/custom-layout.html --save`
 
 -----------------
 
@@ -141,7 +152,7 @@ main()
 
 ## Remote
 
-![Remote image](http://cointelegraph.com/storage/uploads/view/79d6571e21f6e242a1dbe489e02ecbc7.png)
+![Remote image](http://gamell.io/qr.png)
 
 -----------------
 
