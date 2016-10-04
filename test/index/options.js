@@ -16,6 +16,7 @@ const layoutGenerator = require('../../lib/layout');
 const transform = require('../../lib/dom-transformer');
 
 const input = path.resolve(__dirname, '../fixtures/one-slide.md');
+const embeddedOptionsInput = path.resolve(__dirname, '../fixtures/embedded-options.md');
 
 let sandbox;
 
@@ -172,8 +173,47 @@ describe('markpress option logic (index.js)', () => {
         sinon.match.any,
         sinon.match({theme: 'dark'})
       );
-      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"layout": "horizontal",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false,\n\t"verbose": false,\n\t"title": "untitled"\n}\n\n-->\n\n# one slide\n');
+      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"title": "one-slide",\n\t"layout": "horizontal",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false,\n\t"verbose": false\n}\n\n--># one slide\n');
       assert.notInclude(md, '"save": true');
+      done();
+    }).catch(done);
+  });
+  it('Default options should be used if no other options found', done => {
+    const mdToHtmlSpy = sandbox.spy(markpress.__get__('mdToHtml'));
+    const rewiredContext = markpress.__with__({mdToHtml: mdToHtmlSpy});
+    rewiredContext(() => markpress(input, {})).then(({html, md}) => {
+      assert.equal(mdToHtmlSpy.callCount, 1);
+      assert.isString(html);
+      sinon.assert.calledWith(mdToHtmlSpy,
+        sinon.match.string,
+        sinon.match({layout: 'horizontal', theme: 'light', verbose: false})
+      );
+      done();
+    }).catch(done);
+  });
+  it('Embedded options should take precedence over defaults', done => {
+    const mdToHtmlSpy = sandbox.spy(markpress.__get__('mdToHtml'));
+    const rewiredContext = markpress.__with__({mdToHtml: mdToHtmlSpy});
+    rewiredContext(() => markpress(embeddedOptionsInput, {})).then(({html, md}) => {
+      assert.equal(mdToHtmlSpy.callCount, 1);
+      assert.isString(html);
+      sinon.assert.calledWith(mdToHtmlSpy,
+        sinon.match.string,
+        sinon.match({layout: 'random', theme: 'dark', verbose: false})
+      );
+      done();
+    }).catch(done);
+  });
+  it('CLI options should take precedence over embedded', done => {
+    const mdToHtmlSpy = sandbox.spy(markpress.__get__('mdToHtml'));
+    const rewiredContext = markpress.__with__({mdToHtml: mdToHtmlSpy});
+    rewiredContext(() => markpress(embeddedOptionsInput, {layout: 'vertical', theme: 'dark'})).then(({html, md}) => {
+      assert.equal(mdToHtmlSpy.callCount, 1);
+      assert.isString(html);
+      sinon.assert.calledWith(mdToHtmlSpy,
+        sinon.match.string,
+        sinon.match({layout: 'vertical', theme: 'dark', verbose: false})
+      );
       done();
     }).catch(done);
   });

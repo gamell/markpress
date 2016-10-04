@@ -2,7 +2,7 @@
 
 {
   "layout": "random",
-  "theme": "light",
+  "theme": "dark",
   "autoSplit": true,
   "sanitize": true
 }

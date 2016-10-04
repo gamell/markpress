@@ -27,13 +27,13 @@ program.version(pkg.version)
       '-l, --layout <layout>',
       'The impress.js generated layout [horizontal (default)|vertical|3d-push|3d-pull|grid|random-7d|random]',
       layoutRegex,
-      'horizontal'
+      undefined
     )
     .option(
       '-t, --theme <theme>',
       'The theme of colors [light (default)|dark|light-serif|dark-serif]',
       themeRegex,
-      'light'
+      undefined
     )
     .option(
       '-a, --auto-split',
@@ -77,7 +77,7 @@ const options = {
   style: program.style,
   autoSplit: program.autoSplit,
   sanitize: program.sanitize,
-  verbose: !program.silent, // output logs
+  verbose: (typeof program.silent === 'undefined') ? undefined : !program.silent, // output logs
   theme: program.theme,
   noEmbed: program.noEmbed,
   save: program.save,
