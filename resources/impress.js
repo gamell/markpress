@@ -152,17 +152,17 @@
     var computeWindowScale = function( config ) {
         var hScale = window.innerHeight / config.height,
             wScale = window.innerWidth / config.width,
-            scale = hScale > wScale ? wScale : hScale;
+            scale = hScale > wScale ? hScale : wScale;
 
-        if ( config.maxScale && scale > config.maxScale ) {
-            scale = config.maxScale;
-        }
+        // if ( config.maxScale && scale > config.maxScale ) {
+        //     scale = config.maxScale;
+        // }
+        //
+        // if ( config.minScale && scale < config.minScale ) {
+        //     scale = config.minScale;
+        // }
 
-        if ( config.minScale && scale < config.minScale ) {
-            scale = config.minScale;
-        }
-
-        return scale;
+        return 1;
     };
 
     // CHECK SUPPORT
