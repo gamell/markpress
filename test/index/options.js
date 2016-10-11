@@ -173,7 +173,7 @@ describe('markpress option logic (index.js)', () => {
         sinon.match.any,
         sinon.match({theme: 'dark'})
       );
-      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"title": "one-slide",\n\t"layout": "horizontal",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false\n}\n\n-->\n# one slide\n');
+      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"title": "one-slide",\n\t"layout": "horizontal",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false\n}\n\nmarkpress-opt-->\n# one slide\n');
       assert.notInclude(md, '"save": true');
       done();
     }).catch(done);

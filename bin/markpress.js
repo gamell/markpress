@@ -22,37 +22,37 @@ program.version(pkg.version)
     .usage(`<input file> [output file] [options] \n\n
         If no outpuf file is passed, the input's filename will be used changing the extension to .html`)
     .arguments('<input> [output]')
-    .option('-si, --silent', 'Do not display progress & debug messages')
+    .option('-si --silent', 'Do not display progress & debug messages')
     .option(
-      '-l, --layout <layout>',
+      '-l --layout <layout>',
       'The impress.js generated layout [horizontal (default)|vertical|3d-push|3d-pull|grid|random-7d|random]',
       layoutRegex,
       undefined
     )
     .option(
-      '-t, --theme <theme>',
+      '-t --theme <theme>',
       'The theme of colors [light (default)|dark|light-serif|dark-serif]',
       themeRegex,
       undefined
     )
     .option(
-      '-a, --auto-split',
+      '-a --auto-split',
       'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
     )
     .option(
-      '-sa, --sanitize',
+      '-sa --sanitize',
       'Disallow *dangerous* HTML in the Markdown file (e.g. <script> tags)'
     )
     .option(
-      '-ne, --no-embed',
+      '-ne --no-embed',
       'Do not embed the referenced images into the HTML. This can cause images not to be displayed'
     )
     .option(
-      '-sv, --save',
+      '-sv --save',
       'Save the presentation options in the markdown file for portability. WARNING: will override existing options'
     )
     .option(
-      '-e, --edit',
+      '-e --edit',
       'Enable editor mode, with live-preview of changes in the input file.'
     )
     .on('--help', () => {
@@ -72,14 +72,12 @@ if (!input || !output) {
   process.exit();
 }
 
-program.verbose = (typeof program.silent === 'undefined') ? true : !program.silent;
-
 const options = {
   layout: program.layout,
-  style: program.style,
+  theme: program.theme,
   autoSplit: program.autoSplit,
   sanitize: program.sanitize,
-  verbose: program.verbose,
+  verbose: (typeof program.silent === 'undefined') ? true : !program.silent,
   noEmbed: program.noEmbed,
   save: program.save,
   edit: program.edit
