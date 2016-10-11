@@ -6,6 +6,7 @@
 	"autoSplit": false,
 	"sanitize": false,
 	"noEmbed": false,
+	"edit": true,
 	"title": "README"
 }
 
