@@ -1,3 +1,15 @@
+<!--markpress-opt
+
+{
+	"layout": "horizontal",
+	"theme": "dark",
+	"autoSplit": false,
+	"sanitize": false,
+	"noEmbed": false,
+	"title": "README"
+}
+
+markpress-opt-->
 <!--slide-attr x=0 y=0 -->
 
 # Markpress

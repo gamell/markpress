@@ -38,7 +38,7 @@ const cleanValueRegex = /^('|")?(.+)(\1)?$/;
 const commaRegex = /\s*,\s*/;
 const spaceRegex = /\s/;
 const emptySlideRegex = /^(<!--(\s|.)*-->)?\s*$/;
-const embeddedOptionsRegex = /<!--markpress-opt((.|\n)+)-->\s*/;
+const embeddedOptionsRegex = /<!--markpress-opt([\W\w]+)markpress-opt-->\s*/;
 
 // setting the app root folder for later use in other files
 global.appRoot = pathResolve(__dirname);
@@ -147,7 +147,7 @@ function embedOptions(md, opt) {
   // save new options
   delete opt.save;
   delete opt.verbose;
-  const options = `<!--markpress-opt\n\n${JSON.stringify(opt, null, '\t')}\n\n-->\n`;
+  const options = `<!--markpress-opt\n\n${JSON.stringify(opt, null, '\t')}\n\nmarkpress-opt-->\n`;
   const res = options + cleanMarkdown;
   return res;
 }

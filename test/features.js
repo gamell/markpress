@@ -278,5 +278,20 @@ describe('markpress feature test', function test() {
       assert.isString(md);
       assert.notInclude(md, '"save": true');
     });
+    it('Should not destroy the Markdown file if save option passed consecutively', done => {
+      // we call markpress with the same MD output from the first execution
+      markpress(md, {
+        autoSplit: false,
+        theme: 'dark',
+        save: true
+      }).then(res => {
+        assert.isString(res.md);
+        assert.include(res.md, '"autoSplit": false');
+        assert.include(res.md, '"theme": "dark"');
+        assert.notInclude(md, '"save": true');
+        assert.include(res.md, '# This is Markdown file tests the embedded markpress options\n## Subheader');
+        done();
+      }).catch(done);
+    });
   });
 });
