@@ -752,8 +752,7 @@ kbd {
   border-color: #4078c0;
 }
 body {
-  font-size: 100%;
-  font-size: 2.9vmin;
+  font-size: 2.5vmin;
 }
 h1,
 h2,
@@ -770,16 +769,16 @@ h1 {
 }
 h2 {
   font-size: 1.4em;
-  margin-top: 2.9vmin;
+  margin-top: 1em;
 }
 h3 {
   font-size: 1.1em;
-  margin-top: 2.9vmin;
+  margin-top: 1em;
 }
 h4,
 h5,
 h6 {
-  font-size: 2.9vmin;
+  font-size: 1em;
 }
 body {
   line-height: 1;
@@ -800,6 +799,12 @@ blockquote {
 p,
 li {
   margin-bottom: 1em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-top: 1em;
 }
 .highlight pre,
 pre {
@@ -834,8 +839,8 @@ a:hover {
   opacity: 1;
 }
 kbd {
-  font-size: 2.9vmin;
-  line-height: 2.9vmin;
+  font-size: 1em;
+  line-height: 1em;
   display: inline-block;
   padding: 0.15em 0.35em;
   font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -848,17 +853,8 @@ kbd {
   box-shadow: inset 0 -0.1vmax 0 #bbb;
 }
 @media (orientation: portrait) {
-  body {
-    font-size: 2.2vmax;
-  }
-  h1,
-  h2,
-  h3 {
-    margin-top: 2.2vmax;
-  }
-  kbd {
-    font-size: 2.2vmax;
-    line-height: 2.2vmax;
+  .step {
+    width: 95vw;
   }
 }
 </style>
@@ -909,7 +905,19 @@ body {
 </style>
 </head>
 <body>
-    <div id="impress"><div class="step" data-x="0" data-y="0"><!--slide-attr x=0 y=0 -->
+    <div id="impress"><div class="step" data-x="0" data-y="0"><!--markpress-opt
+
+{
+	"theme": "light",
+	"autoSplit": false,
+	"sanitize": false,
+	"noEmbed": false,
+	"edit": true,
+	"title": "README"
+}
+
+markpress-opt-->
+<!--slide-attr x=0 y=0 -->
 <h1 id="user-content-markpress" class="deep-link">Markpress</h1>
 <p><a href="https://www.npmjs.com/package/markpress"><img src="https://nodei.co/npm/markpress.png?mini=true" alt="Markpress npm badge" class="badge"></a>  <a href="https://travis-ci.org/gamell/markpress"><img src="https://travis-ci.org/gamell/markpress.svg?branch=master" alt="Build Status" class="badge"></a> <img src="https://img.shields.io/node/v/markpress.svg?maxAge=2592000" alt="node" class="badge"> <a href="https://github.com/gamell/markpress"><img src="https://img.shields.io/github/stars/gamell/markpress.svg?style=social&amp;label=Star&amp;maxAge=2592000" alt="GitHub stars" class="badge"></a> <a href="https://github.com/gamell"><img src="https://img.shields.io/github/followers/gamell.svg?style=social&amp;label=Follow&amp;maxAge=2592000" alt="GitHub followers" class="badge"></a></p>
 <p><code>markpress</code> is a command line tool and node package to convert <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown files</a> into self-contained <a href="https://github.com/impress/impress.js/"><em>impressjs</em></a> <code>html</code> presentations. It was initially inspired and based on <a href="https://github.com/steel1990/markdown-impress"><em>markdown-impress</em></a> by <a href="https://github.com/steel1990">steel1990</a>.</p>
@@ -977,15 +985,16 @@ body {
 <li><code>random-7d</code>: [warning: <strong>messy</strong>] Slides positioned randomly on the 7D space (<code>x</code>,<code>y</code>,<code>z</code>,<code>rotate-x</code>,<code>rotate-y</code>,<code>rotate-z</code>,<code>scale</code>). This layout generator might position slides on top of each other. Re-generate until a satisfactory layout is generated. <a href="https://gamell.github.io/markpress/examples/random-7d.html">Example</a></li>
 </ul>
 </div><div class="step" data-x="1200" data-y="4000" data-z="1800" data-rotate-y="90"><!--slide-attr x=1200 y=4000 z=1800 rotate-y=90 -->
-<h3 id="user-content--ne---no-embed-or--noembed-true--in-code" class="deep-link">-ne, --no-embed or { noEmbed: true } in code</h3>
+<h3 id="user-content--e---disable-embed-or--noembed-true--in-code" class="deep-link">-E, --disable-embed or { noEmbed: true } in code</h3>
 <p><strong>Default</strong>: <code>false</code></p>
 <p>By default, <code>markpress</code> will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if <code>--no-embed</code> is set to true.</p>
-<h3 id="user-content--sa---sanitize-or--sanitize-boolean--in-code" class="deep-link">-sa, --sanitize or { sanitize: boolean } in code</h3>
+<h3 id="user-content--z---sanitize-or--sanitize-boolean--in-code" class="deep-link">-z, --sanitize or { sanitize: boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code> (<em>dangerous</em> HTML &amp; scripts allowed)</p>
 <p>Disallow embedding of <em>dangerous</em> HTML code in the Markdown file. You should leave it disabled if you want to use custom <code>&lt;style&gt;</code> tags, embed videos, etc.</p>
-<h3 id="user-content--si---silent-or--silent-boolean--in-code" class="deep-link">-si, --silent or { silent: Boolean } in code</h3>
-<p><strong>Default</strong>: <code>false</code> in CLI mode, <strong>defaults to silent when used as a module</strong></p>
-<p>Silence all console outputs.</p>
+<h3 id="user-content---silent-or--verbose-boolean--in-code" class="deep-link">--silent or { verbose: Boolean } in code</h3>
+<p><code>--silent</code> Will silence all console output in the Terminal. <code>{verbose: true}</code> will <strong>enable</strong> all console output.</p>
+<p><strong>Default (CLI)</strong>: <code>silence</code>: <code>false</code> (all console output enabled by default)</p>
+<p><strong>Default (module)</strong>: <code>verbose</code>: <code>false</code> (all console output disabled by default)</p>
 </div><div class="step" data-x="2400" data-y="4000" data-z="2400" data-rotate-y="135"><!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
 <h3 id="user-content--t-theme---theme-theme-or--theme-string--in-code" class="deep-link">-t &lt;theme&gt;, --theme &lt;theme&gt; or { theme: String } in code</h3>
 <p><strong>Default</strong>: <code>light</code></p>
@@ -996,7 +1005,7 @@ body {
 <li><code>light-serif</code>: Light theme with Sans-Serif font. <a href="https://gamell.github.io/markpress/examples/light-serif.html">Example</a></li>
 <li><code>dark-serif</code>: Light theme with Serif font</li>
 </ul>
-<h3 id="user-content--sv---save-or--save-boolean--in-code" class="deep-link">-sv, --save or { save: Boolean } in code</h3>
+<h3 id="user-content--s---save-or--save-boolean--in-code" class="deep-link">-s, --save or { save: Boolean } in code</h3>
 <p><strong>Default</strong>: <code>false</code></p>
 <p>Embed the markpress options into the <code>.md</code> file for portability. <strong>Warning:</strong> it will override any existing options.</p>
 <h3 id="user-content--e---edit-only-available-in-cli" class="deep-link">-e, --edit only available in CLI</h3>
@@ -1215,17 +1224,17 @@ body {
     var computeWindowScale = function( config ) {
         var hScale = window.innerHeight / config.height,
             wScale = window.innerWidth / config.width,
-            scale = hScale > wScale ? wScale : hScale;
+            scale = hScale > wScale ? hScale : wScale;
 
-        if ( config.maxScale && scale > config.maxScale ) {
-            scale = config.maxScale;
-        }
+        // if ( config.maxScale && scale > config.maxScale ) {
+        //     scale = config.maxScale;
+        // }
+        //
+        // if ( config.minScale && scale < config.minScale ) {
+        //     scale = config.minScale;
+        // }
 
-        if ( config.minScale && scale < config.minScale ) {
-            scale = config.minScale;
-        }
-
-        return scale;
+        return 1;
     };
 
     // CHECK SUPPORT
