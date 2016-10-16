@@ -31,7 +31,6 @@ function execMarkpress() {
 function startBs() {
   if (options.edit) {
     const outputPath = path.parse(output);
-    console.log(`%%%% OUTPUT PATH: ${JSON.stringify(outputPath)}`);
     bs.init({
       server: {
         baseDir: outputPath.dir,
@@ -97,7 +96,6 @@ function parseCommand(args, done) {
         input = path.resolve(basePath, i);
         const ext = path.extname(input);
         output = o ? path.resolve(basePath, o) : input.replace(ext, '.html');
-        console.log(`********** I/O: ${input} / ${output}`);
         return true;
       })
       .parse(args);
