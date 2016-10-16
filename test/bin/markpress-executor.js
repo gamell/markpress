@@ -30,8 +30,7 @@ function getArgs(additionalArgs) {
 }
 
 const assertOptsForArgs = (args, expectedOpts, done) =>
-  markpressExecutor(getArgs(args)).then(res => {
-    assert.equal(0, res.code);
+  markpressExecutor(getArgs(args)).then(exit => {
     sinon.assert.calledOnce(markpressStub);
     sinon.assert.calledWith(
       markpressStub,
@@ -92,19 +91,19 @@ describe('MarkpressExecutor (CLI)', function test() {
 
   describe('Verbose Option Parsing', () => {
     it('it should correctly parse option longhand', done => {
-      assertOptsForArgs(['--silent'], {verbose: false, noEmbed: undefined}, done);
+      assertOptsForArgs(['--silent'], {verbose: false, embed: true}, done);
     });
     it('it should correctly parse option longhand', done => {
-      assertOptsForArgs([], {verbose: true, noEmbed: undefined}, done);
+      assertOptsForArgs([], {verbose: true, embed: true}, done);
     });
   });
 
   describe('noEmbed Option Parsing', () => {
     it('it should correctly parse option shorthand', done => {
-      assertOptsForArgs(['-E'], {save: undefined, noEmbed: true}, done);
+      assertOptsForArgs(['-E'], {save: undefined, embed: false}, done);
     });
     it('it should correctly parse option longhand', done => {
-      assertOptsForArgs(['--disable-embed'], {save: undefined, noEmbed: true}, done);
+      assertOptsForArgs(['--no-embed'], {save: undefined, embed: false}, done);
     });
   });
 

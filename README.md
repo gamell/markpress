@@ -128,9 +128,9 @@ Automatically generate the layout for the slides. **This option will be ignored 
 ------------
 <!--slide-attr x=1200 y=4000 z=1800 rotate-y=90 -->
 
-### `-E`, `--disable-embed` or `{ noEmbed: true }` in code
+### `-E`, `--no-embed` or `{ embed: false }` in code
 
-**Default**: `false`
+**Default**: `true` (pass `--no-embed` through CLI to disable)
 
 By default, `markpress` will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 

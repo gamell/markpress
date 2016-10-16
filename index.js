@@ -15,7 +15,7 @@ let pathResolve = require('path').resolve;
 let optionDefaults = {
   layout: 'horizontal',
   theme: 'light',
-  noEmbed: false,
+  embed: true,
   autoSplit: false,
   sanitize: false,
   verbose: false,
@@ -75,7 +75,7 @@ function getLayoutData(slide, layout) {
 function createSlideHtml(content, layout) {
   return transform(
     marky(content, {sanitize: options.sanitize}),
-    !options.noEmbed
+    options.embed
   ).then($ =>
     `<div class="step" ${getLayoutData(content, layout)}>${$.html()}</div>`
   );
