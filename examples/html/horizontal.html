@@ -752,8 +752,7 @@ kbd {
   border-color: #4078c0;
 }
 body {
-  font-size: 100%;
-  font-size: 2.9vmin;
+  font-size: 2.5vmin;
 }
 h1,
 h2,
@@ -770,16 +769,16 @@ h1 {
 }
 h2 {
   font-size: 1.4em;
-  margin-top: 2.9vmin;
+  margin-top: 1em;
 }
 h3 {
   font-size: 1.1em;
-  margin-top: 2.9vmin;
+  margin-top: 1em;
 }
 h4,
 h5,
 h6 {
-  font-size: 2.9vmin;
+  font-size: 1em;
 }
 body {
   line-height: 1;
@@ -800,6 +799,12 @@ blockquote {
 p,
 li {
   margin-bottom: 1em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-top: 1em;
 }
 .highlight pre,
 pre {
@@ -834,8 +839,8 @@ a:hover {
   opacity: 1;
 }
 kbd {
-  font-size: 2.9vmin;
-  line-height: 2.9vmin;
+  font-size: 1em;
+  line-height: 1em;
   display: inline-block;
   padding: 0.15em 0.35em;
   font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -848,17 +853,8 @@ kbd {
   box-shadow: inset 0 -0.1vmax 0 #bbb;
 }
 @media (orientation: portrait) {
-  body {
-    font-size: 2.2vmax;
-  }
-  h1,
-  h2,
-  h3 {
-    margin-top: 2.2vmax;
-  }
-  kbd {
-    font-size: 2.2vmax;
-    line-height: 2.2vmax;
+  .step {
+    width: 95vw;
   }
 }
 </style>
@@ -1157,17 +1153,17 @@ Vivamus a dolor dictum, consectetur tellus at, faucibus est.</p>
     var computeWindowScale = function( config ) {
         var hScale = window.innerHeight / config.height,
             wScale = window.innerWidth / config.width,
-            scale = hScale > wScale ? wScale : hScale;
+            scale = hScale > wScale ? hScale : wScale;
 
-        if ( config.maxScale && scale > config.maxScale ) {
-            scale = config.maxScale;
-        }
+        // if ( config.maxScale && scale > config.maxScale ) {
+        //     scale = config.maxScale;
+        // }
+        //
+        // if ( config.minScale && scale < config.minScale ) {
+        //     scale = config.minScale;
+        // }
 
-        if ( config.minScale && scale < config.minScale ) {
-            scale = config.minScale;
-        }
-
-        return scale;
+        return 1;
     };
 
     // CHECK SUPPORT

@@ -1,8 +1,7 @@
 // overwrites
 
 body {
-  font-size: 100%; // fallback
-  font-size: @fontSizeLandscape;
+  font-size: 2.5vmin;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -16,15 +15,15 @@ h1 {
 }
 h2 {
   font-size: 1.4em;
-  margin-top: @fontSizeLandscape;
+  margin-top: 1em;
 }
 h3 {
   font-size: 1.1em;
-  margin-top: @fontSizeLandscape;
+  margin-top: 1em;
 }
 
 h4, h5, h6 {
-  font-size: @fontSizeLandscape
+  font-size: 1em;
 }
 
 body {
@@ -49,6 +48,13 @@ p,li {
   margin-bottom: 1em;
 }
 
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-top: 1em;
+}
+
 .highlight pre, pre{
   background-color: @codeBackground;
 }
@@ -65,7 +71,7 @@ a:hover{
 
 .step {
   position: relative;
-  width: @slideWidth;
+  width: 85vw;
   margin: 0 auto;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -87,8 +93,8 @@ a:hover{
 }
 
 kbd{
-  font-size: @fontSizeLandscape;
-  line-height: @fontSizeLandscape;
+  font-size: 1em;
+  line-height: 1em;
   display: inline-block;
   padding: 0.15em 0.35em;
   font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -102,14 +108,7 @@ kbd{
 }
 
 @media (orientation: portrait) {
-  body{
-    font-size: @fontSizePortrait;
-  }
-  h1,h2,h3{
-    margin-top: @fontSizePortrait;
-  }
-  kbd{
-    font-size: @fontSizePortrait;
-    line-height: @fontSizePortrait;
+  .step{
+    width: 95vw;
   }
 }
