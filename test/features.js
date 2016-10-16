@@ -146,7 +146,7 @@ describe('markpress feature test', function test() {
   describe('Image embed: On', () => {
     before(done => {
       generateHtml({
-        noEmbed: false
+        embed: true
       }, done);
     });
     it('should not contain the remote image url', () => {
@@ -165,7 +165,7 @@ describe('markpress feature test', function test() {
   describe('Image embed: Off', () => {
     before(done => {
       generateHtml({
-        noEmbed: true
+        embed: false
       }, done);
     });
     it('should contain the remote image url', () => {

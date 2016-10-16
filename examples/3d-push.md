@@ -9,7 +9,7 @@
 	"theme": "light"
 }
 
--->
+markpress-opt-->
 # 3d-push Layout Example Markpress presentation
 
 Welcome to the example Markpress presentation! Use your arrow keys to step through the different slides <kbd>←</kbd> <kbd>→</kbd> or swipe right/left on mobile.
@@ -17,9 +17,6 @@ Welcome to the example Markpress presentation! Use your arrow keys to step throu
 This presentation was generated with the following command:
 
 `$ markpress 3d-push.md html/3d-push.html -a -l 3d-push --save`
-
-
-
 
 
 # Headings
