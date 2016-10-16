@@ -106,7 +106,7 @@ describe('markpress option logic (index.js)', () => {
       done();
     }).catch(done);
   });
-  it('noEmbed should be false by default', done => {
+  it('embed should be true by default', done => {
     const transformSpy = sandbox.spy(transform);
     const rewiredContext = markpress.__with__({transform: transformSpy});
     rewiredContext(() => markpress(input, {})).then(() => {
@@ -118,10 +118,10 @@ describe('markpress option logic (index.js)', () => {
       done();
     }).catch(done);
   });
-  it('noEmbed should respected when passed', done => {
+  it('embed should respected when passed', done => {
     const transformSpy = sandbox.spy(transform);
     const rewiredContext = markpress.__with__({transform: transformSpy});
-    rewiredContext(() => markpress(input, {noEmbed: true})).then(() => {
+    rewiredContext(() => markpress(input, {embed: false})).then(() => {
       sinon.assert.calledOnce(transformSpy);
       sinon.assert.calledWith(transformSpy,
         sinon.match.any,
@@ -173,7 +173,7 @@ describe('markpress option logic (index.js)', () => {
         sinon.match.any,
         sinon.match({theme: 'dark'})
       );
-      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"title": "one-slide",\n\t"layout": "horizontal",\n\t"noEmbed": false,\n\t"autoSplit": false,\n\t"sanitize": false\n}\n\n-->\n# one slide\n');
+      assert.include(md, '<!--markpress-opt\n\n{\n\t"theme": "dark",\n\t"title": "one-slide",\n\t"layout": "horizontal",\n\t"embed": true,\n\t"autoSplit": false,\n\t"sanitize": false\n}\n\nmarkpress-opt-->\n# one slide\n');
       assert.notInclude(md, '"save": true');
       done();
     }).catch(done);
