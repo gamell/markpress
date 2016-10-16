@@ -1,8 +1,7 @@
 <!--markpress-opt
 
 {
-	"layout": "horizontal",
-	"theme": "dark",
+	"theme": "light",
 	"autoSplit": false,
 	"sanitize": false,
 	"noEmbed": false,
@@ -129,23 +128,25 @@ Automatically generate the layout for the slides. **This option will be ignored 
 ------------
 <!--slide-attr x=1200 y=4000 z=1800 rotate-y=90 -->
 
-### `-ne`, `--no-embed` or `{ noEmbed: true }` in code
+### `-E`, `--disable-embed` or `{ noEmbed: true }` in code
 
 **Default**: `false`
 
 By default, `markpress` will try to embed (using base64 encoding) the referenced images into the HTML so they will be available offline and you will not have problems moving the HTML to other folders. This feature will be disabled if `--no-embed` is set to true.
 
-### `-sa`, `--sanitize` or `{ sanitize: boolean }` in code
+### `-z`, `--sanitize` or `{ sanitize: boolean }` in code
 
 **Default**: `false` (*dangerous* HTML & scripts allowed)
 
 Disallow embedding of *dangerous* HTML code in the Markdown file. You should leave it disabled if you want to use custom `<style>` tags, embed videos, etc.
 
-### `-si`, `--silent` or `{ silent: Boolean }` in code
+### `--silent` or `{ verbose: Boolean }` in code
 
-**Default**: `false` in CLI mode, **defaults to silent when used as a module**
+`--silent` Will silence all console output in the Terminal. `{verbose: true}` will **enable** all console output.
 
-Silence all console outputs.
+**Default (CLI)**: `silence`: `false` (all console output enabled by default)
+
+**Default (module)**: `verbose`: `false` (all console output disabled by default)
 
 ------------
 <!--slide-attr x=2400 y=4000 z=2400 rotate-y=135 -->
@@ -161,7 +162,7 @@ Chose from the different available themes:
 - `light-serif`: Light theme with Sans-Serif font. [Example](https://gamell.github.io/markpress/examples/light-serif.html)
 - `dark-serif`: Light theme with Serif font
 
-### `-sv`, `--save` or `{ save: Boolean }` in code
+### `-s`, `--save` or `{ save: Boolean }` in code
 
 **Default**: `false`
 

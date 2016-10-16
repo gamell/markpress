@@ -1,13 +1,15 @@
 
-// for testing
+// using `let` for test mocking through rewire
+
 let markpress = require('../index.js');
+let program = require('commander');
+let bs = require('browser-sync').create();
+
 const fs = require('fs');
-const program = require('commander');
 const path = require('path');
 const pkg = require('../package');
 const log = require('../lib/log');
 const StackTrace = require('stacktrace-js');
-const bs = require('browser-sync').create();
 const basePath = process.cwd();
 
 const layoutRegex = /^(horizontal|vertical|3d-push|3d-pull|grid|random-7d|random)$/i;
@@ -59,35 +61,35 @@ function init(args) {
       .arguments('<input> [output]')
       .option('--silent', 'Do not display progress & debug messages')
       .option(
-        '-l --layout <layout>',
+        '-l, --layout <layout>',
         'The impress.js generated layout [horizontal (default)|vertical|3d-push|3d-pull|grid|random-7d|random]',
         layoutRegex,
         undefined
       )
       .option(
-        '-t --theme <theme>',
+        '-t, --theme <theme>',
         'The theme of colors [light (default)|dark|light-serif|dark-serif]',
         themeRegex,
         undefined
       )
       .option(
-        '-a --auto-split',
+        '-a, --auto-split',
         'Automatically create a slide for every H1 level element (\'------\' will be ignored)'
       )
       .option(
-        '-sa --sanitize',
-        'Disallow *dangerous* HTML in the Markdown file (e.g. <script> tags)'
-      )
-      .option(
-        '-ne --no-embed',
+        '-E, --disable-embed',
         'Do not embed the referenced images into the HTML. This can cause images not to be displayed'
       )
       .option(
-        '-sv --save',
+        '-z, --sanitize',
+        'Disallow *dangerous* HTML in the Markdown file (e.g. <script> tags)'
+      )
+      .option(
+        '-s, --save',
         'Save the presentation options in the markdown file for portability. WARNING: will override existing options'
       )
       .option(
-        '-e --edit',
+        '-e, --edit',
         'Enable editor mode, with live-preview of changes in the input file.'
       )
       .on('--help', () => {
@@ -113,7 +115,7 @@ function init(args) {
     autoSplit: program.autoSplit,
     sanitize: program.sanitize,
     verbose: (typeof program.silent === 'undefined') ? true : !program.silent,
-    noEmbed: program.noEmbed,
+    noEmbed: program.disableEmbed,
     save: program.save,
     edit: program.edit
   };
