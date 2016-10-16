@@ -1,4 +1,4 @@
-/* eslint no-underscore-dangle: ["error", { "allow": ["__with__", "__get__"] }] */
+/* eslint no-underscore-dangle: ["error", { "allow": ["__with__", "__get__", "__set__"] }] */
 
 'use strict';
 
@@ -9,27 +9,32 @@ const rewire = require('rewire');
 const markpressExecutor = rewire('../../bin/markpress-executor');
 
 const baseArgv = [
-  '/usr/local/Cellar/node/6.5.0/bin/node',
-  '/Users/gamell/src/markpress/bin/markpress.js',
+  '/path/to/bin/node',
+  '/path/to/bin/markpress.js',
   'input.md',
   '--silent'
 ];
 
-let markpressStub = sinon.stub().returns(Promise.reject('Stubbed'));
-let rewiredContext = markpressExecutor.__with__({markpress: markpressStub});
+let markpressStub;
+let revert;
 
-function buildArgs(additionalArgs) {
+function getArgs(additionalArgs) {
   let args = baseArgv.slice(0); // cloning the base array https://davidwalsh.name/javascript-clone-array
   return args.concat(additionalArgs);
 }
 
-describe('Markpress CLI parsing tests', function test() {
+describe('MarkpressExecutor (CLI)', function test() {
+  before(() => {
+    markpressStub = sinon.stub().returns(Promise.resolve({html: 'nothing'}));
+    revert = markpressExecutor.__set__({markpress: markpressStub});
+  });
   // can't use arrow functions because of 'this' problem
   // https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/
   this.timeout(5000);
   describe('Auto-split Option Parsing', () => {
     it('it should correctly parse option shorthand', done => {
-      rewiredContext(() => markpressExecutor(buildArgs(['-a']))).then(() => {
+      markpressExecutor(getArgs(['-a'])).then(res => {
+        assert.equal(0, res.code);
         sinon.assert.calledOnce(markpressStub);
         sinon.assert.calledWith(
           markpressStub,
@@ -37,20 +42,19 @@ describe('Markpress CLI parsing tests', function test() {
           sinon.match({autoSplit: true, verbose: false})
         );
         done();
-      }).catch(done);
+      }).catch(reason => done(reason));
     });
     it('it should correctly parse option longhand', done => {
-      // SHOULD FAIL
-      rewiredContext = markpressExecutor.__with__({markpress: markpressStub});
-      rewiredContext(() => markpressExecutor(buildArgs([]))).then(() => {
+      markpressExecutor(getArgs(['-a'])).then(res => {
+        assert.equal(0, res.code);
         sinon.assert.calledOnce(markpressStub);
         sinon.assert.calledWith(
           markpressStub,
-          sinon.match('inputf.md'),
+          sinon.match('input.md'),
           sinon.match({autoSplit: true, verbose: false})
         );
-        //done();
-      });
+        done();
+      }).catch(reason => done(reason));
     });
   });
 });
