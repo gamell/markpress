@@ -24,9 +24,10 @@ function execMarkpress() {
     if (md) fs.writeFileSync(input, md);
     fs.writeFileSync(output, html);
     log.info(`html presentation generated in ${new Date() - t0}ms`);
+    return {code: 0};
   }, reason => {
     log.error(`${reason} \n\nStackTrace: \n\n`);
-    StackTrace.fromError(reason).then(console.log).then(() => process.exit(1));
+    StackTrace.fromError(reason).then(console.log).then(() => Promise.reject());
   });
 }
 
@@ -43,8 +44,12 @@ function startBs() {
   );
 }
 
-function refreshBs(output) {
-  bs.reload(output);
+function refreshBs(res) {
+  if (options.edit) {
+    bs.reload(output);
+    res.exit = false;
+  }
+  return res;
 }
 
 function init(args) {
@@ -99,7 +104,7 @@ function init(args) {
   if (!input || !output) {
     console.log('\nError: Must have input argument!');
     program.help();
-    process.exit();
+    return {code: 1};
   }
 
   options = {
@@ -124,7 +129,7 @@ function init(args) {
     log.warn('Are you sure it\'s the right file? Markdown extension not found.');
   }
 
-  return execMarkpress().then(refreshBs());
+  return execMarkpress().then(res => refreshBs(res));
 }
 
 module.exports = init;
