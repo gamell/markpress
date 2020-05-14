@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^3.5.0",
+    "eslint": "^7.0.0",
     "eslint-config-google": "^0.6.0",
     "intercept-stdout": "^0.1.2",
     "mocha": "^3.0.2",
