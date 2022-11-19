@@ -31,7 +31,7 @@ let options = {};
 // Regex
 
 const COMMENT_REGEX = /^\s*<!--slide-attr\s*(.*?)\s*-->\s*$/gm;
-const SLIDE_SEPARATOR_REGEX = /^-{6,}$/m;
+const SLIDE_SEPARATOR_REGEX = /^-{6,}$/gm;
 // using positive lookahead to keep the separator
 // http://stackoverflow.com/questions/12001953/javascript-and-regex-split-string-and-keep-the-separator
 const H1_REGEX = /^(?=#[^#]+)/m;
@@ -43,6 +43,9 @@ const EMBEDDED_OPTIONS_REGEX = /<!--markpress-opt([\W\w]+)markpress-opt-->\s*/;
 
 // setting the app root folder for later use in other files
 global.appRoot = pathResolve(__dirname);
+
+// purely for testing reasons, so I can mock the exported functions from the test.
+const exported = {};
 
 function generateLayout(layout) {
   return layoutGenerator[layout]();
@@ -104,10 +107,10 @@ function containsLayoutData(markdown) {
   return markdown.search(COMMENT_REGEX) !== -1;
 }
 
-function splitSlides(markdown, autoSplit) {
+exported.splitSlides = function (markdown, autoSplit) {
   if (autoSplit) {
     log.info(
-      "auto-split option enabled, splitting tiles automatically. Ignoring '------'"
+      "auto-split option enabled, splitting by H1 titles automatically. Ignoring '------'"
     );
     // remove the separators, if any and split by H1
     const slideArray = markdown
@@ -118,7 +121,7 @@ function splitSlides(markdown, autoSplit) {
     return slideArray;
   }
   return markdown.split(SLIDE_SEPARATOR_REGEX);
-}
+};
 
 function getMarkdownAndSetBaseDir(input, opts) {
   if (util.getExtUpperCase(input) === ".MD") {
@@ -148,7 +151,7 @@ function getEmbeddedOptions(markdown) {
   }
 }
 
-function embedOptions(md, opt) {
+exported.embedOptions = function (md, opt) {
   // delete any existing options
   const cleanMarkdown = md.replace(EMBEDDED_OPTIONS_REGEX, "");
   // save new options
@@ -161,7 +164,7 @@ function embedOptions(md, opt) {
   )}\n\nmarkpress-opt-->\n`;
   const res = options + cleanMarkdown;
   return res;
-}
+};
 
 // Options priority: CLI Arguments > Embedded arguments in markdown > defaults
 function calculateOptions(optionsArg, markdown) {
@@ -173,7 +176,7 @@ function calculateOptions(optionsArg, markdown) {
   return options;
 }
 
-function mdToHtml(markdown, options) {
+exported.mdToHtml = function (markdown, options) {
   // disable auto layout if custom metadata is found
   if (containsLayoutData(markdown)) {
     log.info(
@@ -181,7 +184,7 @@ function mdToHtml(markdown, options) {
     );
     options.layout = "custom";
   }
-  slides = splitSlides(markdown, options.autoSplit);
+  slides = exported.splitSlides(markdown, options.autoSplit);
   log.info(`creating ${options.layout} layout...`);
   const slidesHtml = slides.reduce(
     (prev, content) =>
@@ -191,23 +194,24 @@ function mdToHtml(markdown, options) {
     Promise.resolve("")
   ); // initial value
   return slidesHtml.then((html) => createImpressHtml(html, options.title));
-}
+};
 
-// return Promise
-module.exports = (input, optionsArg) => {
+exported.run = function (input, optionsArg) {
   try {
     log.init(optionsArg.verbose || false);
     const { markdown, opts } = getMarkdownAndSetBaseDir(input, optionsArg);
     options = calculateOptions(opts, markdown);
     const updatedMd = options.save
-      ? embedOptions(markdown, options)
+      ? exported.embedOptions(markdown, options)
       : undefined;
     return new Promise((resolve) =>
-      mdToHtml(markdown, options).then((html) =>
-        resolve({ html: html, md: updatedMd })
-      )
+      exported
+        .mdToHtml(markdown, options)
+        .then((html) => resolve({ html: html, md: updatedMd }))
     );
   } catch (e) {
     return Promise.reject(e);
   }
 };
+
+module.exports = exported;
