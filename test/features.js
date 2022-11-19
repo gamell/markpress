@@ -1,7 +1,5 @@
 "use strict";
 
-const assert = require("chai").assert;
-const sinon = require("sinon");
 const path = require("path");
 
 const markpress = require("../index.js");
@@ -18,7 +16,8 @@ let html;
 let md;
 
 const runMarkpress = (i, options, done) =>
-  markpress(i, options)
+  markpress
+    .run(i, options)
     .then((res) => {
       html = res.html;
       md = res.md;

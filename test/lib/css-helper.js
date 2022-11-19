@@ -1,8 +1,6 @@
 "use strict";
 
-const assert = require("chai").assert;
 const cssHelper = require("../../lib/css-helper.js");
-const sinon = require("sinon");
 
 // css-helper dependencies
 const util = require("../../lib/util");

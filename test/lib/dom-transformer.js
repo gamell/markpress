@@ -1,8 +1,6 @@
 "use strict";
 
-const assert = require("chai").assert;
 const domTransformer = require("../../lib/dom-transformer.js");
-const sinon = require("sinon");
 
 // css-helper dependencies
 const fetch = require("fetch-base64");

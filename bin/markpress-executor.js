@@ -23,7 +23,7 @@ let options;
 function execMarkpress() {
   const t0 = new Date();
   // markpress() returns a Promise which when resolved has 2 params: HTML and MD
-  return markpress(input, options).then(({ html, md }) => {
+  return markpress.run(input, options).then(({ html, md }) => {
     if (md) fs.writeFileSync(input, md);
     fs.writeFileSync(output, html);
     log.info(`html presentation generated in ${new Date() - t0}ms`);
